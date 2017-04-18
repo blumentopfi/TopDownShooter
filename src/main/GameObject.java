@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,6 +15,8 @@ public abstract class GameObject {
 	private int m_tag ; 
 	private BufferedImage m_sprite ; 
 	private Transform m_transform ; 
+	public void  keyPressed(KeyEvent e){} ;
+	public void  keyReleased(KeyEvent e){};
 	
 	public void Update(){
 		

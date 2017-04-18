@@ -25,13 +25,19 @@ public class InputManager implements ActionListener {
 	}
 	public class KeyManager implements KeyListener{
 		public void keyPressed(KeyEvent e) {
-			GameManager.getInstance().getPlayer().keyPressed(e);
+			List<GameObject> gameObjectsinScene = GameManager.getInstance().GetAllGameObjectsInScene() ; 
+			for (GameObject Object: gameObjectsinScene){
+				Object.keyPressed(e);
+			}
 			
 		}
 
 		
 		public void keyReleased(KeyEvent e) {
-			GameManager.getInstance().getPlayer().keyReleased(e);
+			List<GameObject> gameObjectsinScene = GameManager.getInstance().GetAllGameObjectsInScene() ; 
+			for (GameObject Object: gameObjectsinScene){
+				Object.keyReleased(e);
+			}
 		
 			
 		}
