@@ -28,6 +28,7 @@ public class Camera extends Thread {
 		m_GameWindow.setVisible(true);
 		m_GameWindow.setLayout(new BorderLayout());
 		m_GameWindow.add(m_GameView);
+		render() ; 
 	}
 	public Rectangle getViewRect(){
 		return ViewRect ; 
@@ -68,7 +69,7 @@ public class Camera extends Thread {
 	public JPanel getGameView(){
 		return m_GameView ; 
 	}
-	/*private RenderThread Renderer ; 
+	private RenderThread Renderer ; 
 	public RenderThread getRenderer(){
 		return Renderer ; 
 	}
@@ -76,5 +77,5 @@ public class Camera extends Thread {
 	private void render(){
 		Renderer = new RenderThread(this) ; 
 		Renderer.start();
-	}*/
+	}
 }
