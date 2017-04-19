@@ -10,8 +10,7 @@ import java.awt.Toolkit;
 import java.awt.geom.Point2D;
 import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import main.GameManager;
 import main.GameObject;
@@ -25,6 +24,7 @@ public class Camera extends Thread {
 		this.ViewRect = ViewRect ; 
 		m_GameWindow = new JFrame("Top Down Shooter") ; 
 		m_GameWindow.setSize(width, height);
+		m_GameWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		m_GameWindow.setVisible(true);
 		m_GameWindow.setLayout(new BorderLayout());
 		m_GameWindow.add(m_GameView);
