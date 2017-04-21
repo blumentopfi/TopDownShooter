@@ -33,6 +33,7 @@ public abstract class GameObject {
 	public BufferedImage GetSprite(){
 		return m_sprite ; 
 	}
+
 	public GameObject(String PathToSprite,String Name){
 		m_name = Name ; 
 		GameManager.getInstance().AddGameObjectToScene(this);

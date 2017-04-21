@@ -48,6 +48,7 @@ public class Camera extends Thread {
 	public JFrame getGameWindow(){
 		return m_GameWindow ; 
 	}
+
 	public void doDrawing(Graphics g) {
 		
 		List<GameObject> gameObjectsinScene = GameManager.getInstance().GetAllGameObjectsInScene() ; 

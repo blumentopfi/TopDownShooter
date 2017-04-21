@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import main.GameObject;
+import objects.Enemy;
 import objects.Player;
 import rendering.Camera;
 import input.InputManager; 
@@ -16,7 +17,7 @@ public class GameManager {
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
 	public static void main(String[] args) {
-		MainPlayer = new Player("Assets/PlaneSprites/B-17.png","MainPlayer") ; 
+		MainPlayer = new Player("Assets/PlaneSprites/B-17.png","MainPlayer") ;
 		MainPlayer.setPosition(new Point2D.Float(5,5));	
 		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10)) ;
 		InputManager input_manager = new InputManager()  ; 
@@ -36,7 +37,7 @@ public class GameManager {
 	}
 	public void PrintAllGameObjectsByName(){
 		for (GameObject g: m_GameObjectsInScene){
-			System.out.println(g.getName());
+			//System.out.println(g.getName());
 		}
 	}
 	private static GameManager instance ; 
