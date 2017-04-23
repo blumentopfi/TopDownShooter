@@ -28,4 +28,12 @@ public class Enemy extends GameObject {
     public float getSpeed() {
         return speed;
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 }

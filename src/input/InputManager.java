@@ -15,11 +15,14 @@ import javax.swing.Timer;
 import main.GameManager;
 import main.GameObject;
 import objects.Enemy;
+import rendering.Camera;
 
 public class InputManager implements ActionListener {
 	private static final int DELAY = 10;
+	Camera camera;
 	public InputManager(){
 		JFrame window = GameManager.getInstance().getMainCamera().getGameWindow() ;
+		camera = GameManager.getInstance().getMainCamera();
 		window.addKeyListener(new KeyManager());
 		window.setFocusable(true);
 		window.setFocusTraversalKeysEnabled(true);
@@ -78,10 +81,10 @@ public class InputManager implements ActionListener {
 						if(!objectA.equals(objectB)) {
 							Rectangle recA = gameObjectToRectangle(objectA);
 							Rectangle recB = gameObjectToRectangle(objectB);
-
-							System.out.println("recA: " + recA.getX() + " " + recA.getY() + " " + recA.getHeight() + " " + recA.getWidth());
-							System.out.println("recB: " + recB.getX() + " " + recB.getY() + " " + recB.getHeight() + " " + recB.getWidth());
 							System.out.println("Collision: " + recA.intersects(recB));
+							if((objectA.getName().equals("Missle")) && (objectB.getName().equals("Enemy"))) {
+								//(Enemy)objectB.setHealth(objectB.getHealth() - 50);
+							}
 						}
 					}
 				}
@@ -110,7 +113,7 @@ public class InputManager implements ActionListener {
 
 	}
 	public Rectangle gameObjectToRectangle(GameObject object) {
-		Point2D.Float posA = object.getPosition();
+		Point2D.Float posA = camera.ScreenCoordToWorldCoord(object.getPosition());
 		Dimension dim = object.getTransform().getSize();
 		double height = dim.getHeight();
 		double width = dim.getWidth();

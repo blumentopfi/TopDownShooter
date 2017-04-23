@@ -66,6 +66,13 @@ public class Camera extends Thread {
 		ScreenPoint.x = (float) (m_GameWindow.getWidth() / ViewRect.getWidth() * WorldPoint.x) ; 
 		return ScreenPoint ; 
 	}
+
+	public Point2D.Float ScreenCoordToWorldCoord (Point2D.Float ScreenPoint){
+		Point2D.Float WorldPoint = new Point2D.Float(0,0) ;
+		WorldPoint.y = (float) (m_GameWindow.getHeight() / ViewRect.getHeight() * ScreenPoint.y) ;
+		WorldPoint.x = (float) (m_GameWindow.getWidth() / ViewRect.getWidth() * ScreenPoint.x) ;
+		return WorldPoint ;
+	}
 	
 	public JPanel getGameView(){
 		return m_GameView ; 
