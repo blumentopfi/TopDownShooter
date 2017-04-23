@@ -1,8 +1,12 @@
 package objects;
 
 import main.GameObject;
+import main.SceneManager;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import Components.Collider;
 
 /**
  * Created by Eike Nils on 21.04.2017.
@@ -15,11 +19,15 @@ public class Enemy extends GameObject {
     public Enemy(String PathToSprite, String Name, float posX, float posY) {
         super(PathToSprite, Name);
         this.setPosition(new Point2D.Float(posX, posY));
+        this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
     }
 
     public void Update(){
     	super.Update();
         this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + speed));
+        if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
+			this.Destroy();
+		}
     }
 
     public void setSpeed(float newSpeed) {

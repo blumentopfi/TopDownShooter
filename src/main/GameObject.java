@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import main.SceneManager ;
@@ -20,10 +21,26 @@ public abstract class GameObject {
 	private Transform m_transform ; 
 	public void  keyPressed(KeyEvent e){} ;
 	public void  keyReleased(KeyEvent e){};
-	private static List<Component> m_Components ;
+	private List<Component> m_Components = new ArrayList<Component>() ;
 	protected void addComponent(Component component){
 		m_Components.add(component) ;
 	}
+	public void Destroy(){
+		m_Components.clear();
+		SceneManager.getInstance().getGameObjectToDelete().add(this) ;
+	}
+	public void OnCollision(GameObject collidingObject) {
+		
+	}
+	public Collider getCollider(){
+		for (Component c : m_Components){
+			if (c instanceof Collider){
+				return (Collider)c ; 
+			}
+		}
+		return null ; 
+	}
+	
 	public void Update(){
 		for (int i = 0 ; i < m_Components.size() ; i++){
 			m_Components.get(i).ComponentUpdate();

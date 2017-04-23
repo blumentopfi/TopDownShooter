@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
 import objects.Missle;
 import main.SceneManager;
 import main.GameObject;
@@ -20,7 +22,13 @@ public class Player extends GameObject {
 	long NextFire = 0  ; 
 	public Player(String PathToSprite, String Name){
 		super(PathToSprite,Name) ;
-		this.addComponent(new Collider(new Rectangle(0,0,0,0)));
+		this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
+	}
+	
+	public void OnCollision(GameObject collidingObject) {
+		if (collidingObject.getName() == "Enemy"){
+		collidingObject.Destroy(); 
+		}
 	}
 	
 	public void Update(){
@@ -40,7 +48,6 @@ public class Player extends GameObject {
 	        	if (NextFire < System.currentTimeMillis() ){
 	        	shoot() ; 
 	        	NextFire = System.currentTimeMillis() + FireRate ; 
-	        	System.out.println(NextFire);
 	        	}
 	        }
 	        if (key == KeyEvent.VK_LEFT) {

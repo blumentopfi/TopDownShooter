@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import javax.swing.*;
@@ -50,7 +51,7 @@ public class Camera extends Thread {
 	}
 
 	public void doDrawing(Graphics g) {
-		
+		boolean Debug = true ; 
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
 				if (Object != null){
@@ -58,8 +59,17 @@ public class Camera extends Thread {
 						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; 
 						g.drawImage(Object.GetSprite(), (int)(PointToRender.x - (Object.GetSprite().getWidth()/2)), ((int)PointToRender.y - (Object.GetSprite().getHeight()/2)), null) ;
 					}
+					if (Debug){
+						if (Object.getCollider() != null){
+							Rectangle2D.Float rect = Object.getCollider().getCollidingRectangle() ;
+							Point2D.Float PointToRender = WorldCoordToScreenCoord(new Point2D.Float((float)rect.getX(),(float)rect.getY())) ; 
+							g.setColor(Color.GREEN);
+							g.drawRect((int)PointToRender.x, (int)PointToRender.y,(int)( rect.getWidth()* m_GameWindow.getWidth() / ViewRect.getWidth()), (int)(rect.getHeight() * m_GameWindow.getHeight() / ViewRect.getHeight()) );
+						}
+					}
 				}
 		}
+		
 		
 	}
 	public Point2D.Float WorldCoordToScreenCoord (Point2D.Float WorldPoint){

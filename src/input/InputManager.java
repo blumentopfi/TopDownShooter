@@ -6,12 +6,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import com.sun.javafx.font.directwrite.RECT;
+
+import Components.Collider;
 import main.SceneManager;
 import main.GameObject;
 import objects.Enemy;
@@ -32,10 +37,15 @@ public class InputManager implements ActionListener {
 	}
 	public class KeyManager implements KeyListener{
 		public void keyPressed(KeyEvent e) {
+			try{
 			List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 			for (GameObject Object: gameObjectsinScene){
 				Object.keyPressed(e);
 			}
+			}catch(ConcurrentModificationException ex){
+				keyPressed(e) ;
+			}
+			
 			
 		}
 
@@ -64,35 +74,43 @@ public class InputManager implements ActionListener {
 		//setupEnemies(gameObjectsinScene);
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
 			GameObject Object = gameObjectsinScene.get(i) ; 
-			System.out.println(Object.getName());
-			Object.Update();
-			System.out.println("Updated");
-			if (Object.getPosition().y < (SceneManager.getInstance().getMainCamera().getViewRect().getMinY()) && (Object.getName().equals("Missle"))){
-				SceneManager.getInstance().getGameObjectToDelete().add(Object) ;
-			}
-			if (Object.getPosition().y > (SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()) && (Object.getName().equals("Enemy"))){
-				SceneManager.getInstance().getGameObjectToDelete().add(Object) ;
-			}
+			Object.Update();	
 		}
 
-
-		//TODO Position ist not in pixels, so getX and getY do not work without further calculation. Need to reverse WorldCoordToScreenCoord.
-		for (GameObject objectA : gameObjectsinScene) {
-			if((objectA.getName().equals("Enemy")) || (objectA.getName().equals("Missle")) || (objectA.getName().equals("MainPlayer"))) {
-				for (GameObject objectB : gameObjectsinScene) {
-					if((objectB.getName().equals("Enemy")) || (objectB.getName().equals("Missle")) || (objectB.getName().equals("MainPlayer"))) {
-						if(!objectA.equals(objectB)) {
-							Rectangle recA = gameObjectToRectangle(objectA);
-							Rectangle recB = gameObjectToRectangle(objectB);
-							System.out.println("Collision: " + recA.intersects(recB));
-							if((objectA.getName().equals("Missle")) && (objectB.getName().equals("Enemy"))) {
-								//(Enemy)objectB.setHealth(objectB.getHealth() - 50);
+		
+		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
+			try{
+				GameObject objectA = gameObjectsinScene.get(i);
+				Collider colliderToCheckA ; 
+				colliderToCheckA = objectA.getCollider() ; 
+				if (colliderToCheckA != null){
+					Rectangle2D.Float rectangleOfColliderToCheckA = colliderToCheckA.getCollidingRectangle() ; 
+					for (int j = 0 ; j < gameObjectsinScene.size() ; j++){
+						try{
+							GameObject objectB = gameObjectsinScene.get(j);
+							if (objectB != objectA){			
+								Collider colliderToCheckB ; 
+								colliderToCheckB = objectB.getCollider() ; 
+								if (colliderToCheckB != null){
+									Rectangle2D.Float rectangleOfColliderToCheckB = colliderToCheckB.getCollidingRectangle() ; 
+									if (rectangleOfColliderToCheckA.intersects(rectangleOfColliderToCheckB)){
+										objectA.OnCollision(objectB);
+										objectB.OnCollision(objectA);
+									}
+								}
+								
 							}
+						}catch(IndexOutOfBoundsException e){
+							//ignore
 						}
 					}
 				}
 			}
+			catch(IndexOutOfBoundsException e){
+				//ignore
+			}
 		}
+		
 		SceneManager.getInstance().PrintAllGameObjectsByName();
 		SceneManager.getInstance().GetAllGameObjectsInScene().removeAll(SceneManager.getInstance().getGameObjectToDelete()) ;
 		SceneManager.getInstance().getGameObjectToDelete().clear();
