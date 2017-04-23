@@ -9,7 +9,6 @@ import java.util.List;
 import rendering.Camera;  
 public class RenderThread extends Thread {
 	
-		private boolean somethingChanged = true ; 
 		private Camera m_RenderCamera ; 
 		public RenderThread(Camera CameraWhichRenders){
 			m_RenderCamera = CameraWhichRenders ; 
@@ -20,9 +19,7 @@ public class RenderThread extends Thread {
 			}
 		}
 		
-		public void repaint(){
-			somethingChanged = true ; 
-		}
+
 		
 		private void render () {
 			SceneManager.getInstance().getMainCamera().getGameView().repaint();
