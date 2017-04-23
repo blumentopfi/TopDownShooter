@@ -19,7 +19,6 @@ public class Enemy extends GameObject {
 
     public void Update(){
         this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + speed));
-        System.out.println("X:" + this.getPosition().x + " | Y:" +this.getPosition().y);
     }
 
     public void setSpeed(float newSpeed) {
