@@ -12,7 +12,7 @@ import java.util.List;
 
 import javax.swing.*;
 
-import main.GameManager;
+import main.SceneManager;
 import main.GameObject;
 import rendering.RenderThread;
 public class Camera extends Thread {
@@ -51,11 +51,13 @@ public class Camera extends Thread {
 
 	public void doDrawing(Graphics g) {
 		
-		List<GameObject> gameObjectsinScene = GameManager.getInstance().GetAllGameObjectsInScene() ; 
+		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
 				if (Object != null){
-				Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; 
-				g.drawImage(Object.GetSprite(), (int)(PointToRender.x - (Object.GetSprite().getWidth()/2)), ((int)PointToRender.y - (Object.GetSprite().getHeight()/2)), null) ; 
+					if (Object.GetSprite() != null){
+						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; 
+						g.drawImage(Object.GetSprite(), (int)(PointToRender.x - (Object.GetSprite().getWidth()/2)), ((int)PointToRender.y - (Object.GetSprite().getHeight()/2)), null) ;
+					}
 				}
 		}
 		

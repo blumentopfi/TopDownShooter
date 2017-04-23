@@ -1,14 +1,17 @@
 package objects;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import objects.Missle;
-import main.GameManager;
+import main.SceneManager;
 import main.GameObject;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import Components.Collider;
 public class Player extends GameObject {
 	Point direction ; 
 	float dx ; 
@@ -17,9 +20,11 @@ public class Player extends GameObject {
 	long NextFire = 0  ; 
 	public Player(String PathToSprite, String Name){
 		super(PathToSprite,Name) ;
+		this.addComponent(new Collider(new Rectangle(0,0,0,0)));
 	}
 	
 	public void Update(){
+		super.Update();
 		this.setPosition(new Point2D.Float(this.getPosition().x + dx, this.getPosition().y +dy));
 	}
 	

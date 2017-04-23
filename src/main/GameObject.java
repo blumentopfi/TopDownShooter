@@ -7,9 +7,12 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import main.GameManager ;
+import java.util.List;
+
+import main.SceneManager ;
 import javax.imageio.ImageIO;
 import geometry.* ;
+import Components.* ; 
 public abstract class GameObject {
 	private String m_name ; 
 	private int m_tag ; 
@@ -17,14 +20,23 @@ public abstract class GameObject {
 	private Transform m_transform ; 
 	public void  keyPressed(KeyEvent e){} ;
 	public void  keyReleased(KeyEvent e){};
-	
+	private static List<Component> m_Components ;
+	protected void addComponent(Component component){
+		m_Components.add(component) ;
+	}
 	public void Update(){
-		
+		for (int i = 0 ; i < m_Components.size() ; i++){
+			m_Components.get(i).ComponentUpdate();
+		}
 	};
-	
+	public GameObject(String Name){
+		m_name = Name ;
+		SceneManager.getInstance().AddGameObjectToScene(this);
+		m_transform = new Transform(new Dimension(0,0),new Point2D.Float(0,0)) ; //set default point to 0,0 and size to size of the image
+	}
 	public GameObject(String PathToSprite,String Name){
 		m_name = Name ;
-		GameManager.getInstance().AddGameObjectToScene(this);
+		SceneManager.getInstance().AddGameObjectToScene(this);
 		try {
 			m_sprite = ImageIO.read(new File(PathToSprite)) ;
 		} catch (IOException e) {
