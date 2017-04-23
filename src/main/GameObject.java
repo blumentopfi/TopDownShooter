@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
