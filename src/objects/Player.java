@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Components.Collider;
+import Components.Sprite;
 public class Player extends GameObject {
 	Point direction ; 
 	float dx ; 
@@ -21,8 +22,11 @@ public class Player extends GameObject {
 	long FireRate = 100 ; 
 	long NextFire = 0  ; 
 	public Player(String PathToSprite, String Name){
-		super(PathToSprite,Name) ;
+		super(Name) ;
+		this.addComponent(new Sprite(PathToSprite,this));
 		this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
+		
+		
 	}
 	
 	public void OnCollision(GameObject collidingObject) {

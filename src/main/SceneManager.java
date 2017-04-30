@@ -1,4 +1,5 @@
 package main; 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
@@ -17,9 +18,12 @@ public class SceneManager {
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
 	public static void main(String[] args) {
+		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10)) ;
 		MainPlayer = new Player("Assets/PlaneSprites/B-17.png","MainPlayer") ;
 		MainPlayer.setPosition(new Point2D.Float(5,5));	
-		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10)) ;
+		System.out.println(MainPlayer.getCollider().getCollidingRectangle());
+		System.out.println(MainPlayer.getTransform().getSize());
+		
 		InputManager input_manager = new InputManager()  ; 
 		gameManager = new GameManager("Manager") ;
 		//GameManager.getInstance().PrintAllGameObjectsByName();

@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import Components.Collider;
+import Components.Sprite;
 
 /**
  * Created by Eike Nils on 21.04.2017.
@@ -17,9 +18,11 @@ public class Enemy extends GameObject {
     public int health = 100;
 
     public Enemy(String PathToSprite, String Name, float posX, float posY) {
-        super(PathToSprite, Name);
+        super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
+        this.addComponent(new Sprite(PathToSprite,this));
         this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
+       
     }
 
     public void Update(){

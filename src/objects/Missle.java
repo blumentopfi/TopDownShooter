@@ -4,13 +4,16 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import Components.Collider;
+import Components.Sprite;
 import main.SceneManager;
 import main.GameObject;
 
 public class Missle extends GameObject {
 	public Missle(){
-		super("Assets/ProjectileSprite/Bullet.png","Missle") ; 
+		super("Missle") ; 
+		this.addComponent(new Sprite("Assets/ProjectileSprite/Bullet.png",this));
 		this.addComponent(new Collider(new Rectangle2D.Float(0,0,0.3f,0.6f),this));
+		
 	}
 	
 	public void OnCollision(GameObject collidingObject) {

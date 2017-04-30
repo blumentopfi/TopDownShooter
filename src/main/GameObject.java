@@ -17,8 +17,7 @@ import geometry.* ;
 import Components.* ; 
 public abstract class GameObject {
 	private String m_name ; 
-	private int m_tag ; 
-	private BufferedImage m_sprite ; 
+	private int m_tag ;  
 	private Transform m_transform ; 
 	public void  keyPressed(KeyEvent e){} ;
 	public void  keyReleased(KeyEvent e){};
@@ -41,6 +40,16 @@ public abstract class GameObject {
 		}
 		return null ; 
 	}
+	public Sprite getSprite(){
+		for (Component c : m_Components){
+			if (c instanceof Sprite){
+				return (Sprite)c ; 
+			}
+		}
+		return null ; 
+	}
+	
+	
 	
 	public void Update(){
 		for (int i = 0 ; i < m_Components.size() ; i++){
@@ -52,16 +61,13 @@ public abstract class GameObject {
 		SceneManager.getInstance().AddGameObjectToScene(this);
 		m_transform = new Transform(new Dimension(0,0),new Point2D.Float(0,0)) ; //set default point to 0,0 and size to size of the image
 	}
-	public GameObject(String PathToSprite,String Name){
-		m_name = Name ;
-		SceneManager.getInstance().AddGameObjectToScene(this);
-		try {
-			m_sprite = ImageIO.read(new File(PathToSprite)) ;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+	public void setDimension(Dimension d) {
+		this.m_transform.setSize(d);
+		if (this.getSprite() != null){
+			this.getSprite().resize(d);
 		}
-		m_transform = new Transform(new Dimension(m_sprite.getWidth(),m_sprite.getHeight()),new Point2D.Float(0,0)) ; //set default point to 0,0 and size to size of the image
+		
 	}
 
 	public Point2D.Float getPosition(){
@@ -70,10 +76,6 @@ public abstract class GameObject {
 
 	public void setPosition(Point2D.Float newPosition){
 		this.m_transform.setPosition(newPosition);
-	}
-
-	public BufferedImage GetSprite(){
-		return m_sprite ;
 	}
 
 	public Transform getTransform() {

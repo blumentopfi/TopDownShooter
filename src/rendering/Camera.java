@@ -55,9 +55,9 @@ public class Camera extends Thread {
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
 				if (Object != null){
-					if (Object.GetSprite() != null){
+					if (Object.getSprite() != null){
 						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; 
-						g.drawImage(Object.GetSprite(), (int)(PointToRender.x - (Object.GetSprite().getWidth()/2)), ((int)PointToRender.y - (Object.GetSprite().getHeight()/2)), null) ;
+						g.drawImage(Object.getSprite().getImage(), (int)(PointToRender.x - (Object.getSprite().getWidth()/2)), ((int)PointToRender.y - (Object.getSprite().getHeight()/2)), null) ;
 					}
 					if (Debug){
 						if (Object.getCollider() != null){

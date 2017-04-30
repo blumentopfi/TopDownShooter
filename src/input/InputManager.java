@@ -9,17 +9,12 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ConcurrentModificationException;
 import java.util.List;
-import java.util.Random;
-
 import javax.swing.JFrame;
 import javax.swing.Timer;
-
-import com.sun.javafx.font.directwrite.RECT;
 
 import Components.Collider;
 import main.SceneManager;
 import main.GameObject;
-import objects.Enemy;
 import rendering.Camera;
 
 public class InputManager implements ActionListener {
@@ -118,14 +113,7 @@ public class InputManager implements ActionListener {
 	}
 
 	
-	public Rectangle gameObjectToRectangle(GameObject object) {
-		Point2D.Float posA = camera.ScreenCoordToWorldCoord(object.getPosition());
-		Dimension dim = object.getTransform().getSize();
-		double height = dim.getHeight();
-		double width = dim.getWidth();
-		Rectangle rec = new Rectangle((int)(posA.getX() - (width/2)), (int)(posA.getY() - (height/2)), (int) width, (int) height);
-		return rec;
-	}
+	
 	
 	
 }
