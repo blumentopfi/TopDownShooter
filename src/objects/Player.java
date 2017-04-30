@@ -13,6 +13,8 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JLabel;
+
 import Components.Collider;
 import Components.Sprite;
 public class Player extends GameObject {
@@ -20,7 +22,7 @@ public class Player extends GameObject {
 	float dx ; 
 	float dy ; 
 	long FireRate = 100 ; 
-	long NextFire = 0  ; 
+	long NextFire = 0  ;
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
 		this.addComponent(new Sprite(PathToSprite,this));
@@ -51,6 +53,8 @@ public class Player extends GameObject {
 	        if (key == KeyEvent.VK_SPACE){
 	        	if (NextFire < System.currentTimeMillis() ){
 	        	shoot() ; 
+	   
+	      
 	        	NextFire = System.currentTimeMillis() + FireRate ; 
 	        	}
 	        }

@@ -31,18 +31,9 @@ public class Collider extends Component {
 		Dimension d = new Dimension(object.getTransform().getSize()) ; 
 		rec.x = point.x ; 
 		rec.y = point.y ; 
-		Camera camera = SceneManager.getInstance().getMainCamera() ; 
-		/*System.out.println(camera.getGameView().getHeight());
-		System.out.println(camera.getGameView().getWidth());
-		System.out.println(camera.getViewRect().height);
-		System.out.println(camera.getViewRect().width);
-		System.out.println(d.height);
-		System.out.println(d.width);*/
-		
+		Camera camera = SceneManager.getInstance().getMainCamera() ; 	
 		double height = (10*camera.getViewRect().height*d.height)/camera.getGameWindow().getHeight()  ; 
 		double width  = (10*camera.getViewRect().width*d.width)/camera.getGameWindow().getWidth()  ; 
-		System.out.println(height/10);
-		System.out.println(width/10);
 		rec.width = (float) width/10 ; 
 		rec.height = (float) height/10 ; 
 		return rec ; 

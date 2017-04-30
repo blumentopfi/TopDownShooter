@@ -2,6 +2,9 @@ package rendering;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -9,6 +12,7 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
@@ -20,6 +24,8 @@ public class Camera extends Thread {
 	protected Rectangle ViewRect ;
 	protected JFrame  m_GameWindow ; 
 	protected GameView m_GameView ; 
+	protected JLabel ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
+	protected List<JComponent> GUIElements  = new ArrayList<JComponent>() ; 
 	public Camera(int height , int width,Rectangle ViewRect){
 		m_GameView = new GameView() ; 
 		this.ViewRect = ViewRect ; 
@@ -29,11 +35,21 @@ public class Camera extends Thread {
 		m_GameWindow.setVisible(true);
 		m_GameWindow.setLayout(new BorderLayout());
 		m_GameWindow.add(m_GameView);
+		m_GameView.setLayout(new FlowLayout());
+		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));
+		m_GameView.add(ScoreLabel);
 		render() ; 
 	}
 	public Rectangle getViewRect(){
 		return ViewRect ; 
 	}
+	
+	public JLabel getScoreLabel(){
+		return ScoreLabel ; 
+	}
+	
+	
+	
 	public class GameView extends JPanel {
 		  @Override
 		    public void paintComponent(Graphics g) {

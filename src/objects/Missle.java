@@ -18,6 +18,9 @@ public class Missle extends GameObject {
 	
 	public void OnCollision(GameObject collidingObject) {
 		if (collidingObject.getName() == "Enemy"){
+		Enemy collidingEnemy = (Enemy)collidingObject ; 
+		
+		main.SceneManager.getInstance().getManager().AddScore(collidingEnemy.getValue());
 		collidingObject.Destroy(); 
 		this.Destroy();
 		}

@@ -2,11 +2,15 @@ package main;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import GUIElements.GUILabel;
 import main.GameObject;
 import objects.* ; 
 import rendering.Camera;
@@ -20,19 +24,17 @@ public class SceneManager {
 	public static void main(String[] args) {
 		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10)) ;
 		MainPlayer = new Player("Assets/PlaneSprites/B-17.png","MainPlayer") ;
-		MainPlayer.setPosition(new Point2D.Float(5,5));	
-		System.out.println(MainPlayer.getCollider().getCollidingRectangle());
-		System.out.println(MainPlayer.getTransform().getSize());
-		
+		MainPlayer.setPosition(new Point2D.Float(5,5));		
 		InputManager input_manager = new InputManager()  ; 
 		gameManager = new GameManager("Manager") ;
-		//GameManager.getInstance().PrintAllGameObjectsByName();
 	}
 	
 	public List<GameObject> getGameObjectToDelete(){
 		return m_GameObjectsToDelete;
 	}
-	
+	public GameManager getManager(){
+		return gameManager ; 
+	}
 	public Player getPlayer(){
 		return MainPlayer ; 
 	}
