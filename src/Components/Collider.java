@@ -32,10 +32,10 @@ public class Collider extends Component {
 		rec.x = point.x ; 
 		rec.y = point.y ; 
 		Camera camera = SceneManager.getInstance().getMainCamera() ; 	
-		double height = (10*camera.getViewRect().height*d.height)/camera.getGameWindow().getHeight()  ; 
-		double width  = (10*camera.getViewRect().width*d.width)/camera.getGameWindow().getWidth()  ; 
-		rec.width = (float) width/10 ; 
-		rec.height = (float) height/10 ; 
+		double height = (1000*camera.getViewRect().height*d.height)/camera.getGameWindow().getHeight()  ; 
+		double width  = (1000*camera.getViewRect().width*d.width)/camera.getGameWindow().getWidth()  ; 
+		rec.width = (float) width/1000 ; 
+		rec.height = (float) height/1000 ; 
 		return rec ; 
 		
 	}

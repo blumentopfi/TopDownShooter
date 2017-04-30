@@ -105,7 +105,6 @@ public class InputManager implements ActionListener {
 				//ignore
 			}
 		}
-		
 		SceneManager.getInstance().PrintAllGameObjectsByName();
 		SceneManager.getInstance().GetAllGameObjectsInScene().removeAll(SceneManager.getInstance().getGameObjectToDelete()) ;
 		SceneManager.getInstance().getGameObjectToDelete().clear();

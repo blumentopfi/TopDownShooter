@@ -38,7 +38,7 @@ public class GameManager extends GameObject {
 			Random random = new Random();
 			float pos_X = random.nextInt(9 - 1 + 1) + 1;
 			float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
-			new Enemy("Assets/PlaneSprites/Enemy B-17.png", "Enemy", pos_X, pos_Y);
+			new Enemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", pos_X, pos_Y);
 		}
 
 	}
