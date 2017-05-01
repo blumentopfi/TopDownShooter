@@ -21,7 +21,7 @@ public class Player extends GameObject {
 	Point direction ; 
 	float dx ; 
 	float dy ; 
-	long FireRate = 100 ; 
+	long FireRate = 100  ; 
 	long NextFire = 0  ;
 	public Player(String PathToSprite, String Name){
 		super(Name) ;

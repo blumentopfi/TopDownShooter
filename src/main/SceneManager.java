@@ -27,6 +27,7 @@ public class SceneManager {
 		MainPlayer.setPosition(new Point2D.Float(5,5));		
 		InputManager input_manager = new InputManager()  ; 
 		gameManager = new GameManager("Manager") ;
+		MainPlayer.setDimension(new Dimension((int)MainPlayer.getWidth()/2,(int)MainPlayer.getHeight()/2));
 	}
 	
 	public List<GameObject> getGameObjectToDelete(){

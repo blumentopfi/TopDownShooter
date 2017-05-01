@@ -49,6 +49,13 @@ public abstract class GameObject {
 		return null ; 
 	}
 	
+	public double getWidth(){
+		return this.m_transform.getSize().getWidth() ; 
+	}
+	public double getHeight(){
+		return this.m_transform.getSize().getHeight() ; 
+	}
+	
 	
 	
 	public void Update(){
@@ -66,6 +73,9 @@ public abstract class GameObject {
 		this.m_transform.setSize(d);
 		if (this.getSprite() != null){
 			this.getSprite().resize(d);
+		}
+		if (this.getCollider() != null){
+			this.getCollider().UpdateCollider();
 		}
 		
 	}

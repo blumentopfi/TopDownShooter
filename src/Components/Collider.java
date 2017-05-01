@@ -22,6 +22,9 @@ public class Collider extends Component {
 		this.collidingRectangle.x = (float)( myObject.getPosition().getX()-this.collidingRectangle.getWidth()/2) ; 
 		this.collidingRectangle.y = (float) (myObject.getPosition().getY()-this.collidingRectangle.getHeight()/2) ; 
 	}
+	public void UpdateCollider(){
+		this.collidingRectangle = gameObjectToRectangle(this.myObject);
+	}
 	public Rectangle2D.Float getCollidingRectangle(){
 		return this.collidingRectangle ;
 	}
