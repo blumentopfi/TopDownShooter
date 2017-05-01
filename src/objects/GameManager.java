@@ -34,7 +34,7 @@ public class GameManager extends GameObject {
 				enemyCounter++;
 			}
 		}
-		if (enemyCounter < 1) {
+		if (enemyCounter < 5) {
 			Random random = new Random();
 			float pos_X = random.nextInt(9 - 1 + 1) + 1;
 			float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);

@@ -14,7 +14,7 @@ import Components.Sprite;
  */
 public class Enemy extends GameObject {
 
-    public float speed = 0.03f;
+    public float speed = 0.01f;
     public int health = 100;
     public int value = 20 ; 
     
@@ -37,8 +37,14 @@ public class Enemy extends GameObject {
         if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
 			this.Destroy();
 		}
+        if (health <= 0 ){
+        	main.SceneManager.getInstance().getManager().AddScore(this.getValue());
+        	this.Destroy();
+        }
     }
-
+    public void addDamage(int damage){
+    	health -= damage ; 
+    }
     public void setSpeed(float newSpeed) {
         speed = newSpeed;
     }

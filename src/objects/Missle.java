@@ -9,6 +9,7 @@ import main.SceneManager;
 import main.GameObject;
 
 public class Missle extends GameObject {
+	int damage = 20 ; 
 	public Missle(){
 		super("Missle") ; 
 		this.addComponent(new Sprite("Assets/ProjectileSprite/Bullet.png",this));
@@ -20,8 +21,7 @@ public class Missle extends GameObject {
 		if (collidingObject.getName() == "Enemy"){
 		Enemy collidingEnemy = (Enemy)collidingObject ; 
 		
-		main.SceneManager.getInstance().getManager().AddScore(collidingEnemy.getValue());
-		collidingObject.Destroy(); 
+		collidingEnemy.addDamage(damage);
 		this.Destroy();
 		}
 	}
