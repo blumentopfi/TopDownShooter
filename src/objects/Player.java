@@ -23,12 +23,20 @@ public class Player extends GameObject {
 	float dy ; 
 	long FireRate = 100  ; 
 	long NextFire = 0  ;
+	int health = 200 ; 
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
 		this.addComponent(new Sprite(PathToSprite,this));
 		this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
 		
 		
+	}
+	
+	public int getHealth(){
+		return health ; 
+	}
+	public void setHealth(int toset){
+		this.health = toset ; 
 	}
 	
 	public void OnCollision(GameObject collidingObject) {
@@ -40,6 +48,9 @@ public class Player extends GameObject {
 	public void Update(){
 		super.Update();
 		this.setPosition(new Point2D.Float(this.getPosition().x + dx, this.getPosition().y +dy));
+		if (health <= 0){
+			this.Destroy();
+		}
 	}
 	
 	public void shoot(){

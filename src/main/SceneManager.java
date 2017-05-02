@@ -18,6 +18,7 @@ import input.InputManager;
 public class SceneManager {
 	static Camera main_Camera ;
 	static Player MainPlayer ;
+	static HealthPowerUp test; 
 	static GameManager gameManager ; 
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
@@ -28,6 +29,7 @@ public class SceneManager {
 		InputManager input_manager = new InputManager()  ; 
 		gameManager = new GameManager("Manager") ;
 		MainPlayer.setDimension(new Dimension((int)MainPlayer.getWidth()/2,(int)MainPlayer.getHeight()/2));
+		test = new HealthPowerUp(5,0,20) ; 
 	}
 	
 	public List<GameObject> getGameObjectToDelete(){
