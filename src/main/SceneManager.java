@@ -10,46 +10,74 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import GUIElements.GUILabel;
+import Scenes.MenuScene;
+import Scenes.ShooterMainScene;
 import main.GameObject;
 import objects.* ; 
 import rendering.Camera;
 import input.InputManager; 
 public class SceneManager {
 	static Camera main_Camera ;
-	static Player MainPlayer ;
+	static Scene m_Scene ; 
 	static HealthPowerUp test; 
 	static GameManager gameManager ; 
+	static JFrame game_Window ; 
+	static InputManager input_manager ; 
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
 	public static void main(String[] args) {
-		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10)) ;
-		MainPlayer = new Player("Assets/PlaneSprites/B-17.png","MainPlayer") ;
-		MainPlayer.setPosition(new Point2D.Float(5,5));		
-		InputManager input_manager = new InputManager()  ; 
-		gameManager = new GameManager("Manager") ;
-		MainPlayer.setDimension(new Dimension((int)MainPlayer.getWidth()/2,(int)MainPlayer.getHeight()/2));
-		test = new HealthPowerUp(5,0,20) ; 
+		game_Window = new JFrame("TopDownShooter") ;
+		
+		SceneManager.getInstance().SetScene(new MenuScene());
+		input_manager = new InputManager()  ; 
 	}
 	
 	public List<GameObject> getGameObjectToDelete(){
 		return m_GameObjectsToDelete;
 	}
-	public GameManager getManager(){
-		return gameManager ; 
+
+
+	public void SetScene(Scene toSet){
+		if (m_Scene != null){
+		input_manager = null ; 
+		m_Scene.finishScene(); 
+		main_Camera = null ;
+		m_GameObjectsInScene.clear();
+		m_GameObjectsToDelete.clear() ; 
+		}
+		m_Scene = toSet ; 
+		m_Scene.gameObjectsOnStart();
+		
+		
 	}
-	public Player getPlayer(){
-		return MainPlayer ; 
+	
+	public void setMainCamera(Camera a){
+		main_Camera = a ; 
 	}
 	
 	public Camera getMainCamera(){
 		return main_Camera ; 
 	}
+	
+	public JFrame getGameWindow (){
+		return game_Window ; 
+	}
+	
 	public void PrintAllGameObjectsByName(){
 		for (GameObject g: m_GameObjectsInScene){
 			//System.out.println(g.getName());
 		}
 	}
+	
+	public GameObject getGameObjectByName(String Name){
+		for (int i = 0 ; i < m_GameObjectsInScene.size() ; i++){
+			if (m_GameObjectsInScene.get(i).getName() == Name){
+				return m_GameObjectsInScene.get(i) ; 
+			}
+		}
+		return null ; 
+	}
+	
 	private static SceneManager instance ; 
 	private SceneManager() {
 		m_GameObjectsInScene = new ArrayList<GameObject>() ;

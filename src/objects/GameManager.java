@@ -1,5 +1,6 @@
 package objects;
 
+import java.awt.Font;
 import java.util.List;
 import java.util.Random;
 
@@ -13,7 +14,9 @@ public class GameManager extends GameObject {
 	int Score = 0 ; 
 	public GameManager(String Name){
 		super(Name) ;
-		ScoreLabel = main.SceneManager.getInstance().getMainCamera().getScoreLabel() ; 
+		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
+		main.SceneManager.getInstance().getMainCamera().AddGUIElement(ScoreLabel);
+		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));
 		ScoreLabel.setText(ScoreLabel.getText() + Score);
 	}
 	public void Update(){

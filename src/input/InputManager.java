@@ -20,16 +20,21 @@ import rendering.Camera;
 public class InputManager implements ActionListener {
 	private static final int DELAY = 10;
 	Camera camera;
+	JFrame window ; 
+	KeyListener keylistener ; 
+	Timer timer ; 
 	public InputManager(){
-		JFrame window = SceneManager.getInstance().getMainCamera().getGameWindow() ;
+		window = SceneManager.getInstance().getMainCamera().getGameWindow() ;
 		camera = SceneManager.getInstance().getMainCamera();
-		window.addKeyListener(new KeyManager());
+		keylistener = new KeyManager() ; 
+		window.addKeyListener(keylistener);
 		window.setFocusable(true);
 		window.setFocusTraversalKeysEnabled(true);
-		Timer timer = new Timer(DELAY,this) ; 
+		timer = new Timer(DELAY,this) ; 
 		timer.start();
 		
 	}
+	
 	public class KeyManager implements KeyListener{
 		public void keyPressed(KeyEvent e) {
 			try{

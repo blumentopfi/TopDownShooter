@@ -17,14 +17,14 @@ public class Enemy extends GameObject {
     public float speed = 0.01f;
     public int health = 100;
     public int value = 20 ; 
-    
+    GameManager manager ; 
     
     public Enemy(String PathToSprite, String Name, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
         this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
-       
+        manager = (GameManager)main.SceneManager.getInstance().getGameObjectByName("Manager") ; 
     }
     
     public int getValue(){
@@ -38,7 +38,7 @@ public class Enemy extends GameObject {
 			this.Destroy();
 		}
         if (health <= 0 ){
-        	main.SceneManager.getInstance().getManager().AddScore(this.getValue());
+        	manager.AddScore(this.getValue());
         	this.Destroy();
         }
     }

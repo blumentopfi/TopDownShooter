@@ -16,13 +16,17 @@ public class RenderThread extends Thread {
 		public void run(){
 			while (!this.isInterrupted()){
 				render() ; 
-			}
+			} 
 		}
 		
 
 		
 		private void render () {
+			
+			if (SceneManager.getInstance().getMainCamera() != null){
+			
 			SceneManager.getInstance().getMainCamera().getGameView().repaint();
+			}
 		}
 		
 		

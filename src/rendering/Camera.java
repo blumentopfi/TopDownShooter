@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -24,31 +25,43 @@ public class Camera extends Thread {
 	protected Rectangle ViewRect ;
 	protected JFrame  m_GameWindow ; 
 	protected GameView m_GameView ; 
-	protected JLabel ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
+	//protected JLabel ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
 	protected List<JComponent> GUIElements  = new ArrayList<JComponent>() ; 
-	public Camera(int height , int width,Rectangle ViewRect){
+	public Camera(int height , int width,Rectangle ViewRect, JFrame gameWindow){
 		m_GameView = new GameView() ; 
-		this.ViewRect = ViewRect ; 
-		m_GameWindow = new JFrame("Top Down Shooter") ; 
+		this.ViewRect = ViewRect ;
+		m_GameWindow = gameWindow ;  
 		m_GameWindow.setSize(width, height);
 		m_GameWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		m_GameWindow.setVisible(true);
 		m_GameWindow.setLayout(new BorderLayout());
 		m_GameWindow.add(m_GameView);
-		m_GameView.setLayout(new FlowLayout());
-		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		m_GameView.add(ScoreLabel);
+		m_GameView.setLayout(new FlowLayout());	
 		render() ; 
 	}
 	public Rectangle getViewRect(){
 		return ViewRect ; 
 	}
+
 	
-	public JLabel getScoreLabel(){
-		return ScoreLabel ; 
+	public void PrintComponents(){
+		System.out.println(m_GameView.getComponentCount()) ; 
 	}
 	
+	public void AddGUIElement(JComponent test){
+		//GUIElements.add(test) ; 
+		m_GameView.add(test) ; 
+		m_GameView.revalidate();
+		m_GameView.repaint(); 
+	}
 	
+	public void RemoveGUIElement(JComponent toremove){
+		m_GameView.remove(toremove);
+	}
+	
+	public void OverrideLayout(LayoutManager New){
+		m_GameView.setLayout(New);
+	}
 	
 	public class GameView extends JPanel {
 		  @Override
