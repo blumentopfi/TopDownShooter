@@ -53,7 +53,7 @@ public class MenuScene extends Scene {
 		main_Camera.AddGUIElement(Titel);
 		
 		
-		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/MainMenuSplashScreen.jpg").getImage().getScaledInstance( main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight()
+		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/MainMenuSplashScreen3.jpg").getImage().getScaledInstance( main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight()
 				, Image.SCALE_DEFAULT)) ;
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ; 
 		BackgroundImage.setBounds(0, 0, main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight());
