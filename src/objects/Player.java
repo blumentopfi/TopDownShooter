@@ -8,6 +8,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import objects.Missle;
+import rendering.Time;
 import main.SceneManager;
 import main.GameObject;
 import java.time.*;
@@ -57,6 +58,7 @@ public class Player extends GameObject {
 	}
 	
 	public void shoot(){
+		System.out.println(SceneManager.getInstance().getMainCamera().m_fpscounter.fps());
 		GameObject MyBullet = new Missle() ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
 		MyBullet = null ; 
@@ -64,26 +66,27 @@ public class Player extends GameObject {
 	
 	  public void keyPressed(KeyEvent e) {
 	        int key = e.getKeyCode();
+	        
 	        if (key == KeyEvent.VK_SPACE){
 	        	if (NextFire < System.currentTimeMillis() ){
-	        	shoot() ;    
+	        	shoot() ;   
 	        	NextFire = System.currentTimeMillis() + FireRate ; 
 	        	}
 	        }
 	        if (key == KeyEvent.VK_LEFT) {
-	            dx = -0.1f;
+	            dx = -0.01f ;
 	        }
 
 	        if (key == KeyEvent.VK_RIGHT) {
-	            dx = 0.1f;
+	            dx = 0.01f ; 
 	        }
 
 	        if (key == KeyEvent.VK_UP) {
-	            dy = -0.1f;
+	            dy = -0.01f ; 
 	        }
 
 	        if (key == KeyEvent.VK_DOWN) {
-	            dy = 0.1f;
+	            dy = 0.01f ; 
 	        }
 	    }
 	  public void keyReleased(KeyEvent e) {

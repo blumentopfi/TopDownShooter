@@ -3,11 +3,11 @@ package objects;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-
 import Components.Collider;
 import Components.Sprite;
 import main.GameObject;
 import main.SceneManager;
+import rendering.Time;
 
 public class Background extends GameObject {
 	public Background() {
@@ -27,7 +27,7 @@ public class Background extends GameObject {
 	public void Update(){
 		this.setPosition(new Point2D.Float(this.getPosition().x,this.getPosition().y + 0.05f ));
 		if (this.getPosition().y >= 10){
-			//this.setPosition(new Point2D.Float(5, 0));
+			this.setPosition(new Point2D.Float(5, 0));
 			}
 	}
 }

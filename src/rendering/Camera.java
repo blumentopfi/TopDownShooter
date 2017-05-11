@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.swing.*;
 
+import Components.FPSCounter;
 import main.SceneManager;
 import main.GameObject;
 import rendering.RenderThread;
@@ -25,6 +26,9 @@ public class Camera extends Thread {
 	protected Rectangle ViewRect ;
 	protected JFrame  m_GameWindow ; 
 	protected GameView m_GameView ; 
+	public FPSCounter m_fpscounter ; 
+	public long deltaTime = 0 ; 
+	public long timeSinceLastFrame = 0 ; 
 	//protected JLabel ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
 	protected List<JComponent> GUIElements  = new ArrayList<JComponent>() ; 
 	public Camera(int height , int width,Rectangle ViewRect, JFrame gameWindow){
@@ -37,8 +41,10 @@ public class Camera extends Thread {
 		m_GameWindow.setLayout(new BorderLayout());
 		m_GameWindow.add(m_GameView);
 		m_GameView.setLayout(new FlowLayout());	
+		m_fpscounter = new FPSCounter() ; 
 		render() ; 
 		this.start();	
+		m_fpscounter.start();
 	}
 	public Rectangle getViewRect(){
 		return ViewRect ; 
@@ -85,7 +91,9 @@ public class Camera extends Thread {
 	}
 
 	public void doDrawing(Graphics g) {
-		boolean Debug = false ; 
+		boolean Debug = false ;  
+		m_fpscounter.interrupt();
+		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
 				if (Object != null){
@@ -103,7 +111,8 @@ public class Camera extends Thread {
 					}
 				}
 		}
-		
+	
+	
 		
 	}
 	public Point2D.Float WorldCoordToScreenCoord (Point2D.Float WorldPoint){

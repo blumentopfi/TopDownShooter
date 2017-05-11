@@ -22,10 +22,12 @@ public class RenderThread extends Thread {
 
 		
 		private void render () {
-			
+			long time1 = System.nanoTime() ; 
 			if (SceneManager.getInstance().getMainCamera() != null){
 			SceneManager.getInstance().getMainCamera().getGameView().repaint();
 			}
+			long time2 = System.nanoTime() ; 
+			Time.deltaTime= time2-time1;
 		}
 		
 		

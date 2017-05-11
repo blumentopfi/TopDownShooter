@@ -26,7 +26,9 @@ public class SceneManager {
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
 	public static void main(String[] args) {
+		System.setProperty("sun.java2d.opengl", "True") ; 
 		game_Window = new JFrame("TopDownShooter") ;
+		
 		
 		SceneManager.getInstance().SetScene(new MenuScene());
 		input_manager = new InputManager()  ; 
