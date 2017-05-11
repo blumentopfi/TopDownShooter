@@ -23,13 +23,12 @@ public class MenuScene extends Scene {
 	JButton StartButton ; 
 	JButton QuitButton ; 
 	JLabel BackgroundImage ; 
-	JLabel Titel ; 
+	JLabel Titel ; 	
 	@Override
 	public void gameObjectsOnStart() {
 		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		main_Camera.OverrideLayout(null);
-		
 		ImageIcon icon = new ImageIcon(new ImageIcon("Assets/Menu/Button.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
 		StartButton = new JButton(icon) ; 
 		int x = main_Camera.getGameWindow().getWidth()/2 - 300 ;

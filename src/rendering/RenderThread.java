@@ -24,7 +24,6 @@ public class RenderThread extends Thread {
 		private void render () {
 			
 			if (SceneManager.getInstance().getMainCamera() != null){
-			
 			SceneManager.getInstance().getMainCamera().getGameView().repaint();
 			}
 		}

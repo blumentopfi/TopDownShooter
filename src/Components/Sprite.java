@@ -2,8 +2,12 @@ package Components;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +22,13 @@ public class Sprite extends Component {
 	public Sprite (String PathToSprite,GameObject my){
 		my_object = my ; 
 		try {
+			GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			GraphicsDevice device = env.getDefaultScreenDevice() ;
+			GraphicsConfiguration config = device.getDefaultConfiguration() ; 	 //convert Image to a memory type that given Graphic cards supports
 			my_sprite_image = ImageIO.read(new File(PathToSprite)) ;
+			BufferedImage tmp = config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),Transparency.TRANSLUCENT);
+			tmp.getGraphics().drawImage(my_sprite_image, 0,0,null) ; 
+			my_sprite_image = tmp ; 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block,
 			e.printStackTrace();

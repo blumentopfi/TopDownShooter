@@ -38,9 +38,14 @@ public class Camera extends Thread {
 		m_GameWindow.add(m_GameView);
 		m_GameView.setLayout(new FlowLayout());	
 		render() ; 
+		this.start();	
 	}
 	public Rectangle getViewRect(){
 		return ViewRect ; 
+	}
+	
+	public void run(){	
+		
 	}
 
 	
@@ -80,7 +85,7 @@ public class Camera extends Thread {
 	}
 
 	public void doDrawing(Graphics g) {
-		boolean Debug = true ; 
+		boolean Debug = false ; 
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
 				if (Object != null){

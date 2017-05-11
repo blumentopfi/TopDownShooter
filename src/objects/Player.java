@@ -29,6 +29,7 @@ public class Player extends GameObject {
 		super(Name) ;
 		this.addComponent(new Sprite(PathToSprite,this));
 		this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
+		
 		this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		
@@ -65,9 +66,7 @@ public class Player extends GameObject {
 	        int key = e.getKeyCode();
 	        if (key == KeyEvent.VK_SPACE){
 	        	if (NextFire < System.currentTimeMillis() ){
-	        	shoot() ; 
-	   
-	      
+	        	shoot() ;    
 	        	NextFire = System.currentTimeMillis() + FireRate ; 
 	        	}
 	        }

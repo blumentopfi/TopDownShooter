@@ -3,6 +3,7 @@ package objects;
 import main.GameObject;
 import main.SceneManager;
 
+import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
@@ -25,6 +26,7 @@ public class Enemy extends GameObject {
         this.addComponent(new Sprite(PathToSprite,this));
         this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
         manager = (GameManager)main.SceneManager.getInstance().getGameObjectByName("Manager") ; 
+        this.setDimension(new Dimension((int)(this.getWidth()*0.6),(int)(this.getHeight()*0.6)));
     }
     
     public int getValue(){
