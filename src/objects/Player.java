@@ -74,19 +74,19 @@ public class Player extends GameObject {
 	        	}
 	        }
 	        if (key == KeyEvent.VK_LEFT) {
-	            dx = -0.01f ;
+	            dx = -0.04f ;
 	        }
 
 	        if (key == KeyEvent.VK_RIGHT) {
-	            dx = 0.01f ; 
+	            dx = 0.04f ; 
 	        }
 
 	        if (key == KeyEvent.VK_UP) {
-	            dy = -0.01f ; 
+	            dy = -0.04f ; 
 	        }
 
 	        if (key == KeyEvent.VK_DOWN) {
-	            dy = 0.01f ; 
+	            dy = 0.04f ; 
 	        }
 	    }
 	  public void keyReleased(KeyEvent e) {

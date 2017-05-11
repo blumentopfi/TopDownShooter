@@ -18,7 +18,7 @@ import main.GameObject;
 import rendering.Camera;
 
 public class InputManager implements ActionListener {
-	private static final int DELAY =0 ;
+	private static final int DELAY =10 ;
 	Camera camera;
 	JFrame window ; 
 	KeyListener keylistener ; 

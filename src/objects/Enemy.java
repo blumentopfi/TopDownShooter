@@ -2,6 +2,7 @@ package objects;
 
 import main.GameObject;
 import main.SceneManager;
+import rendering.Time;
 
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
@@ -35,7 +36,8 @@ public class Enemy extends GameObject {
 
     public void Update(){
     	super.Update();
-        this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + speed));
+        this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed)));
+       // System.out.println(this.getPosition());
         if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
 			this.Destroy();
 		}
