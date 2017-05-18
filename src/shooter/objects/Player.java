@@ -96,10 +96,10 @@ public class Player extends GameObject {
 	private void shootTriple(){
 		GameObject MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
-		MyBullet = new Missle(damage,new Point2D.Float(-2, -4)) ; 
+		MyBullet = new Missle(damage,new Point2D.Float(-1, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.3f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
-		MyBullet = new Missle(damage,new Point2D.Float(+2, -4)) ; 
+		MyBullet = new Missle(damage,new Point2D.Float(+1, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.3f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}

@@ -4,7 +4,7 @@ import shooter.scenes.MenuScene;
 public class Shooter {
 
 	public static void main(String[] args) {
-		SceneManager.getInstance().init(new MenuScene()); 
+		SceneManager.getInstance();
+		SceneManager.init(new MenuScene()); 
 	}
-
 }
