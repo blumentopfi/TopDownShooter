@@ -21,6 +21,8 @@ public class Enemy extends GameObject {
     public static int MOVE_DISTANCE = 100;
     public int value = 20 ;
     public int moveCounter = 0;
+    public int tempMove = 4;
+    public boolean isRotated = false;
     static Random random = new Random() ;
     // 0 = left, 1 = right, 2 = straight, 3 = initial.
     public int lastMove = 3;
@@ -53,7 +55,15 @@ public class Enemy extends GameObject {
     public void move() {
         if(lastMove == 3) {
             lastMove = random.nextInt(3);
+            if(lastMove == 0) {
+                this.Rotate(27);
+                isRotated = true;
             }
+            if(lastMove == 1) {
+                this.Rotate(-27);
+                isRotated = true;
+            }
+        }
 
         if ((lastMove == 0) && moveCounter <= MOVE_DISTANCE) {
             System.out.println("left");
@@ -61,6 +71,10 @@ public class Enemy extends GameObject {
                 this.setPosition(new Point2D.Float(this.getPosition().x - (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             else {
+                if(this.isRotated) {
+                    this.Rotate(-27);
+                    this.isRotated = false;
+                }
                 this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             moveCounter++;
@@ -71,6 +85,10 @@ public class Enemy extends GameObject {
                 this.setPosition(new Point2D.Float(this.getPosition().x + (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             else {
+                if(this.isRotated) {
+                    this.Rotate(27);
+                    this.isRotated = false;
+                }
                 this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             moveCounter++;
@@ -82,6 +100,18 @@ public class Enemy extends GameObject {
             moveCounter++;
         }
         if(moveCounter > MOVE_DISTANCE) {
+            tempMove = lastMove;
+            if(lastMove == 0) {
+                if(this.isRotated) {
+                    this.Rotate(-27);
+                }
+            }
+            if(lastMove == 1) {
+                if (this.isRotated) {
+                    this.Rotate(27);
+                }
+            }
+            isRotated = false;
             lastMove = 3;
             moveCounter = 0;
         }
