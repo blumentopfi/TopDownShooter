@@ -19,7 +19,12 @@ public class Enemy extends GameObject {
 
     public float speed = 1.5f;
     public int health = 100;
-    public int value = 20 ; 
+    public static int MOVE_DISTANCE = 100;
+    public int value = 20 ;
+    public int moveCounter = 0;
+    static Random random = new Random() ;
+    // 0 = left, 1 = right, 2 = straight, 3 = initial.
+    public int lastMove = 3;
     GameManager manager ; 
     
     public Enemy(String PathToSprite, String Name, float posX, float posY) {
@@ -37,8 +42,7 @@ public class Enemy extends GameObject {
 
     public void Update(){
     	super.Update();
-        this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
-       // System.out.println(this.getPosition());
+    	this.move();
         if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
 			this.Destroy();
 		}
@@ -47,6 +51,43 @@ public class Enemy extends GameObject {
         	this.Destroy();
         }
     }
+    public void move() {
+        if(lastMove == 3) {
+            lastMove = random.nextInt(3);
+            }
+
+        if ((lastMove == 0) && moveCounter <= MOVE_DISTANCE) {
+            System.out.println("left");
+            if(this.getPosition().x > 1) {
+                this.setPosition(new Point2D.Float(this.getPosition().x - (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
+            }
+            else {
+                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)((speed * Time.deltaTime) / 2f)));
+            }
+            moveCounter++;
+        }
+        if ((lastMove == 1) && moveCounter <= MOVE_DISTANCE) {
+            System.out.println("right");
+            if(this.getPosition().x < 9) {
+                this.setPosition(new Point2D.Float(this.getPosition().x + (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
+            }
+            else {
+                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)((speed * Time.deltaTime) / 2f)));
+            }
+            moveCounter++;
+        }
+
+        if ((lastMove == 2) && moveCounter <= MOVE_DISTANCE) {
+            System.out.println("straight");
+            this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
+            moveCounter++;
+        }
+        if(moveCounter > MOVE_DISTANCE) {
+            lastMove = 3;
+            moveCounter = 0;
+        }
+    }
+
     public void addDamage(int damage){
     	health -= damage ; 
     }
