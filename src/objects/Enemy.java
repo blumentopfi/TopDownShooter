@@ -62,7 +62,7 @@ public class Enemy extends GameObject {
                 this.setPosition(new Point2D.Float(this.getPosition().x - (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             else {
-                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)((speed * Time.deltaTime) / 2f)));
+                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             moveCounter++;
         }
@@ -72,7 +72,7 @@ public class Enemy extends GameObject {
                 this.setPosition(new Point2D.Float(this.getPosition().x + (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             else {
-                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)((speed * Time.deltaTime) / 2f)));
+                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
             moveCounter++;
         }

@@ -32,6 +32,11 @@ public abstract class GameObject {
 	public void OnCollision(GameObject collidingObject) {
 		
 	}
+	public void Rotate(int Winkel){
+		if (this.getSprite() != null){
+			this.getSprite().rotate(Winkel);
+		}
+	}
 	public Collider getCollider(){
 		for (Component c : m_Components){
 			if (c instanceof Collider){

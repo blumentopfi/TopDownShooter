@@ -24,5 +24,8 @@ public class HealthPowerUp extends PowerUp {
 		this.Destroy();
 
 	}
+	
+	public void Update(){
+	}
 
 }

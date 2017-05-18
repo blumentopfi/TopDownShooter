@@ -12,9 +12,14 @@ import main.SceneManager;
 public class GameManager extends GameObject {
 	JLabel ScoreLabel ;
 	JLabel FPSLabel ; 
+<<<<<<< HEAD
 	JLabel Stats ; 
 	
 	int Score = 0 ; 
+=======
+	int Score = 0 ;
+	public static int MAX_ENEMY_NUMBER = 5;
+>>>>>>> 97bfb18b212fa6c566e077778e2cbba15c0cf790
 	public GameManager(String Name){
 		super(Name) ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
@@ -49,12 +54,12 @@ public class GameManager extends GameObject {
 				enemyCounter++;
 			}
 		}
-		if (enemyCounter < 5) {
+		if (enemyCounter < MAX_ENEMY_NUMBER) {
 			Random random = new Random(System.nanoTime());
 			float pos_X = random.nextInt(9 - 1 + 1) + 1;
 			//float pos_X = 5;
-			//float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
-			float pos_Y = 1;
+			float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
+			//float pos_Y = 1;
 			new Enemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", pos_X, pos_Y);
 		}
 

@@ -67,24 +67,24 @@ public class Player extends GameObject {
 		}
 	}
 	private void shootDouble(){
-		GameObject MyBullet = new Missle(damage) ; 
+		GameObject MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.15f, this.getPosition().y -0.5f));
-		MyBullet = new Missle(damage) ; 
+		MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.15f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
 	private void shootSingle(){
-		GameObject MyBullet = new Missle(damage) ; 
+		GameObject MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
 	private void shootTriple(){
-		GameObject MyBullet = new Missle(damage) ; 
+		GameObject MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
-		MyBullet = new Missle(damage) ; 
+		MyBullet = new Missle(damage,new Point2D.Float(-2, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.3f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
-		MyBullet = new Missle(damage) ; 
+		MyBullet = new Missle(damage,new Point2D.Float(+2, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.3f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
@@ -96,6 +96,7 @@ public class Player extends GameObject {
 		case LASER:
 			break;
 		case SINGLE:
+			shootSingle() ; 
 			break;
 		case TRIPLE:
 			shootTriple() ; 
