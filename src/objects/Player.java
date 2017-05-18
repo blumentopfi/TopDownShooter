@@ -51,19 +51,18 @@ public class Player extends GameObject {
 	
 	public void Update(){
 		super.Update();
-		this.setPosition(new Point2D.Float(this.getPosition().x + dx, this.getPosition().y +dy));
+		this.setPosition(new Point2D.Float(this.getPosition().x + (dx*Time.deltaTime), this.getPosition().y +(dy*Time.deltaTime)));
 		if (health <= 0){
 			this.Destroy();
 		}
 	}
 	
 	public void shoot(){
-		System.out.println(SceneManager.getInstance().getMainCamera().m_fpscounter.fps());
+		System.out.println(Time.deltaTime);
 		GameObject MyBullet = new Missle() ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
-	
 	  public void keyPressed(KeyEvent e) {
 	        int key = e.getKeyCode();
 	        
@@ -74,19 +73,19 @@ public class Player extends GameObject {
 	        	}
 	        }
 	        if (key == KeyEvent.VK_LEFT) {
-	            dx = -0.04f ;
+	            dx = -2f ;
 	        }
 
 	        if (key == KeyEvent.VK_RIGHT) {
-	            dx = 0.04f ; 
+	            dx = 2f ; 
 	        }
 
 	        if (key == KeyEvent.VK_UP) {
-	            dy = -0.04f ; 
+	            dy = -2f ; 
 	        }
 
 	        if (key == KeyEvent.VK_DOWN) {
-	            dy = 0.04f ; 
+	            dy = 2f ; 
 	        }
 	    }
 	  public void keyReleased(KeyEvent e) {

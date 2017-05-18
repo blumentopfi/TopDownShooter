@@ -11,17 +11,22 @@ import main.SceneManager;
 
 public class GameManager extends GameObject {
 	JLabel ScoreLabel ;
+	JLabel FPSLabel ; 
 	int Score = 0 ; 
 	public GameManager(String Name){
 		super(Name) ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
+		FPSLabel = new JLabel("FPS: ") ; 
 		main.SceneManager.getInstance().getMainCamera().AddGUIElement(ScoreLabel);
 		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));
+		FPSLabel.setFont(new Font("Serif", Font.PLAIN, 35));
 		ScoreLabel.setText(ScoreLabel.getText() + Score);
+		main.SceneManager.getInstance().getMainCamera().AddGUIElement(FPSLabel);
 	}
 	public void Update(){
 		super.Update();
 		setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ; 
+		FPSLabel.setText("FPS: " + (int)main.SceneManager.getInstance().getMainCamera().m_fpscounter.fps()) ; 
 	}
 	
 	public void AddScore(int points){

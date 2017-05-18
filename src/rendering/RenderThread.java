@@ -8,36 +8,34 @@ import java.util.List;
 
 import rendering.Camera;  
 public class RenderThread extends Thread {
-		private long sleepTime = 1000/60 ; 
+		long lastTime  ; 
 		private Camera m_RenderCamera ; 
 		public RenderThread(Camera CameraWhichRenders){
 			m_RenderCamera = CameraWhichRenders ; 
 		}
 		public void run(){
+			lastTime = System.nanoTime() ; 
 			while (!this.isInterrupted()){
-				render() ; 
+				long time = System.nanoTime() ; 
+				Time.deltaTime =  ((time - lastTime) / 1000000000f ); 
+				lastTime = time ; 
+				render() ;  
+				try {
+					this.sleep(16);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} 
 		}
 		
 
 		
-		private void render () {
-			long taskTime = System.nanoTime(); 
-			long time1 = System.nanoTime() ; 
+		private void render () { 
 			if (SceneManager.getInstance().getMainCamera() != null){
 			SceneManager.getInstance().getMainCamera().getGameView().repaint();
 			}
-			taskTime = System.nanoTime() - taskTime ; 
-			long time2 = System.nanoTime() ; 
-			if (sleepTime - (taskTime) > 0 ){
-				try {
-					this.sleep(sleepTime-(taskTime/1000));
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			Time.deltaTime=(0.00001f* (time2-time1));
-			//System.out.println(Time.deltaTime);
+		
 		}
 		
 		

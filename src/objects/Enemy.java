@@ -16,7 +16,7 @@ import Components.Sprite;
  */
 public class Enemy extends GameObject {
 
-    public float speed = 0.01f;
+    public float speed = 1.5f;
     public int health = 100;
     public int value = 20 ; 
     GameManager manager ; 
@@ -36,7 +36,7 @@ public class Enemy extends GameObject {
 
     public void Update(){
     	super.Update();
-        this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed)));
+        this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
        // System.out.println(this.getPosition());
         if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
 			this.Destroy();
