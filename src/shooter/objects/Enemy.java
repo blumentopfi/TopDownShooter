@@ -22,6 +22,8 @@ public class Enemy extends GameObject {
     public int value = 20 ;
     public int moveCounter = 0;
     public int tempMove = 4;
+    long FireRate = 500  ;
+    long NextFire = 0  ;
     public boolean isRotated = false;
     static Random random = new Random() ;
     // 0 = left, 1 = right, 2 = straight, 3 = initial.
@@ -44,6 +46,10 @@ public class Enemy extends GameObject {
     public void Update(){
     	super.Update();
     	this.move();
+        if (NextFire < System.currentTimeMillis() ){
+            this.shootSingle();
+            NextFire = System.currentTimeMillis() + FireRate ;
+        }
         if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
 			this.Destroy();
 		}
@@ -115,6 +121,11 @@ public class Enemy extends GameObject {
             lastMove = 3;
             moveCounter = 0;
         }
+    }
+    private void shootSingle(){
+        GameObject MyBullet = new Missle(25,new Point2D.Float(0, +4)) ;
+        MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
+        MyBullet.Rotate(180) ;
     }
 
     public void addDamage(int damage){
