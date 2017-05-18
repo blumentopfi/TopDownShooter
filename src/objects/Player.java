@@ -26,6 +26,9 @@ public class Player extends GameObject {
 	long FireRate = 100  ; 
 	long NextFire = 0  ;
 	int health = 200 ; 
+	int damage = 50 ; 
+	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
+	Weapon my_weapon = Weapon.TRIPLE ; 
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
 		this.addComponent(new Sprite(PathToSprite,this));
@@ -34,8 +37,15 @@ public class Player extends GameObject {
 		this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		
+		
 	}
-	
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
 	public int getHealth(){
 		return health ; 
 	}
@@ -56,12 +66,44 @@ public class Player extends GameObject {
 			this.Destroy();
 		}
 	}
-	
-	public void shoot(){
-		System.out.println(Time.deltaTime);
-		GameObject MyBullet = new Missle() ; 
+	private void shootDouble(){
+		GameObject MyBullet = new Missle(damage) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.15f, this.getPosition().y -0.5f));
+		MyBullet = new Missle(damage) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.15f, this.getPosition().y -0.5f));
+		MyBullet = null ; 
+	}
+	private void shootSingle(){
+		GameObject MyBullet = new Missle(damage) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
 		MyBullet = null ; 
+	}
+	private void shootTriple(){
+		GameObject MyBullet = new Missle(damage) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
+		MyBullet = new Missle(damage) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.3f, this.getPosition().y -0.5f));
+		MyBullet = null ; 
+		MyBullet = new Missle(damage) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.3f, this.getPosition().y -0.5f));
+		MyBullet = null ; 
+	}
+	public void shoot(){
+		switch(my_weapon){
+		case DOUBLE:
+			shootDouble() ; 
+			break;
+		case LASER:
+			break;
+		case SINGLE:
+			break;
+		case TRIPLE:
+			shootTriple() ; 
+			break;
+		default:
+			break;
+		}
+		
 	}
 	  public void keyPressed(KeyEvent e) {
 	        int key = e.getKeyCode();

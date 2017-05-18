@@ -9,12 +9,12 @@ import main.SceneManager;
 import main.GameObject;
 
 public class Missle extends GameObject {
-	int damage = 20 ; 
-	public Missle(){
+	int damage ; 
+	public Missle(int damage){
 		super("Missle") ; 
 		this.addComponent(new Sprite("Assets/ProjectileSprite/Bullet.png",this));
 		this.addComponent(new Collider(new Rectangle2D.Float(0,0,0.3f,0.6f),this));
-		
+		this.damage = damage ; 
 	}
 	
 	public void OnCollision(GameObject collidingObject) {

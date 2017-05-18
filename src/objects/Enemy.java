@@ -7,6 +7,7 @@ import rendering.Time;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Random;
 
 import Components.Collider;
 import Components.Sprite;
@@ -52,7 +53,17 @@ public class Enemy extends GameObject {
     public void setSpeed(float newSpeed) {
         speed = newSpeed;
     }
-
+    public void Destroy(){
+    	super.Destroy(); 
+    	Random random = new Random(System.nanoTime()) ; 
+    	int drop = random.nextInt(10) ; 
+    	if (drop == 1){
+    	new HealthPowerUp(this.getPosition(),50) ; 
+    	}
+    	if (drop == 2){
+    		new DamagePowerUp(this.getPosition(),50) ; 
+    	}
+    }
     public float getSpeed() {
         return speed;
     }

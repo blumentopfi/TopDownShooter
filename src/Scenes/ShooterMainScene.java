@@ -22,7 +22,6 @@ public class ShooterMainScene extends Scene {
 		new Background() ; 
 		new Player("Assets/PlaneSprites/B-17.png","MainPlayer") ;
 		gameManager = new GameManager("Manager") ;
-		new HealthPowerUp(5,0,20) ; 
 		
 	}
 	public GameManager getManager(){
