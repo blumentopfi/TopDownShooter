@@ -43,9 +43,11 @@ public class GameManager extends GameObject {
 			}
 		}
 		if (enemyCounter < 5) {
-			Random random = new Random();
+			Random random = new Random(System.nanoTime());
 			float pos_X = random.nextInt(9 - 1 + 1) + 1;
-			float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
+			//float pos_X = 5;
+			//float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
+			float pos_Y = 1;
 			new Enemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", pos_X, pos_Y);
 		}
 
