@@ -28,7 +28,7 @@ public class Player extends GameObject {
 	int health = 200 ; 
 	int damage = 50 ; 
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
-	Weapon my_weapon = Weapon.TRIPLE ; 
+	Weapon my_weapon = Weapon.SINGLE ; 
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
 		this.addComponent(new Sprite(PathToSprite,this));
@@ -36,7 +36,6 @@ public class Player extends GameObject {
 		
 		this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
-		
 		
 	}
 	public int getDamage() {
@@ -51,6 +50,21 @@ public class Player extends GameObject {
 	}
 	public void setHealth(int toset){
 		this.health = toset ; 
+	}
+	
+	public void UpgradeWeapon(){
+		switch(this.my_weapon){
+		case DOUBLE:
+			this.my_weapon = Weapon.TRIPLE ; 
+			break;
+		case SINGLE:
+			this.my_weapon = Weapon.DOUBLE ; 
+			break;
+		case TRIPLE:
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public void OnCollision(GameObject collidingObject) {

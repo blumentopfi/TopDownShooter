@@ -19,6 +19,7 @@ public class Missle extends GameObject {
 		this.addComponent(new Collider(new Rectangle2D.Float(0,0,0.3f,0.6f),this));
 		this.damage = damage ; 
 		this.movement = movement ; 
+		this.Rotate(360 - (int)Math.toDegrees(Math.tan(movement.x/movement.y)));
 	}
 	
 	public void OnCollision(GameObject collidingObject) {

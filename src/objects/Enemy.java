@@ -104,6 +104,9 @@ public class Enemy extends GameObject {
     	if (drop == 2){
     		new DamagePowerUp(this.getPosition(),50) ; 
     	}
+    	if (drop == 3){
+    		new UpgradePowerUp(this.getPosition()) ;  
+    	}
     }
     public float getSpeed() {
         return speed;

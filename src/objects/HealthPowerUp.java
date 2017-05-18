@@ -25,7 +25,6 @@ public class HealthPowerUp extends PowerUp {
 
 	}
 	
-	public void Update(){
-	}
+
 
 }
