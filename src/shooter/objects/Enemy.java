@@ -72,7 +72,7 @@ public class Enemy extends GameObject {
         }
 
         if ((lastMove == 0) && moveCounter <= MOVE_DISTANCE) {
-            System.out.println("left");
+           // System.out.println("left");
             if(this.getPosition().x > 1) {
                 this.setPosition(new Point2D.Float(this.getPosition().x - (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
@@ -86,7 +86,7 @@ public class Enemy extends GameObject {
             moveCounter++;
         }
         if ((lastMove == 1) && moveCounter <= MOVE_DISTANCE) {
-            System.out.println("right");
+           // System.out.println("right");
             if(this.getPosition().x < 9) {
                 this.setPosition(new Point2D.Float(this.getPosition().x + (float)((speed * Time.deltaTime) / 2f), this.getPosition().y + (float)(speed * Time.deltaTime)));
             }
@@ -101,7 +101,7 @@ public class Enemy extends GameObject {
         }
 
         if ((lastMove == 2) && moveCounter <= MOVE_DISTANCE) {
-            System.out.println("straight");
+            //System.out.println("straight");
             this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
             moveCounter++;
         }
@@ -123,7 +123,7 @@ public class Enemy extends GameObject {
         }
     }
     private void shootSingle(){
-        GameObject MyBullet = new Missle(25,new Point2D.Float(0, +4)) ;
+        GameObject MyBullet = new MissleEnemy(25,new Point2D.Float(0, +4)) ;
         MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
         MyBullet.Rotate(180) ;
     }

@@ -39,7 +39,7 @@ public class Camera extends Thread {
 		m_GameWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		m_GameWindow.setVisible(true);
 		m_GameWindow.setLayout(new BorderLayout());
-		m_GameWindow.add(m_GameView);
+		m_GameWindow.add(m_GameView) ; 
 		m_GameView.setLayout(new FlowLayout());	
 		m_fpscounter = new FPSCounter() ; 
 		render() ; 
@@ -53,6 +53,9 @@ public class Camera extends Thread {
 	public void run(){	
 		
 	}
+	public void Destroy(){
+	
+	}
 
 	
 	public void PrintComponents(){
@@ -60,7 +63,7 @@ public class Camera extends Thread {
 	}
 	
 	public void AddGUIElement(JComponent test){
-		//GUIElements.add(test) ; 
+		GUIElements.add(test) ; 
 		m_GameView.add(test) ; 
 		m_GameView.revalidate();
 		m_GameView.repaint(); 
@@ -68,6 +71,9 @@ public class Camera extends Thread {
 	
 	public void RemoveGUIElement(JComponent toremove){
 		m_GameView.remove(toremove);
+		GUIElements.remove(toremove);
+		m_GameView.revalidate();
+		m_GameView.repaint(); 
 	}
 	
 	public void OverrideLayout(LayoutManager New){
@@ -83,6 +89,9 @@ public class Camera extends Thread {
 
 		        Toolkit.getDefaultToolkit().sync();
 		    }
+		  	public GameView(){
+		  		super() ; 
+		  	}
 	}
 	
 	

@@ -27,5 +27,10 @@ public class ShooterMainScene extends Scene {
 	public GameManager getManager(){
 		return gameManager ; 
 	}
+	public void finishScene(){
+		main_Camera = null ; 
+		gameManager = null ; 
+		
+	}
 
 }

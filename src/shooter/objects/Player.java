@@ -8,6 +8,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import shooter.objects.Missle;
+import shooter.scenes.GameOverScene;
+import shooter.scenes.MenuScene;
 
 import java.time.*;
 import java.util.ArrayList;
@@ -79,29 +81,34 @@ public class Player extends GameObject {
 		this.setPosition(new Point2D.Float(this.getPosition().x + (dx*Time.deltaTime), this.getPosition().y +(dy*Time.deltaTime)));
 		if (health <= 0){
 			this.Destroy();
+			SceneManager.getInstance().SetScene(new GameOverScene());
 		}
 	}
 	private void shootDouble(){
-		GameObject MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
+		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.15f, this.getPosition().y -0.5f));
-		MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
+		MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.15f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
 	private void shootSingle(){
-		GameObject MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
+		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
 	private void shootTriple(){
-		GameObject MyBullet = new Missle(damage,new Point2D.Float(0, -4)) ; 
+		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
-		MyBullet = new Missle(damage,new Point2D.Float(-1, -4)) ; 
+		MyBullet = new MisslePlayer(damage,new Point2D.Float(-1, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.3f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
-		MyBullet = new Missle(damage,new Point2D.Float(+1, -4)) ; 
+		MyBullet = new MisslePlayer(damage,new Point2D.Float(+1, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.3f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
+	}
+	
+	public void addDamage(int damage){
+		this.health-=damage ; 
 	}
 	public void shoot(){
 		switch(my_weapon){

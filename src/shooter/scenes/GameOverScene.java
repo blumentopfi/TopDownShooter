@@ -19,7 +19,7 @@ import shooter.objects.GameManager;
 import shooter.objects.HealthPowerUp;
 import shooter.objects.Player;
 
-public class MenuScene extends Scene {
+public class GameOverScene extends Scene {
 	JButton StartButton ; 
 	JButton QuitButton ; 
 	JLabel BackgroundImage ; 
@@ -28,8 +28,11 @@ public class MenuScene extends Scene {
 	public void gameObjectsOnStart() {
 		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
+		//main_Camera.getGameWindow().repaint(); 
 		main_Camera.OverrideLayout(null);
-		ImageIcon icon = new ImageIcon(new ImageIcon("Assets/Menu/Button.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
+		
+		
+		ImageIcon icon = new ImageIcon(new ImageIcon("Assets/Menu/RestartButton.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
 		StartButton = new JButton(icon) ; 
 		int x = main_Camera.getGameWindow().getWidth()/2 - 300 ;
 		int y =  3 * main_Camera.getGameWindow().getHeight()/8 - 100  ; 
@@ -44,41 +47,35 @@ public class MenuScene extends Scene {
 		StartButton.setContentAreaFilled(false);
 		StartButton.setBorderPainted(false);
 		main_Camera.AddGUIElement(StartButton);
-		x = main_Camera.getGameWindow().getWidth()/2 - 900/2 ;
-		 y =  0 ; 
-		ImageIcon img = new ImageIcon(new ImageIcon("Assets/Menu/Title.png").getImage().getScaledInstance(900, 200, Image.SCALE_DEFAULT)) ;
-		Titel = new JLabel("",img,JLabel.CENTER) ; 
-		Titel.setBounds(x, y, 900, 200);
-		main_Camera.AddGUIElement(Titel);
+		
 		
 		ImageIcon icon2 = new ImageIcon(new ImageIcon("Assets/Menu/QuitButton.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
 		QuitButton = new JButton(icon2) ; 
 		x = main_Camera.getGameWindow().getWidth()/2 - 300 ;
 		y =  5 * main_Camera.getGameWindow().getHeight()/8 - 100  ; 
 		QuitButton.setBounds(x, y, 600, 100);
+		QuitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 		QuitButton.setOpaque(false);
 		QuitButton.setContentAreaFilled(false);
 		QuitButton.setBorderPainted(false);
 		//main_Camera.AddGUIElement(QuitButton);
-		//main_Camera.getGameView().setFocusable(true);
-		
-		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/MainMenuSplashScreen3.jpg").getImage().getScaledInstance( main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight()
+		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/Game_Over_Screen.jpg").getImage().getScaledInstance( main_Camera.getGameWindow().getWidth(), main_Camera.getGameWindow().getHeight()
 				, Image.SCALE_DEFAULT)) ;
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ; 
-		BackgroundImage.setBounds(0, 0, main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight());
+		BackgroundImage.setBounds(0, 0, main_Camera.getGameWindow().getWidth(), main_Camera.getGameWindow().getHeight());
 		main_Camera.AddGUIElement(BackgroundImage);
-		
-
-		
-		
 		
 	}
 	
 	public void finishScene(){
+	main_Camera.RemoveGUIElement(BackgroundImage);
 	main_Camera.RemoveGUIElement(StartButton);
 	main_Camera.RemoveGUIElement(QuitButton);
-	main_Camera.RemoveGUIElement(BackgroundImage);
-	main_Camera.RemoveGUIElement(Titel); 
 	}
 	
 }

@@ -19,8 +19,6 @@ import shooter.scenes.ShooterMainScene;
 public class SceneManager {
 	static Camera main_Camera ;
 	static Scene m_Scene ; 
-	static HealthPowerUp test; 
-	static GameManager gameManager ; 
 	static JFrame game_Window ; 
 	static InputManager input_manager ; 
 	private static List<GameObject> m_GameObjectsInScene ;
@@ -39,15 +37,15 @@ public class SceneManager {
 
 	public void SetScene(Scene toSet){
 		if (m_Scene != null){
-		input_manager = null ; 
 		m_Scene.finishScene(); 
+		m_Scene = null ; 
 		main_Camera = null ;
 		m_GameObjectsInScene.clear();
 		m_GameObjectsToDelete.clear() ; 
 		}
 		m_Scene = toSet ; 
 		m_Scene.gameObjectsOnStart();
-		
+		if (input_manager!= null)  input_manager.RefreshKeyManager();
 		
 	}
 	

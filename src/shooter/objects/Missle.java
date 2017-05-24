@@ -22,14 +22,7 @@ public class Missle extends GameObject {
 		this.Rotate(360 - (int)Math.toDegrees(Math.tan(movement.x/movement.y)));
 	}
 	
-	public void OnCollision(GameObject collidingObject) {
-		if (collidingObject.getName() == "Enemy"){
-		Enemy collidingEnemy = (Enemy)collidingObject ; 
-		
-		collidingEnemy.addDamage(damage);
-		this.Destroy();
-		}
-	}
+
 	
 	public void Update(){
 		super.Update();

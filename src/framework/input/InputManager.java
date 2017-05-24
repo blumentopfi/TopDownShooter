@@ -35,8 +35,16 @@ public class InputManager implements ActionListener {
 		
 	}
 	
+	public void RefreshKeyManager(){
+		window.removeKeyListener(keylistener);
+		window.addKeyListener(keylistener) ; 
+		window.setFocusable(true);
+		window.setFocusTraversalKeysEnabled(true);
+	}
+	
 	public class KeyManager implements KeyListener{
 		public void keyPressed(KeyEvent e) {
+			System.out.println("Pressed");
 			try{
 			List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 			for (GameObject Object: gameObjectsinScene){
@@ -70,6 +78,7 @@ public class InputManager implements ActionListener {
 		
 	}
 	public void actionPerformed(ActionEvent arg0) {
+
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ;
 		//setupEnemies(gameObjectsinScene);
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
