@@ -112,17 +112,8 @@ public class Player extends GameObject {
 		this.health-=damage ; 
 	}
 	public void shoot(){
-		 
-		if (test){
-		this.Rotate(45);
-		test = false ; 
-		System.out.println("Right");
-		}else{
-		this.Rotate(360-45);
-		System.out.println("Left");
-		test = true ; 
-		}
-		/*
+
+		
 		switch(my_weapon){
 		case DOUBLE:
 			shootDouble() ; 
@@ -137,7 +128,7 @@ public class Player extends GameObject {
 			break;
 		default:
 			break;
-		}*/
+		}
 		
 	}
 	  public void keyPressed(KeyEvent e) {
