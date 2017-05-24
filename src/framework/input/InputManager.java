@@ -44,7 +44,7 @@ public class InputManager implements ActionListener {
 	
 	public class KeyManager implements KeyListener{
 		public void keyPressed(KeyEvent e) {
-			System.out.println("Pressed");
+			//System.out.println("Pressed");
 			try{
 			List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 			for (GameObject Object: gameObjectsinScene){

@@ -34,8 +34,23 @@ public abstract class GameObject {
 		
 	}
 	public void Rotate(int Winkel){
+		Winkel = Winkel % 360 ; 
 		if (this.getSprite() != null){
-			this.getSprite().rotate(Winkel);
+			int current_rotation = this.m_transform.getRotation() ;
+			if (current_rotation > Winkel){
+				this.getSprite().rotate(360 - current_rotation + Winkel);
+			}
+			
+			if(current_rotation < Winkel){
+				this.getSprite().rotate(Winkel-current_rotation);
+				System.out.println(Winkel-current_rotation);
+			}
+			
+			
+			this.m_transform.setRotation(Winkel);
+			System.out.println(this.m_transform.getRotation());
+			
+			
 		}
 	}
 	public Collider getCollider(){

@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 public class Transform {
 	private Point2D.Float m_position ; 
 	private Dimension m_size ;
+	private int rotation = 0 ; 
 	public Transform(Dimension size , Point2D.Float position){
 		m_size = size ; 
 		m_position = position ; 
@@ -22,6 +23,12 @@ public class Transform {
 	}
 	public void setSize(Dimension size) {
 		this.m_size = size;
+	}
+	public int getRotation() {
+		return rotation;
+	}
+	public void setRotation(int rotation) {
+		this.rotation = rotation;
 	} 
 	
 }

@@ -28,10 +28,11 @@ public class Player extends GameObject {
 	float dy ; 
 	long FireRate = 100  ; 
 	long NextFire = 0  ;
-	int health = 200 ; 
+	static boolean test = true ;
+	int health = 20000 ; 
 	int damage = 50 ; 
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
-	Weapon my_weapon = Weapon.SINGLE ; 
+	Weapon my_weapon = Weapon.TRIPLE ; 
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
 		this.addComponent(new Sprite(PathToSprite,this));
@@ -111,6 +112,17 @@ public class Player extends GameObject {
 		this.health-=damage ; 
 	}
 	public void shoot(){
+		 
+		if (test){
+		this.Rotate(45);
+		test = false ; 
+		System.out.println("Right");
+		}else{
+		this.Rotate(360-45);
+		System.out.println("Left");
+		test = true ; 
+		}
+		/*
 		switch(my_weapon){
 		case DOUBLE:
 			shootDouble() ; 
@@ -125,7 +137,7 @@ public class Player extends GameObject {
 			break;
 		default:
 			break;
-		}
+		}*/
 		
 	}
 	  public void keyPressed(KeyEvent e) {
