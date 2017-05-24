@@ -33,7 +33,7 @@ public class GameManager extends GameObject {
 	}
 	public void Update(){
 		super.Update();
-		//setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ; 
+		setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ; 
 		FPSLabel.setText("FPS: " + (int)framework.main.SceneManager.getInstance().getMainCamera().m_fpscounter.fps()) ; 
 		Player Player = (Player)framework.main.SceneManager.getInstance().getGameObjectByName("MainPlayer") ;
 		if (Player != null) Stats.setText("HP: " + Player.getHealth() + "\n" + "DMG: " + Player.getDamage());

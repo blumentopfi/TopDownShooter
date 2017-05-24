@@ -28,7 +28,6 @@ public class Player extends GameObject {
 	float dy ; 
 	long FireRate = 100  ; 
 	long NextFire = 0  ;
-	static boolean test = true ;
 	int health = 20000 ; 
 	int damage = 50 ; 
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
@@ -112,8 +111,6 @@ public class Player extends GameObject {
 		this.health-=damage ; 
 	}
 	public void shoot(){
-
-		
 		switch(my_weapon){
 		case DOUBLE:
 			shootDouble() ; 
