@@ -59,7 +59,13 @@ public class MenuScene extends Scene {
 		QuitButton.setOpaque(false);
 		QuitButton.setContentAreaFilled(false);
 		QuitButton.setBorderPainted(false);
-		//main_Camera.AddGUIElement(QuitButton);
+		QuitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+		main_Camera.AddGUIElement(QuitButton);
 		//main_Camera.getGameView().setFocusable(true);
 		
 		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/MainMenuSplashScreen3.jpg").getImage().getScaledInstance( main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight()

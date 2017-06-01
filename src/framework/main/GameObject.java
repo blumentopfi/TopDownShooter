@@ -25,8 +25,6 @@ public abstract class GameObject {
 	private String m_name ; 
 	private int m_tag ;  
 	private Transform m_transform ; 
-	public void  keyPressed(KeyEvent e){} ;
-	public void  keyReleased(KeyEvent e){};
 	private List<Component> m_Components = new ArrayList<Component>() ; // List of Components that are attached
 	/**
 	 * Add a component
@@ -62,12 +60,12 @@ public abstract class GameObject {
 			
 			if(current_rotation < Winkel){
 				this.getSprite().rotate(Winkel-current_rotation);
-				System.out.println(Winkel-current_rotation);
+				//System.out.println(Winkel-current_rotation);
 			}
 			
 			
 			this.m_transform.setRotation(Winkel);
-			System.out.println(this.m_transform.getRotation());
+			//System.out.println(this.m_transform.getRotation());
 			
 			
 		}

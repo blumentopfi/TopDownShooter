@@ -123,7 +123,7 @@ public class Enemy extends GameObject {
         }
     }
     private void shootSingle(){
-        GameObject MyBullet = new MissleEnemy(25,new Point2D.Float(0, +4)) ;
+        GameObject MyBullet = new MissleEnemy(20000,new Point2D.Float(0, +4)) ;
         MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
         MyBullet.Rotate(180) ;
     }

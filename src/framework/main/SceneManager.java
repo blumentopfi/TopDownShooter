@@ -7,6 +7,9 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -68,6 +71,13 @@ public class SceneManager {
 	public JFrame getGameWindow (){
 		return game_Window ; 
 	}
+	public ActionMap getActionMap(){
+		return main_Camera.getGameView().getActionMap() ; 
+	}
+	public InputMap getInputMap(){
+		return main_Camera.getGameView().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW) ; 
+	}
+	
 	/**
 	 * Print the names of all GameOBjects to the console
 	 */

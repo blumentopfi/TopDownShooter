@@ -63,7 +63,7 @@ public class GameOverScene extends Scene {
 		QuitButton.setOpaque(false);
 		QuitButton.setContentAreaFilled(false);
 		QuitButton.setBorderPainted(false);
-		//main_Camera.AddGUIElement(QuitButton);
+		main_Camera.AddGUIElement(QuitButton);
 		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/Game_Over_Screen.jpg").getImage().getScaledInstance( main_Camera.getGameWindow().getWidth(), main_Camera.getGameWindow().getHeight()
 				, Image.SCALE_DEFAULT)) ;
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ; 

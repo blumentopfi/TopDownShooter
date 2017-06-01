@@ -9,6 +9,9 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ConcurrentModificationException;
 import java.util.List;
+
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -16,25 +19,26 @@ import framework.components.Collider;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
-
+/**
+ * Manager for our game Ticks and our Input
+ * @author Fin
+ *
+ */
 public class InputManager implements ActionListener {
-	private static final int DELAY = 10  ;
-	Camera camera; 
-	JFrame window ; 
-	KeyListener keylistener ; 
-	Timer timer ; 
+	private static final int DELAY = 10  ; // Tick every 10 milliseconds
+	Camera camera; //our Camera
+	JFrame window ; //our gameWindow
+	KeyListener keylistener ;  // our Listener for the input
+	Timer timer ; // Tick timer
 	public InputManager(){
 		window = SceneManager.getInstance().getMainCamera().getGameWindow() ;
 		camera = SceneManager.getInstance().getMainCamera();
-		keylistener = new KeyManager() ; 
-		window.addKeyListener(keylistener);
-		window.setFocusable(true);
-		window.setFocusTraversalKeysEnabled(true);
 		timer = new Timer(DELAY,this) ; 
 		timer.start();
 		
 	}
 	
+
 	public void RefreshKeyManager(){
 		window.removeKeyListener(keylistener);
 		window.addKeyListener(keylistener) ; 
@@ -42,43 +46,11 @@ public class InputManager implements ActionListener {
 		window.setFocusTraversalKeysEnabled(true);
 	}
 	
-	public class KeyManager implements KeyListener{
-		public void keyPressed(KeyEvent e) {
-			//System.out.println("Pressed");
-			try{
-			List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
-			for (GameObject Object: gameObjectsinScene){
-				Object.keyPressed(e);
-			}
-			}catch(ConcurrentModificationException ex){
-				keyPressed(e) ;
-			}
-			
-			
-		}
-
-		
-		public void keyReleased(KeyEvent e) {
-			List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
-			for (GameObject Object: gameObjectsinScene){
-				Object.keyReleased(e);
-			}
-		
-			
-		}
-
-
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		
-		
-	}
+	/**
+	 * This gets called by the timer. 
+	 */
 	public void actionPerformed(ActionEvent arg0) {
-
+		//Get all the Objects in our Scene and Update them 
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ;
 		//setupEnemies(gameObjectsinScene);
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
@@ -86,7 +58,7 @@ public class InputManager implements ActionListener {
 			Object.Update();	
 		}
 
-		
+		//Collision Checking
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
 			try{
 				GameObject objectA = gameObjectsinScene.get(i);
@@ -119,7 +91,7 @@ public class InputManager implements ActionListener {
 				//ignore
 			}
 		}
-		SceneManager.getInstance().PrintAllGameObjectsByName();
+		//If there are destroyed gameObject remove them 
 		SceneManager.getInstance().GetAllGameObjectsInScene().removeAll(SceneManager.getInstance().getGameObjectToDelete()) ;
 		SceneManager.getInstance().getGameObjectToDelete().clear();
 		
