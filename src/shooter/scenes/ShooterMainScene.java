@@ -20,7 +20,7 @@ public class ShooterMainScene extends Scene {
 		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		new Background() ; 
-		new Player("Assets/PlaneSprites/B-17.png","MainPlayer") ;
+		new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		gameManager = new GameManager("Manager") ;
 		
 	}

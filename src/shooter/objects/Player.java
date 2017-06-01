@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import shooter.objects.Missle;
 import shooter.scenes.GameOverScene;
@@ -17,6 +20,7 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -24,6 +28,7 @@ import javax.swing.InputMap;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
+import framework.components.Animator;
 import framework.components.Collider;
 import framework.components.Sprite;
 import framework.main.GameObject;
@@ -37,16 +42,27 @@ public class Player extends GameObject {
 	long NextFire = 0  ;
 	int health = 20000 ; 
 	int damage = 50 ;  
+	
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
-	Weapon my_weapon = Weapon.TRIPLE ; 
+	Weapon my_weapon = Weapon.SINGLE ; 
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
+		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
+		try {
+		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/1.png")));
+		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/2.png")));
+		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/3.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.addComponent(new Sprite(PathToSprite,this));
 		this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
-		
+	
 		this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		this.ActionMapInputMapInitialize(); 
+		this.addComponent(new Animator(myAnimation,this));
 	}
 	public int getDamage() {
 		return damage;
@@ -169,25 +185,25 @@ public class Player extends GameObject {
 		Action leftr = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
 		    	  dx = 0f ;  
-		    	  System.out.println("released");
+	
 		    }
 		};
 		Action rightr = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
 		    	 dx = 0f ;     
-		    	 System.out.println("released");
+		    	 
 		    }
 		};
 		Action upr = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
 		    	  dy = 0f ;    
-		    	  System.out.println("released");
+		    	
 		    }
 		};
 		Action downr = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
 		        dy = 0f ;   
-		        System.out.println("released");
+		        
 		    }
 		};
 		inputMap.put(KeyStroke.getKeyStroke("SPACE"),"shoot") ; 

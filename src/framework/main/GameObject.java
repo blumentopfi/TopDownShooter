@@ -30,8 +30,11 @@ public abstract class GameObject {
 	 * Add a component
 	 * @param component
 	 */
-	protected void addComponent(Component component){
+	public void addComponent(Component component){
 		m_Components.add(component) ;
+	}
+	public void removeComponent(Component component){
+		m_Components.remove(component) ; 
 	}
 	/**
 	 * Destroy the gameObject

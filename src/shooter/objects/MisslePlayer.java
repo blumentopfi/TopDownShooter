@@ -20,5 +20,8 @@ public class MisslePlayer extends Missle {
 		this.Destroy();
 		}
 	}
+	public void Update(){
+		super.Update();
+	}
 	
 }
