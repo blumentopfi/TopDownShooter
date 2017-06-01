@@ -39,7 +39,6 @@ public class Boss extends GameObject {
     }
 
     public void Update(){
-        System.out.println("BOSS UPDATE");
         super.Update();
         if (NextFire < System.currentTimeMillis() ){
             this.shootSingle();
@@ -56,7 +55,6 @@ public class Boss extends GameObject {
 
     }
     private void shootSingle(){
-        System.out.println("BOSS FIRE");
         double maxWidth = this.getWidth();
         double maxHeight = this.getHeight();
 
@@ -69,10 +67,7 @@ public class Boss extends GameObject {
 
         Point2D.Float posXPointL = SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(new Point2D.Float((float) (PosX - (maxWidth / 2)), this.getPosition().y + 1f));
         Point2D.Float posXPointR = SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(new Point2D.Float((float) (PosX + (maxWidth / 2)), this.getPosition().y + 1f));
-        System.out.println("LX" + posXPointL.x);
-        System.out.println("LY" + posXPointL.y);
-        System.out.println("RX" + posXPointR.x);
-        System.out.println("RY" + posXPointR.y);
+
         MyBulletLeft.setPosition(posXPointL);
         MyBulletRight.setPosition(posXPointR);
 
