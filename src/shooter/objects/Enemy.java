@@ -78,7 +78,7 @@ public class Enemy extends GameObject {
             }
             else {
                 if(this.isRotated) {
-                    this.Rotate(-27);
+                    this.Rotate(0);
                     this.isRotated = false;
                 }
                 this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
@@ -92,7 +92,7 @@ public class Enemy extends GameObject {
             }
             else {
                 if(this.isRotated) {
-                    this.Rotate(27);
+                    this.Rotate(0);
                     this.isRotated = false;
                 }
                 this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + (float)(speed * Time.deltaTime)));
@@ -109,12 +109,12 @@ public class Enemy extends GameObject {
             tempMove = lastMove;
             if(lastMove == 0) {
                 if(this.isRotated) {
-                    this.Rotate(-27);
+                    this.Rotate(0);
                 }
             }
             if(lastMove == 1) {
                 if (this.isRotated) {
-                    this.Rotate(27);
+                    this.Rotate(0);
                 }
             }
             isRotated = false;
@@ -135,7 +135,8 @@ public class Enemy extends GameObject {
         speed = newSpeed;
     }
     public void Destroy(){
-    	super.Destroy(); 
+    	super.Destroy();
+    	manager.addKilledEnemy();
     	Random random = new Random(System.nanoTime()) ; 
     	int drop = random.nextInt(10) ; 
     	if (drop == 1){

@@ -19,6 +19,11 @@ public class MisslePlayer extends Missle {
 		collidingEnemy.addDamage(damage);
 		this.Destroy();
 		}
+		if (collidingObject.getName() == "Boss"){
+			Boss collidingEnemy = (Boss)collidingObject ;
+			collidingEnemy.addDamage(damage);
+			this.Destroy();
+		}
 	}
 	public void Update(){
 		super.Update();
