@@ -16,36 +16,44 @@ import framework.rendering.Camera;
 import shooter.objects.*;
 import shooter.scenes.MenuScene;
 import shooter.scenes.ShooterMainScene; 
+/**
+ * The Manager that holds all the Information about the Scenes and the Objects in the scene. 
+ * @author Fin
+ *
+ */
 public class SceneManager {
-	static Camera main_Camera ;
+	static Camera main_Camera ; 
 	static Scene m_Scene ; 
 	static JFrame game_Window ; 
 	static InputManager input_manager ; 
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
 	public static void init(Scene StartScene) {
-		System.setProperty("sun.java2d.opengl", "True") ; 
-		game_Window = new JFrame("TopDownShooter") ;
-		SceneManager.getInstance().SetScene(StartScene);
-		input_manager = new InputManager()  ; 
+		System.setProperty("sun.java2d.opengl", "True") ; //Use OpenGL Rendering 
+		game_Window = new JFrame("TopDownShooter") ; //create the window
+		SceneManager.getInstance().SetScene(StartScene); //Set the first Scene
+		input_manager = new InputManager()  ; //create an input manager 
 	}
 	
 	public List<GameObject> getGameObjectToDelete(){
 		return m_GameObjectsToDelete;
 	}
 
-
+	/**
+	 * Switch to another Scene
+	 * @param toSet
+	 */
 	public void SetScene(Scene toSet){
-		if (m_Scene != null){
+		if (m_Scene != null){ //If we already have a scene we have to destroy it first
 		m_Scene.finishScene(); 
 		m_Scene = null ; 
 		main_Camera = null ;
-		m_GameObjectsInScene.clear();
+		m_GameObjectsInScene.clear(); //Clear all the remaining GameoBjects
 		m_GameObjectsToDelete.clear() ; 
 		}
-		m_Scene = toSet ; 
-		m_Scene.gameObjectsOnStart();
-		if (input_manager!= null)  input_manager.RefreshKeyManager();
+		m_Scene = toSet ;  //Set the new Scene
+		m_Scene.gameObjectsOnStart(); //start the new scene
+		if (input_manager!= null)  input_manager.RefreshKeyManager(); //TODO
 		
 	}
 	
@@ -60,13 +68,19 @@ public class SceneManager {
 	public JFrame getGameWindow (){
 		return game_Window ; 
 	}
-	
+	/**
+	 * Print the names of all GameOBjects to the console
+	 */
 	public void PrintAllGameObjectsByName(){
 		for (GameObject g: m_GameObjectsInScene){
-			//System.out.println(g.getName());
+			System.out.println(g.getName());
 		}
 	}
-	
+	/**
+	 * Return the gameObject when you know the name of it
+	 * @param Name
+	 * @return gameObject
+	 */
 	public GameObject getGameObjectByName(String Name){
 		for (int i = 0 ; i < m_GameObjectsInScene.size() ; i++){
 			if (m_GameObjectsInScene.get(i).getName() == Name){
@@ -87,10 +101,17 @@ public class SceneManager {
 		}
 		return SceneManager.instance ; 
 	}
-	
+	/**
+	 * Add a GameObject to the scene
+	 * @param toAdd
+	 */
 	public void AddGameObjectToScene(GameObject toAdd){
 		m_GameObjectsInScene.add(toAdd) ; 
 	}
+	/**
+	 * Return every gameObject that is in the scene
+	 * @return
+	 */
 	public List<GameObject> GetAllGameObjectsInScene (){
 		return m_GameObjectsInScene ; 
 	}

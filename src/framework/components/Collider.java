@@ -10,24 +10,43 @@ import framework.main.SceneManager;
 import framework.rendering.Camera;
 
 public class Collider extends Component {
-	GameObject myObject ; 
+	GameObject myObject ; //Object the Collider is assgined to
 	Rectangle2D.Float collidingRectangle ; 
+	/**
+	 * Mother Class for the Collider 
+	 * @param collidingRectangle
+	 * @param initObject
+	 */
 	public Collider(Rectangle2D.Float collidingRectangle,GameObject initObject){
 		this.myObject = initObject ; 
 		this.collidingRectangle = gameObjectToRectangle(this.myObject);
 	}
-	
+	/**
+	 * ColliderUpdate function where we set the position of the Collider to the position of the assigned object
+	 */
 	@Override
 	public void ComponentUpdate() {
 		this.collidingRectangle.x = (float)( myObject.getPosition().getX()-this.collidingRectangle.getWidth()/2) ; 
 		this.collidingRectangle.y = (float) (myObject.getPosition().getY()-this.collidingRectangle.getHeight()/2) ; 
 	}
+	/**
+	 * If the size of the objects changes we have to change our collider
+	 */
 	public void UpdateCollider(){
 		this.collidingRectangle = gameObjectToRectangle(this.myObject);
 	}
+	/**
+	 * Getter for the CollidingShape
+	 * @return Shape
+	 */
 	public Rectangle2D.Float getCollidingRectangle(){
 		return this.collidingRectangle ;
 	}
+	/**
+	 * Convert the Image of an Rectangle in Screen Size to a rectangle in GameSize
+	 * @param object
+	 * @return Rectangle in Game Size
+	 */
 	public Rectangle2D.Float gameObjectToRectangle(GameObject object) {
 		Point2D.Float point = object.getPosition() ; 
 		Rectangle2D.Float rec = new Rectangle2D.Float() ; 

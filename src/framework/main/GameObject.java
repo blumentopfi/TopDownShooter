@@ -16,23 +16,42 @@ import javax.imageio.ImageIO;
 import framework.components.*;
 import framework.geometry.*;
 import framework.main.SceneManager; 
+/**
+ * Class for any objects that is in the game
+ * @author Fin
+ *
+ */
 public abstract class GameObject {
 	private String m_name ; 
 	private int m_tag ;  
 	private Transform m_transform ; 
 	public void  keyPressed(KeyEvent e){} ;
 	public void  keyReleased(KeyEvent e){};
-	private List<Component> m_Components = new ArrayList<Component>() ;
+	private List<Component> m_Components = new ArrayList<Component>() ; // List of Components that are attached
+	/**
+	 * Add a component
+	 * @param component
+	 */
 	protected void addComponent(Component component){
 		m_Components.add(component) ;
 	}
+	/**
+	 * Destroy the gameObject
+	 */
 	public void Destroy(){
 		m_Components.clear();
 		SceneManager.getInstance().getGameObjectToDelete().add(this) ;
 	}
+	/**
+	 * That happens on Collision
+	 * @param collidingObject
+	 */
 	public void OnCollision(GameObject collidingObject) {
-		
 	}
+	/**
+	 * Set the rotation of the gameObject
+	 * @param Winkel
+	 */
 	public void Rotate(int Winkel){
 		Winkel = Winkel % 360 ; 
 		if (this.getSprite() != null){
@@ -78,12 +97,18 @@ public abstract class GameObject {
 	}
 	
 	
-	
+	/**
+	 * Super update updates all the components
+	 */
 	public void Update(){
 		for (int i = 0 ; i < m_Components.size() ; i++){
 			m_Components.get(i).ComponentUpdate();
 		}
 	};
+	/**
+	 * 
+	 * @param Name
+	 */
 	public GameObject(String Name){
 		m_name = Name ;
 		SceneManager.getInstance().AddGameObjectToScene(this);

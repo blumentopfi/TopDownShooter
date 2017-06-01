@@ -17,14 +17,23 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import framework.main.GameObject;
-
+/**
+ * Class for our Sprite Component which holds the Image Infos
+ * @author Fin
+ *
+ */
 public class Sprite extends Component {
-	BufferedImage my_sprite_image ; 
-	GameObject my_object ; 
-	
+	BufferedImage my_sprite_image  ; //image of the sprite ; 
+	GameObject my_object ;//GameObject the sprite is assigned to  ; 
+	/**
+	 * Constructor
+	 * @param PathToSprite
+	 * @param my
+	 */
 	public Sprite (String PathToSprite,GameObject my){
 		my_object = my ; 
 		try {
+			//We convert the Sprite to the best Format for the graphics card
 			GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			GraphicsDevice device = env.getDefaultScreenDevice() ;
 			GraphicsConfiguration config = device.getDefaultConfiguration() ; 	 //convert Image to a memory type that given Graphic cards supports
@@ -37,9 +46,16 @@ public class Sprite extends Component {
 			// TODO Auto-generated catch block,
 			e.printStackTrace();
 		}
+		//Setting the size of the sprite to the size of gameObject
 		my_object.setDimension(new Dimension(this.getWidth(),this.getHeight()));
 	}
 	
+	/**
+	 * Function to rotate Images
+	 * @param src
+	 * @param degrees
+	 * @return rotatedImage
+	 */
 	private static BufferedImage rotateImage(BufferedImage src, double degrees) {
         AffineTransform affineTransform = AffineTransform.getRotateInstance(
                 Math.toRadians(degrees),
@@ -52,20 +68,36 @@ public class Sprite extends Component {
         g.drawImage(src, 0, 0, null);
         return rotatedImage;
     }
+	/**
+	 * API Interface to rotate a sprite
+	 * @param winkel
+	 */
 	public void rotate(int winkel){
 	    
 	    my_sprite_image = rotateImage(my_sprite_image,winkel) ; 
 	}
-	
+	/**
+	 * @return height
+	 */
 	public int getHeight(){
 		return my_sprite_image.getHeight() ; 
 	}
+	/**
+	 * @return width
+	 */
 	public int getWidth(){
 		return my_sprite_image.getWidth() ; 
 	}
+	/**
+	 * @return Image
+	 */
 	public BufferedImage getImage(){
 		return my_sprite_image ; 
 	}
+	/**
+	 * If the size of the gameObject changes we have to change our sprite size
+	 * @param d
+	 */
 	public void resize(Dimension d){
 	my_sprite_image = getScaledImage(my_sprite_image,(int)d.getWidth(),(int)d.getHeight());
 	}
@@ -87,7 +119,6 @@ public class Sprite extends Component {
 	
 	@Override
 	public void ComponentUpdate() {
-		// TODO Auto-generated method stub
 
 	}
 

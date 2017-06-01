@@ -4,10 +4,19 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+/**
+ * Class which holds all the informations regarding position, rotation and dimension
+ * @author Fin
+ *
+ */
 public class Transform {
 	private Point2D.Float m_position ; 
 	private Dimension m_size ;
 	private int rotation = 0 ; 
+	/**
+	 * @param size
+	 * @param position
+	 */
 	public Transform(Dimension size , Point2D.Float position){
 		m_size = size ; 
 		m_position = position ; 

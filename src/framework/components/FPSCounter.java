@@ -1,5 +1,9 @@
 package framework.components;
-
+/**
+ * Quick and Hacky Class to count our FPS
+ * @author Fin
+ *
+ */
 public class FPSCounter extends Thread{
     private long lastTime;
     private double fps; //could be int or long for integer values
