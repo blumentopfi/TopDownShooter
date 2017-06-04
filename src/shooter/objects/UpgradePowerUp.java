@@ -6,6 +6,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import framework.components.Collider;
+import framework.components.RectangleCollider;
 import framework.components.Sprite;
 
 public class UpgradePowerUp extends PowerUp {
@@ -13,7 +14,7 @@ public class UpgradePowerUp extends PowerUp {
 		super("UpgradePowerUp") ;  
 		this.setPosition(SpawnPoint);
 		this.addComponent(new Sprite("Assets/PowerUps/Star.png",this));
-        this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
+        this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
         this.setDimension(new Dimension((int)this.getWidth()/3,(int)this.getHeight()/3));
 	}
 	@Override

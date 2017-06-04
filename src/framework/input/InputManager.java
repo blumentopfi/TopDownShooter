@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Area;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ConcurrentModificationException;
@@ -15,7 +16,7 @@ import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import framework.components.Collider;
+import framework.components.*;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
@@ -65,7 +66,7 @@ public class InputManager implements ActionListener {
 				Collider colliderToCheckA ; 
 				colliderToCheckA = objectA.getCollider() ; 
 				if (colliderToCheckA != null){
-					Rectangle2D.Float rectangleOfColliderToCheckA = colliderToCheckA.getCollidingRectangle() ; 
+					Shape ShapeA = colliderToCheckA.getCollidingShape() ; 
 					for (int j = 0 ; j < gameObjectsinScene.size() ; j++){
 						try{
 							GameObject objectB = gameObjectsinScene.get(j);
@@ -73,8 +74,8 @@ public class InputManager implements ActionListener {
 								Collider colliderToCheckB ; 
 								colliderToCheckB = objectB.getCollider() ; 
 								if (colliderToCheckB != null){
-									Rectangle2D.Float rectangleOfColliderToCheckB = colliderToCheckB.getCollidingRectangle() ; 
-									if (rectangleOfColliderToCheckA.intersects(rectangleOfColliderToCheckB)){
+									Shape ShapeB = colliderToCheckB.getCollidingShape() ;  
+									if (ShapeA.intersects(ShapeB.getBounds2D())){
 										objectA.OnCollision(objectB);
 										objectB.OnCollision(objectA);
 									}
@@ -82,13 +83,11 @@ public class InputManager implements ActionListener {
 								
 							}
 						}catch(IndexOutOfBoundsException e){
-							//ignore
 						}
 					}
 				}
 			}
 			catch(IndexOutOfBoundsException e){
-				//ignore
 			}
 		}
 		//If there are destroyed gameObject remove them 
@@ -96,6 +95,7 @@ public class InputManager implements ActionListener {
 		SceneManager.getInstance().getGameObjectToDelete().clear();
 		
 	}
+
 
 	
 	

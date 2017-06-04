@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -30,6 +31,8 @@ import javax.swing.KeyStroke;
 
 import framework.components.Animator;
 import framework.components.Collider;
+import framework.components.OvalCollider;
+import framework.components.RectangleCollider;
 import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
@@ -42,7 +45,6 @@ public class Player extends GameObject {
 	long NextFire = 0  ;
 	int health = 20000 ; 
 	int damage = 50 ;  
-	
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
 	Weapon my_weapon = Weapon.SINGLE ; 
 	public Player(String PathToSprite, String Name){
@@ -55,10 +57,10 @@ public class Player extends GameObject {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}    
 		this.addComponent(new Sprite(PathToSprite,this));
-		this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
-	
+		//this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
+		this.addComponent(new OvalCollider(this));
 		this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		this.ActionMapInputMapInitialize(); 
@@ -106,6 +108,7 @@ public class Player extends GameObject {
 			this.Destroy();
 			SceneManager.getInstance().SetScene(new GameOverScene());
 		}
+ 
 	}
 	private void shootDouble(){
 		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 

@@ -4,6 +4,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import framework.components.Collider;
+import framework.components.OvalCollider;
+import framework.components.RectangleCollider;
 import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
@@ -16,7 +18,7 @@ public class Missle extends GameObject {
 	public Missle(int damage,Point2D.Float movement ){
 		super("Missle") ; 
 		this.addComponent(new Sprite("Assets/ProjectileSprite/Bullet.png",this));
-		this.addComponent(new Collider(new Rectangle2D.Float(0,0,0.3f,0.6f),this));
+		this.addComponent(new OvalCollider(this));
 		this.damage = damage ; 
 		this.movement = movement ; 
 		this.Rotate(360 - (int)Math.toDegrees(Math.tan(movement.x/movement.y)));

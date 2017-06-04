@@ -1,6 +1,7 @@
 package shooter.objects;
 
 import framework.components.Collider;
+import framework.components.RectangleCollider;
 import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
@@ -29,7 +30,7 @@ public class Boss extends GameObject {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
-        this.addComponent(new Collider(new Rectangle2D.Float(0,0,1,1),this));
+        this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
         manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
         this.setDimension(new Dimension((int)(this.getWidth()*2.0),(int)(this.getHeight()*2.0)));
     }

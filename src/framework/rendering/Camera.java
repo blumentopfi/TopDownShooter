@@ -10,7 +10,9 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.Toolkit;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -100,7 +102,7 @@ public class Camera extends Thread {
 	}
 
 	public void doDrawing(Graphics g) {
-		boolean Debug = false ;  
+		boolean Debug = true ;  
 		m_fpscounter.interrupt();
 		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
@@ -112,10 +114,21 @@ public class Camera extends Thread {
 					}
 					if (Debug){
 						if (Object.getCollider() != null){
-							Rectangle2D.Float rect = Object.getCollider().getCollidingRectangle() ;
-							Point2D.Float PointToRender = WorldCoordToScreenCoord(new Point2D.Float((float)rect.getX(),(float)rect.getY())) ; 
-							g.setColor(Color.GREEN);
-							g.drawRect((int)PointToRender.x, (int)PointToRender.y,(int)( rect.getWidth()* m_GameWindow.getWidth() / ViewRect.getWidth()), (int)(rect.getHeight() * m_GameWindow.getHeight() / ViewRect.getHeight()) );
+							Shape shape = Object.getCollider().getCollidingShape() ; 
+							
+							if (shape instanceof Rectangle2D.Float){
+								Rectangle2D.Float rect = (Rectangle2D.Float)shape ; 
+								Point2D.Float PointToRender = WorldCoordToScreenCoord(new Point2D.Float((float)rect.getX(),(float)rect.getY())) ; 
+								g.setColor(Color.GREEN);
+								g.drawRect((int)PointToRender.x, (int)PointToRender.y,(int)( rect.getWidth()* m_GameWindow.getWidth() / ViewRect.getWidth()), (int)(rect.getHeight() * m_GameWindow.getHeight() / ViewRect.getHeight()) );
+							}
+							if (shape instanceof Ellipse2D.Float){
+								Ellipse2D.Float rect = (Ellipse2D.Float)shape ; 
+								Point2D.Float PointToRender = WorldCoordToScreenCoord(new Point2D.Float((float)rect.getX(),(float)rect.getY())) ; 
+								g.setColor(Color.GREEN);
+								g.drawOval((int)PointToRender.x, (int)PointToRender.y,(int)( rect.getWidth()* m_GameWindow.getWidth() / ViewRect.getWidth()), (int)(rect.getHeight() * m_GameWindow.getHeight() / ViewRect.getHeight()) );
+								
+							}
 						}
 					}
 				}
