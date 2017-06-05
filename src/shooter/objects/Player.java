@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -69,6 +70,9 @@ public class Player extends GameObject {
 	public int getDamage() {
 		return damage;
 	}
+	public void MousePressed(MouseEvent e) {
+		shoot() ; 
+	} 
 
 	public void setDamage(int damage) {
 		this.damage = damage;

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -124,6 +125,11 @@ public abstract class GameObject {
 		if (this.getCollider() != null){
 			this.getCollider().UpdateCollider();
 		}
+		
+	}
+	public void MousePressed(MouseEvent e) {
+	} 
+	public void MouseReleased(MouseEvent e){
 		
 	}
 

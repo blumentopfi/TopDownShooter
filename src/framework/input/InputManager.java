@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Area;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -34,6 +36,8 @@ public class InputManager implements ActionListener {
 	public InputManager(){
 		window = SceneManager.getInstance().getMainCamera().getGameWindow() ;
 		camera = SceneManager.getInstance().getMainCamera();
+		MouseInput a = new MouseInput() ; 
+		window.addMouseListener(a);
 		timer = new Timer(DELAY,this) ; 
 		timer.start();
 		
@@ -45,6 +49,50 @@ public class InputManager implements ActionListener {
 		window.addKeyListener(keylistener) ; 
 		window.setFocusable(true);
 		window.setFocusTraversalKeysEnabled(true);
+	}
+	
+	class MouseInput implements MouseListener  {
+		List<GameObject> gameObjectsinScene  ;
+		public MouseInput(){
+			super() ; 
+			gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ;
+		}
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
+				GameObject Object = gameObjectsinScene.get(i) ; 
+				Object.MousePressed(arg0);	
+			}
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
+				GameObject Object = gameObjectsinScene.get(i) ; 
+				Object.MouseReleased(arg0);	
+			}
+			
+		}
+		
 	}
 	
 	/**

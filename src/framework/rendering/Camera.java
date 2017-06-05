@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class Camera extends Thread {
 		  @Override
 		    public void paintComponent(Graphics g) {
 		        super.paintComponent(g);
-
+		        
 		        doDrawing(g);
 
 		        Toolkit.getDefaultToolkit().sync();
@@ -94,6 +95,7 @@ public class Camera extends Thread {
 		  	public GameView(){
 		  		super() ; 
 		  	}
+
 	}
 	
 	
@@ -102,7 +104,7 @@ public class Camera extends Thread {
 	}
 
 	public void doDrawing(Graphics g) {
-		boolean Debug = true ;  
+		boolean Debug = false ;  
 		m_fpscounter.interrupt();
 		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
@@ -151,7 +153,7 @@ public class Camera extends Thread {
 		return WorldPoint ;
 	}
 	
-	public JPanel getGameView(){
+	public GameView getGameView(){
 		return m_GameView ; 
 	}
 	private RenderThread Renderer ; 
