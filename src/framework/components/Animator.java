@@ -11,7 +11,6 @@ import java.util.List;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
-import org.mariuszgromada.math.mxparser.*;
 
 public class Animator extends Component {
 	GameObject myObject; // Object the Animator is assgined to

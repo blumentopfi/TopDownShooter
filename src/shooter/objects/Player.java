@@ -1,6 +1,6 @@
 package shooter.objects;
 
-import org.mariuszgromada.math.mxparser.*;
+
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -73,10 +73,6 @@ public class Player extends GameObject {
 		return damage;
 	}
 	public void MousePressed(MouseEvent e) {
-		long time = System.nanoTime() ; 
-		Expression a = new Expression("10<50") ; 
-		int b = (int)a.calculate() ;  //little test for parsing
-		System.out.println((b != 0));
 	} 
 
 	public void setDamage(int damage) {
