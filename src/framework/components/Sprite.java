@@ -83,7 +83,7 @@ public class Sprite extends Component {
 																			// supports
 		my_sprite_image = image;
 		BufferedImage tmp = config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
-				Transparency.TRANSLUCENT);
+				Transparency.BITMASK);
 		tmp.getGraphics().drawImage(my_sprite_image, 0, 0, null);
 		my_sprite_image = tmp;
 

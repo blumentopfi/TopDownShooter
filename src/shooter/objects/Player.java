@@ -1,6 +1,6 @@
 package shooter.objects;
 
-
+import org.mariuszgromada.math.mxparser.*;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -56,7 +59,6 @@ public class Player extends GameObject {
 		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/2.png")));
 		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/3.png")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}    
 		this.addComponent(new Sprite(PathToSprite,this));
@@ -65,13 +67,16 @@ public class Player extends GameObject {
 		this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		this.ActionMapInputMapInitialize(); 
-		this.addComponent(new Animator(myAnimation,this));
+		this.addComponent(new Animator(myAnimation,this,50));
 	}
 	public int getDamage() {
 		return damage;
 	}
 	public void MousePressed(MouseEvent e) {
-		shoot() ; 
+		long time = System.nanoTime() ; 
+		Expression a = new Expression("10<50") ; 
+		int b = (int)a.calculate() ;  //little test for parsing
+		System.out.println((b != 0));
 	} 
 
 	public void setDamage(int damage) {

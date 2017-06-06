@@ -22,7 +22,6 @@ public class RenderThread extends Thread {
 				try {
 					this.sleep(16);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} 

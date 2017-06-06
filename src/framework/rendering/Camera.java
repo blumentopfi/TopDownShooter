@@ -21,7 +21,6 @@ import java.util.List;
 
 import javax.swing.*;
 
-import framework.components.FPSCounter;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.RenderThread;
@@ -146,7 +145,15 @@ public class Camera extends Thread {
 		return ScreenPoint ; 
 	}
 
+
 	public Point2D.Float ScreenCoordToWorldCoord (Point2D.Float ScreenPoint){
+		Point2D.Float WorldPoint = new Point2D.Float(0,0) ;
+		WorldPoint.y = (float) (ScreenPoint.y / (m_GameWindow.getHeight() / ViewRect.getHeight())) ;
+		WorldPoint.x = (float) (ScreenPoint.x / (m_GameWindow.getHeight() / ViewRect.getHeight())) ;
+		return WorldPoint ;
+	}
+	public Point2D.Float ScreenCoordToWorldCoord (Point ScreenPointNonFloat){
+		Point2D.Float ScreenPoint = new Point2D.Float(ScreenPointNonFloat.x, ScreenPointNonFloat.y) ; 
 		Point2D.Float WorldPoint = new Point2D.Float(0,0) ;
 		WorldPoint.y = (float) (ScreenPoint.y / (m_GameWindow.getHeight() / ViewRect.getHeight())) ;
 		WorldPoint.x = (float) (ScreenPoint.x / (m_GameWindow.getHeight() / ViewRect.getHeight())) ;

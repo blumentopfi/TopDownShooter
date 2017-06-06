@@ -1,4 +1,4 @@
-package framework.components;
+package framework.rendering;
 /**
  * Quick and Hacky Class to count our FPS
  * @author Fin
@@ -7,6 +7,8 @@ package framework.components;
 public class FPSCounter extends Thread{
     private long lastTime;
     private double fps; //could be int or long for integer values
+    private int Counter ; 
+    private double checkfps ; 
 
     public void run(){
         while (true){//lazy me, add a condition for an finishable thread
@@ -16,8 +18,15 @@ public class FPSCounter extends Thread{
             }
             catch (InterruptedException e){
             }
-            fps = 1000000000.0 / (System.nanoTime() - lastTime); //one second(nano) divided by amount of time it takes for one frame to finish
+            checkfps += 1000000000.0 / (System.nanoTime() - lastTime); //one second(nano) divided by amount of time it takes for one frame to finish
             lastTime = System.nanoTime();
+            Counter++ ; 
+            if (Counter >= 60){
+            	
+            	fps = checkfps/60 ; 
+            	checkfps = 0 ; 
+            	Counter = 0; 
+            }
         }
     }
     public double fps(){
