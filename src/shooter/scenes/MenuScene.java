@@ -37,7 +37,7 @@ public class MenuScene extends Scene {
 		StartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                framework.main.SceneManager.getInstance().SetScene(new TestScene());
+                framework.main.SceneManager.getInstance().SetScene(new ShooterMainScene());
             }
         });
 		StartButton.setOpaque(false);

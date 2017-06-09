@@ -26,7 +26,7 @@ public  class Explosion extends GameObject {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    
-		myAnimator = new Animator(myAnimation,this,50) ; 
+		myAnimator = new Animator(myAnimation,this,false,50) ; 
 		this.addComponent(myAnimator);
 	}
 	public void Update(){
