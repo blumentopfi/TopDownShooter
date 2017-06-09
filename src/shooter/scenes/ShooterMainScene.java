@@ -16,7 +16,7 @@ import shooter.objects.Player;
 public class ShooterMainScene extends Scene {
 	private GameManager gameManager ; 
 	@Override
-	public void gameObjectsOnStart() {
+	public void init() {
 		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		new Background() ; 

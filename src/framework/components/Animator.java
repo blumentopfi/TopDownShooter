@@ -14,7 +14,7 @@ import framework.rendering.Camera;
 
 public class Animator extends Component {
 	GameObject myObject; // Object the Animator is assgined to
-	List<BufferedImage> SpriteSheet = new ArrayList<BufferedImage>();
+	List<Sprite> SpriteSheet = new ArrayList<Sprite>();
 	int FrameCount = 0;
 	long NextFrame = 0;
 	int SwitchRate = 10;
@@ -23,13 +23,17 @@ public class Animator extends Component {
 
 	public Animator(List<BufferedImage> SpriteSheet, GameObject initObject,int rate) {
 		this.myObject = initObject;
-		this.SpriteSheet = SpriteSheet;
+		for (int i = 0 ; i < SpriteSheet.size() ; i++){
+			this.SpriteSheet.add(new Sprite(SpriteSheet.get(i),initObject)) ; 
+		}
 		this.SwitchRate = rate ; 
 	}
 
 	public Animator(List<BufferedImage> SpriteSheet, GameObject initObject, boolean looping,int rate) {
 		this.myObject = initObject;
-		this.SpriteSheet = SpriteSheet;
+		for (int i = 0 ; i < SpriteSheet.size() ; i++){
+			this.SpriteSheet.add(new Sprite(SpriteSheet.get(i),initObject)) ; 
+		}
 		this.looping = looping;
 		this.SwitchRate = rate ; 
 	}
@@ -54,9 +58,9 @@ public class Animator extends Component {
 		}
 	}
 
-	public void switchImage(BufferedImage image) {
+	public void switchImage(Sprite image) {
 		myObject.removeComponent(myObject.getSprite());
-		myObject.addComponent(new Sprite(image, myObject));
+		myObject.addComponent(image);
 	}
 
 	public boolean hasFinished() {

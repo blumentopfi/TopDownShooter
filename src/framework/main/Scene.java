@@ -8,12 +8,13 @@ import framework.rendering.Camera;
  */
 abstract public class Scene {
 	protected Camera main_Camera ; 
+	public boolean isFinished = false  ; 
 	public Scene(){
 	}
 	/** 
 	 * Initialization of the Szene
 	 */
-	public abstract void gameObjectsOnStart () ; 
+	public abstract void init () ; 
 	public Camera getMainCamera(){
 		return main_Camera ; 
 	}
@@ -24,5 +25,8 @@ abstract public class Scene {
 		main_Camera.getRenderer().interrupt();
 		main_Camera.interrupt(); 
 		main_Camera = null ; 
+	}
+	public boolean isFinished(){
+		return isFinished ; 
 	}
 }

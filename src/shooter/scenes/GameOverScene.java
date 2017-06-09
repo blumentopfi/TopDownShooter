@@ -25,7 +25,7 @@ public class GameOverScene extends Scene {
 	JLabel BackgroundImage ; 
 	JLabel Titel ; 	
 	@Override
-	public void gameObjectsOnStart() {
+	public void init() {
 		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		//main_Camera.getGameWindow().repaint(); 

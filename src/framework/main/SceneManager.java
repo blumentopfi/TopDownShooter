@@ -55,7 +55,7 @@ public class SceneManager {
 		m_GameObjectsToDelete.clear() ; 
 		}
 		m_Scene = toSet ;  //Set the new Scene
-		m_Scene.gameObjectsOnStart(); //start the new scene
+		m_Scene.init(); //start the new scene
 		if (input_manager!= null)  input_manager.RefreshKeyManager(); //TODO
 		
 	}
