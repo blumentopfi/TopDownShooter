@@ -64,7 +64,7 @@ public class Player extends GameObject {
 		this.addComponent(new Sprite(PathToSprite,this));
 		//this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
 		this.addComponent(new OvalCollider(this));
-		this.setPosition(new Point2D.Float(5,5));	
+		//this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		this.ActionMapInputMapInitialize(); 
 		this.addComponent(new Animator(myAnimation,this,50));
@@ -73,6 +73,9 @@ public class Player extends GameObject {
 		return damage;
 	}
 	public void MousePressed(MouseEvent e) {
+		System.out.println(e.getX());
+		System.out.println(e.getY());
+		System.out.println(SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(e.getPoint()));
 	} 
 
 	public void setDamage(int damage) {
@@ -115,6 +118,7 @@ public class Player extends GameObject {
 		}
  
 	}
+
 	private void shootDouble(){
 		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.15f, this.getPosition().y -0.5f));

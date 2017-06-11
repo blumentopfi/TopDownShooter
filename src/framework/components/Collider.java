@@ -37,6 +37,12 @@ public abstract class Collider extends Component {
 	public abstract float getX() ; 
 	public abstract float getY() ; 
 	public abstract boolean intersects(Collider A) ; 
+	public  float getWidth(){
+		return (float) this.collidingShape.getBounds2D().getWidth();
+	}
+	public  float getHeight() {
+		return (float) this.collidingShape.getBounds2D().getHeight();
+	}
 	/**
 	 * If the size of the objects changes we have to change our collider
 	 */

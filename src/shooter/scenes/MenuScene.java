@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,7 +27,7 @@ public class MenuScene extends Scene {
 	JLabel Titel ; 	
 	@Override
 	public void init() {
-		main_Camera = new Camera(1000,1000,new Rectangle(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
+		main_Camera = new Camera(1000,1000,new Rectangle2D.Float(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		main_Camera.OverrideLayout(null);
 		ImageIcon icon = new ImageIcon(new ImageIcon("Assets/Menu/Button.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
