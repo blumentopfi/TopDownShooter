@@ -28,7 +28,7 @@ public class Missle extends GameObject {
 	
 	public void Update(){
 		super.Update();
-		this.setPosition(new Point2D.Float(this.getPosition().x + (movement.x * Time.deltaTime),this.getPosition().y + (movement.y * Time.deltaTime))) ; 
+		this.setPosition(new Point2D.Float(this.getPosition().x + (movement.x * (float)Time.deltaTime),this.getPosition().y + (movement.y * (float)Time.deltaTime))) ; 
 		if (!SceneManager.getInstance().getMainCamera().getViewRect().contains(this.getPosition())){
 			this.Destroy();
 		}

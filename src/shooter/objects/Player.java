@@ -111,7 +111,7 @@ public class Player extends GameObject {
 	
 	public void Update(){
 		super.Update();
-		this.setPosition(new Point2D.Float(this.getPosition().x + (dx*Time.deltaTime), this.getPosition().y +(dy*Time.deltaTime)));
+		this.setPosition(new Point2D.Float(this.getPosition().x + (dx*(float)Time.deltaTime), this.getPosition().y +(dy*(float)Time.deltaTime)));
 		if (health <= 0){
 			this.Destroy();
 			SceneManager.getInstance().SetScene(new GameOverScene());

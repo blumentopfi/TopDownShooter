@@ -102,7 +102,7 @@ public class InputManager implements ActionListener {
 	}
 	
 	private void CheckCollisions(List<GameObject> gameObjectsinScene){
-		//
+		//New Collision Detection using a Quad Tree
 		QuadTree quad = new QuadTree(0, camera.getViewRect());
 		quad.clear();
 		for (int i = 0; i < gameObjectsinScene.size(); i++) {

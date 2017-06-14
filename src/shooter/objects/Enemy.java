@@ -17,7 +17,7 @@ import framework.rendering.Time;
  */
 public class Enemy extends GameObject {
 
-    public float speed = 1.5f;
+    public float speed = 1f;
     public int health = 100;
     public static int MOVE_DISTANCE = 100;
     public int value = 20 ;

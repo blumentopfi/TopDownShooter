@@ -7,17 +7,23 @@ import java.util.List;
 import framework.main.*;
 import framework.rendering.Camera;  
 public class RenderThread extends Thread {
-		long lastTime  ; 
+		long last_time  ; 
 		private Camera m_RenderCamera ; 
 		public RenderThread(Camera CameraWhichRenders){
 			m_RenderCamera = CameraWhichRenders ; 
 		}
 		public void run(){
-			lastTime = System.nanoTime() ; 
+			last_time = System.nanoTime() ; 
 			while (!this.isInterrupted()){
 				long time = System.nanoTime() ; 
-				Time.deltaTime =  ((time - lastTime) / 1000000000f ); 
-				lastTime = time ; 
+				//System.out.println(time);
+				//System.out.println(last_time);
+				
+				double check = time-last_time ;
+				check = check/1000000000f ; 
+				Time.deltaTime = check ; 
+				System.out.println(Time.deltaTime);
+				last_time = time ; 
 				render() ;  
 				try {
 					this.sleep(16);
