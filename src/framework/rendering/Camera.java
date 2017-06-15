@@ -44,9 +44,9 @@ public class Camera extends Thread {
 		m_GameWindow.add(m_GameView) ; 
 		m_GameView.setLayout(new FlowLayout());	
 		m_fpscounter = new FPSCounter() ; 
-		
-		this.start();	
 		m_fpscounter.start();
+		this.start();	
+		
 		render() ; 
 	}
 	public Rectangle2D.Float getViewRect(){
@@ -105,7 +105,7 @@ public class Camera extends Thread {
 
 	public void doDrawing(Graphics g) {
 		boolean Debug = true ;  
-		m_fpscounter.interrupt();
+		//m_fpscounter.interrupt();
 		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	

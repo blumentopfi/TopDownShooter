@@ -11,7 +11,7 @@ import framework.main.GameObject;
 public class MisslePlayer extends Missle {
 		
 	public MisslePlayer(int damage,Point2D.Float movement ){
-		super(damage);
+		super(damage,movement);
 		this.movement = movement ; 
 		this.addComponent(new Sprite("Assets/ProjectileSprite/Bullet.png",this));
 	}

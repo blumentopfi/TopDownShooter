@@ -11,8 +11,12 @@ import framework.main.SceneManager;
 public class MissleEnemy extends Missle {
 		
 	public MissleEnemy(int damage,Point2D.Float movement ){
-		super(damage);
-		this.movement = movement ; 
+		super(damage,movement);
+		Point2D.Float testVektor = new Point2D.Float() ;
+		Player main_Player = (Player)SceneManager.getInstance().getGameObjectByName("MainPlayer") ; 
+		testVektor.x =  main_Player.getPosition().x - this.getPosition().x  ; 
+		testVektor.y = main_Player.getPosition().y  -this.getPosition().y  ; 
+		//this.movement = testVektor ;   ; 
 		
 		this.addComponent(new Sprite("Assets/ProjectileSprite/E_Bullet.png",this));
 	}
