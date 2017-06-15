@@ -131,7 +131,7 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 						colliderToCheckB = objectB.getCollider();
 						if (colliderToCheckB != null) {
 							Shape ShapeB = colliderToCheckB.getCollidingShape();
-							if (testIntersection(ShapeA,ShapeB)) {
+							if (ShapeA.intersects(ShapeB.getBounds2D())) {
 								objectA.OnCollision(objectB);
 								objectB.OnCollision(objectA);
 							}

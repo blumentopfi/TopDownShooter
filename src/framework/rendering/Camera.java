@@ -44,9 +44,10 @@ public class Camera extends Thread {
 		m_GameWindow.add(m_GameView) ; 
 		m_GameView.setLayout(new FlowLayout());	
 		m_fpscounter = new FPSCounter() ; 
-		render() ; 
+		
 		this.start();	
 		m_fpscounter.start();
+		render() ; 
 	}
 	public Rectangle2D.Float getViewRect(){
 		return ViewRect ; 
@@ -109,6 +110,7 @@ public class Camera extends Thread {
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
 				if (Object != null){
+					if (this.getGameWindow().getBounds().contains(new Rectangle2D.Float(Object.getPosition().x,Object.getPosition().y,(float)Object.getWidth(),(float)Object.getHeight()))){
 					if (Object.getSprite() != null){
 						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; 
 						g.drawImage(Object.getSprite().getImage(), (int)(PointToRender.x - (Object.getSprite().getWidth()/2)), ((int)PointToRender.y - (Object.getSprite().getHeight()/2)), null) ;
@@ -131,6 +133,7 @@ public class Camera extends Thread {
 								
 							}
 						}
+					}
 					}
 				}
 		}
