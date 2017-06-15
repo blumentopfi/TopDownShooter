@@ -55,7 +55,7 @@ public class GameManager extends GameObject {
 		if (killedEnemies >= 10) {
 			if (!boss) {
 				System.out.println("Boss created");
-				new Boss("Assets/PlaneSprites/Enemy Bipolar.png", "Boss", 5, 1);
+				new Boss("Assets/PlaneSprites/Enemy B-17.png", "Boss", 5, -3);
 				boss = true;
 			}
 

@@ -34,7 +34,7 @@ public class Boss extends GameObject {
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
 
-        this.addComponent(new OvalCollider(this, 1.5));
+        this.addComponent(new OvalCollider(this, 1.2));
         manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
         this.setDimension(new Dimension((int)(this.getWidth()*2.0),(int)(this.getHeight()*2.0)));
     }
@@ -57,6 +57,9 @@ public class Boss extends GameObject {
         }
     }
     public void move() {
+        if(this.getPosition().y < 2) {
+            this.setPosition(new Point2D.Float(this.getPosition().x, (float) (this.getPosition().y + speed *Time.deltaTime)));
+        }
         if(lastMove == 2) {
             lastMove = random.nextInt(2);
         }

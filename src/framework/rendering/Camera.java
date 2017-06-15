@@ -105,7 +105,7 @@ public class Camera extends Thread {
 
 	public void doDrawing(Graphics g) {
 		boolean Debug = true ;  
-		//m_fpscounter.interrupt();
+		m_fpscounter.interrupt();
 		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
@@ -118,7 +118,7 @@ public class Camera extends Thread {
 					}
 					if (Debug){
 						if (Object.getCollider() != null){
-							Shape shape = Object.getCollider().getCollidingShape() ; 
+							Shape shape = Object.getCollider().getCollidingShape() ;
 							
 							if (shape instanceof Rectangle2D.Float){
 								Rectangle2D.Float rect = (Rectangle2D.Float)shape ; 

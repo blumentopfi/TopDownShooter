@@ -24,7 +24,8 @@ public class GameOverScene extends Scene {
 	JButton StartButton ; 
 	JButton QuitButton ; 
 	JLabel BackgroundImage ; 
-	JLabel Titel ; 	
+	JLabel Titel ;
+	JLabel Final_Score;
 	@Override
 	public void init() {
 		main_Camera = new Camera(1000,1000,new Rectangle2D.Float(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;

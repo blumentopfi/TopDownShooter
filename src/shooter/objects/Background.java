@@ -14,7 +14,7 @@ public class Background extends GameObject {
 	public Background() {
         super("Background");
         this.setPosition(new Point2D.Float(5,0));
-        this.addComponent(new Sprite("Assets/Splashscreens/map.png",this));
+        this.addComponent(new Sprite("Assets/Splashscreens/Map_2.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
     }
 	
