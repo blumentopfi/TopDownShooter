@@ -100,6 +100,12 @@ public class InputManager implements ActionListener {
 		}
 
 	}
+
+private static boolean testIntersection(Shape shapeA, Shape shapeB) {
+   Area areaA = new Area(shapeA);
+   areaA.intersect(new Area(shapeB));
+   return !areaA.isEmpty();
+}
 	
 	private void CheckCollisions(List<GameObject> gameObjectsinScene){
 		//New Collision Detection using a Quad Tree
@@ -125,7 +131,7 @@ public class InputManager implements ActionListener {
 						colliderToCheckB = objectB.getCollider();
 						if (colliderToCheckB != null) {
 							Shape ShapeB = colliderToCheckB.getCollidingShape();
-							if (ShapeA.intersects(ShapeB.getBounds2D())) {
+							if (testIntersection(ShapeA,ShapeB)) {
 								objectA.OnCollision(objectB);
 								objectB.OnCollision(objectA);
 							}
