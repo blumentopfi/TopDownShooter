@@ -35,7 +35,7 @@ public class Enemy extends GameObject {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
-        this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
+        this.addComponent(new RectangleCollider(this));
         manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ; 
         this.setDimension(new Dimension((int)(this.getWidth()*0.6),(int)(this.getHeight()*0.6)));
     }
@@ -124,9 +124,16 @@ public class Enemy extends GameObject {
         }
     }
     private void shootSingle(){
-        GameObject MyBullet = new MissleEnemy(200,new Point2D.Float(0, +4)) ;
-        MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
-        MyBullet.Rotate(180) ;
+        if(lastMove == 1) {
+            GameObject MyBullet = new MissleEnemy(200,new Point2D.Float(1, +4)) ;
+            MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
+            MyBullet.Rotate(180 - 27) ;
+        }
+        if(lastMove == 0) {
+            GameObject MyBullet = new MissleEnemy(200,new Point2D.Float(-1, +4)) ;
+            MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
+            MyBullet.Rotate(180 + 27) ;
+        }
     }
 
     public void addDamage(int damage){

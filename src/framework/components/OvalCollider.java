@@ -12,14 +12,16 @@ import framework.main.SceneManager;
 import framework.rendering.Camera;
 
 public class OvalCollider extends Collider {
+	double factor;
 	
 	public OvalCollider(Ellipse2D.Float collidingEllipse, GameObject initObject) {
 		super(initObject);
 		this.collidingShape = collidingEllipse ; 
 		this.HasOverridenSize = true ; 
 	}
-	public OvalCollider(GameObject initObject) {
+	public OvalCollider(GameObject initObject, double scale_factor) {
 		super(initObject);
+		this.factor = scale_factor;
 		this.collidingShape = this.gameObjectToShape(initObject) ; 
 		
 	}
@@ -57,8 +59,8 @@ public class OvalCollider extends Collider {
 		Camera camera = SceneManager.getInstance().getMainCamera() ; 	
 		double height = (1000*camera.getViewRect().height*d.height)/camera.getGameWindow().getHeight()  ; 
 		double width  = (1000*camera.getViewRect().width*d.width)/camera.getGameWindow().getWidth()  ; 
-		rec.width = (float) width/1000 ; 
-		rec.height = (float) height/1000 ; 
+		rec.width = (float) width / (int)(1000 * factor) ;
+		rec.height = (float) height / (int)(1000 * factor) ;
 		return rec ; 
 	}
 	@Override

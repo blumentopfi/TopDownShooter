@@ -45,9 +45,9 @@ public class Player extends GameObject {
 	Point direction ; 
 	float dx ; 
 	float dy ; 
-	long FireRate = 100  ; 
+	long FireRate = 100;
 	long NextFire = 0  ;
-	int health = 20000 ; 
+	int health = 10000 ;
 	int damage = 50 ;  
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
 	Weapon my_weapon = Weapon.SINGLE ; 
@@ -63,7 +63,7 @@ public class Player extends GameObject {
 		}    
 		this.addComponent(new Sprite(PathToSprite,this));
 		//this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
-		this.addComponent(new OvalCollider(this));
+		this.addComponent(new OvalCollider(this, 2.0));
 		this.setPosition(new Point2D.Float(5,5));	
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		this.ActionMapInputMapInitialize(); 
@@ -176,22 +176,22 @@ public class Player extends GameObject {
 		};
 		Action left = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
-		    	  dx = -2f ;    
+		    	  dx = -3f ;
 		    }
 		};
 		Action right = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
-		    	 dx = 2f ;         
+		    	 dx = 3f ;
 		    }
 		};
 		Action up = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
-		    	  dy = -2f ;         
+		    	  dy = -3f ;
 		    }
 		};
 		Action down = new AbstractAction() {
 		    public void actionPerformed(ActionEvent e) {
-		        dy = 2f ;       
+		        dy = 3f ;
 		    }
 		};
 		Action leftr = new AbstractAction() {

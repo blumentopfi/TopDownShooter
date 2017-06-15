@@ -10,7 +10,8 @@ import framework.main.GameObject;
 public class MissleEnemy extends Missle {
 		
 	public MissleEnemy(int damage,Point2D.Float movement ){
-		super(damage,movement) ; 
+		super(damage,movement);
+		this.addComponent(new Sprite("Assets/ProjectileSprite/E_Bullet.png",this));
 	}
 	
 	public void OnCollision(GameObject collidingObject) {

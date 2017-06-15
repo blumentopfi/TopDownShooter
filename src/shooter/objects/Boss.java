@@ -13,6 +13,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
+import static shooter.objects.Enemy.random;
+
 /**
  * Created by 5knopp on 01.06.2017.
  */
@@ -22,7 +24,7 @@ public class Boss extends GameObject {
     public static int MOVE_DISTANCE = 100;
     public int value = 20 ;
     public int moveCounter = 0;
-    public int tempMove = 4;
+    public int lastMove = 2;
     long FireRate = 500  ;
     long NextFire = 0  ;
     GameManager manager ;
@@ -31,7 +33,8 @@ public class Boss extends GameObject {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
-        this.addComponent(new OvalCollider(this));
+
+        this.addComponent(new OvalCollider(this, 1.5));
         manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
         this.setDimension(new Dimension((int)(this.getWidth()*2.0),(int)(this.getHeight()*2.0)));
     }
@@ -42,6 +45,7 @@ public class Boss extends GameObject {
 
     public void Update(){
         super.Update();
+        move();
         if (NextFire < System.currentTimeMillis() ){
             this.shootSingle();
             NextFire = System.currentTimeMillis() + FireRate ;
@@ -53,7 +57,34 @@ public class Boss extends GameObject {
         }
     }
     public void move() {
+        if(lastMove == 2) {
+            lastMove = random.nextInt(2);
+        }
 
+        if ((lastMove == 0) && moveCounter <= MOVE_DISTANCE) {
+            if(this.getPosition().x > 1) {
+                this.setPosition(new Point2D.Float(this.getPosition().x - (float)((speed * Time.deltaTime) / 2f), this.getPosition().y));
+            }
+            else {
+                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y));
+            }
+            moveCounter++;
+        }
+        if ((lastMove == 1) && (moveCounter <= MOVE_DISTANCE)) {
+            if(this.getPosition().x < 9) {
+                this.setPosition(new Point2D.Float(this.getPosition().x + (float)((speed * Time.deltaTime) / 2f), this.getPosition().y));
+            }
+            else {
+                this.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y));
+            }
+            moveCounter++;
+        }
+
+        if(moveCounter > MOVE_DISTANCE) {
+
+            lastMove = 2;
+            moveCounter = 0;
+        }
 
     }
     private void shootSingle(){
@@ -69,11 +100,12 @@ public class Boss extends GameObject {
 
         Point2D.Float posXPointL = SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(new Point2D.Float((float) (PosX - (maxWidth / 2)), this.getPosition().y + 1f));
         Point2D.Float posXPointR = SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(new Point2D.Float((float) (PosX + (maxWidth / 2)), this.getPosition().y + 1f));
-
+        posXPointL.y += 2f;
+        posXPointR.y += 2f;
         MyBulletLeft.setPosition(posXPointL);
         MyBulletRight.setPosition(posXPointR);
 
-        MyBulletLeft.Rotate(180) ;
+        MyBulletLeft.Rotate(180);
         MyBulletRight.Rotate(180) ;
     }
 
