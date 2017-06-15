@@ -15,11 +15,10 @@ public class Missle extends GameObject {
 	int damage ; 
 	Point2D.Float movement ; 
 	
-	public Missle(int damage,Point2D.Float movement ){
+	public Missle(int damage){
 		super("Missle") ;
 		this.addComponent(new OvalCollider(this, 1.0));
 		this.damage = damage ; 
-		this.movement = movement ; 
 		this.Rotate(360 - (int)Math.toDegrees(Math.tan(movement.x/movement.y)));
 	}
 	
