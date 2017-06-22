@@ -14,6 +14,7 @@ public class RenderThread extends Thread {
 		}
 		public void run(){
 			last_time = System.nanoTime() ; 
+			if (m_RenderCamera.m_fpscounter != null) m_RenderCamera.m_fpscounter.interrupt();
 			while (!this.isInterrupted()){
 				long time = System.nanoTime() ; 
 				//System.out.println(time);

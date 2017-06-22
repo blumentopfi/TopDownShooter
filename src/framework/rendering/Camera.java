@@ -105,7 +105,7 @@ public class Camera extends Thread {
 
 	public void doDrawing(Graphics g) {
 		boolean Debug = false ;  
-		if (m_fpscounter != null) m_fpscounter.interrupt();
+		
 		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	

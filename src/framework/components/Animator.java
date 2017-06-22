@@ -11,7 +11,11 @@ import java.util.List;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
-
+/**
+ * 
+ * @author 7toeter
+ *
+ */
 public class Animator extends Component {
 	GameObject myObject; // Object the Animator is assgined to
 	List<Sprite> SpriteSheet = new ArrayList<Sprite>();

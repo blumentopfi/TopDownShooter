@@ -1,6 +1,6 @@
 package framework.rendering;
 /**
- * Quick and Hacky Class to count our FPS
+ * Quick  Class to count our FPS
  * @author Fin
  *
  */
