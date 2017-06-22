@@ -38,9 +38,11 @@ import framework.components.Collider;
 import framework.components.OvalCollider;
 import framework.components.RectangleCollider;
 import framework.components.Sprite;
+import framework.input.InputManager;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Time;
+import framework.math.*; 
 public class Player extends GameObject {
 	Point direction ; 
 	float dx ; 
@@ -49,6 +51,8 @@ public class Player extends GameObject {
 	long NextFire = 0  ;
 	int health = 10000 ;
 	int damage = 50 ;  
+	int UpperBoundsY ; 
+	int UpperBoundsX ; 
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
 	Weapon my_weapon = Weapon.SINGLE ; 
 	public Player(String PathToSprite, String Name){
@@ -68,6 +72,8 @@ public class Player extends GameObject {
 		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
 		this.ActionMapInputMapInitialize(); 
 		this.addComponent(new Animator(myAnimation,this,50));
+		this.UpperBoundsY = SceneManager.getInstance().getMainCamera().getGameView().getHeight() ;
+		this.UpperBoundsX = SceneManager.getInstance().getMainCamera().getGameView().getWidth() ; 
 	}
 	public int getDamage() {
 		return damage;
@@ -76,6 +82,8 @@ public class Player extends GameObject {
 		System.out.println(e.getX());
 		System.out.println(e.getY());
 		System.out.println(SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(e.getPoint()));
+		if (e.getButton() == MouseEvent.BUTTON1) InputManager.Pause();
+		if (e.getButton() == MouseEvent.BUTTON2) InputManager.UnPause(); 
 	} 
 
 	public void setDamage(int damage) {
@@ -111,7 +119,7 @@ public class Player extends GameObject {
 	
 	public void Update(){
 		super.Update();
-		this.setPosition(new Point2D.Float(this.getPosition().x + (dx*(float)Time.deltaTime), this.getPosition().y +(dy*(float)Time.deltaTime)));
+		this.setPosition(new Point2D.Float(MyMath.Clamp(9.5f, 0,this.getPosition().x + (dx*(float)Time.deltaTime)), MyMath.Clamp(9.5f, 0,this.getPosition().y +(dy*(float)Time.deltaTime))));
 		if (health <= 0){
 			this.Destroy();
 			SceneManager.getInstance().SetScene(new GameOverScene());

@@ -37,6 +37,13 @@ public class InputManager implements ActionListener {
 	JFrame window; // our gameWindow
 	KeyListener keylistener; // our Listener for the input
 	Timer timer; // Tick timer
+	static boolean paused = false ; 
+	public static void Pause(){
+		paused = true ; 
+	}
+	public static void UnPause(){
+		paused = false ; 
+	}
 
 	public InputManager() {
 		window = SceneManager.getInstance().getMainCamera().getGameWindow();
@@ -150,9 +157,11 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 		// Get all the Objects in our Scene and Update them
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene();
 		// setupEnemies(gameObjectsinScene);
+		if (!paused){
 		for (int i = 0; i < gameObjectsinScene.size(); i++) {
 			GameObject Object = gameObjectsinScene.get(i);
 			Object.Update();
+		}
 		}
 		
 		CheckCollisions(gameObjectsinScene) ; 

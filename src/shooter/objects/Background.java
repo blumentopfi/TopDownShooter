@@ -16,8 +16,14 @@ public class Background extends GameObject {
         this.setPosition(new Point2D.Float(5,0));
         this.addComponent(new Sprite("Assets/Splashscreens/Map_2.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
+        System.out.println(this.getTransform().getSize());
     }
-	
+	public Background(boolean test) {
+        super("Background");
+        this.setPosition(new Point2D.Float(5,-20f));
+        this.addComponent(new Sprite("Assets/Splashscreens/Map_2.png",this));
+        this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
+    }	
 	public Background(Point2D.Float x) {
 		super("Background");
         this.setPosition(x);
@@ -26,9 +32,9 @@ public class Background extends GameObject {
 	}
 	
 	public void Update(){
-		this.setPosition(new Point2D.Float(this.getPosition().x,this.getPosition().y + 0.01f ));
-		if (this.getPosition().y >= 10){
-			this.setPosition(new Point2D.Float(5, 0));
+		this.setPosition(new Point2D.Float(this.getPosition().x,this.getPosition().y + 0.05f ));
+		if (this.getPosition().y >= 20){
+			this.setPosition(new Point2D.Float(5, -18.75f));
 			}
 	}
 }

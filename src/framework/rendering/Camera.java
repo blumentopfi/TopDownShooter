@@ -104,14 +104,14 @@ public class Camera extends Thread {
 	}
 
 	public void doDrawing(Graphics g) {
-		boolean Debug = true ;  
-		m_fpscounter.interrupt();
+		boolean Debug = false ;  
+		if (m_fpscounter != null) m_fpscounter.interrupt();
 		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (GameObject Object: gameObjectsinScene){	
 				if (Object != null){
 					Point2D.Float test = this.WorldCoordToScreenCoord(Object.getPosition()) ;
-					if (this.getGameWindow().getBounds().intersects(new Rectangle2D.Float(test.x,test.y,(float)Object.getWidth(),(float)Object.getHeight()))){
+					if (true || this.getGameWindow().getBounds().intersects(new Rectangle2D.Float(test.x,test.y,(float)Object.getWidth(),(float)Object.getHeight()))){
 					if (Object.getSprite() != null){
 						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; 
 						g.drawImage(Object.getSprite().getImage(), (int)(PointToRender.x - (Object.getSprite().getWidth()/2)), ((int)PointToRender.y - (Object.getSprite().getHeight()/2)), null) ;
