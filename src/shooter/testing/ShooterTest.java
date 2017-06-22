@@ -44,7 +44,7 @@ public class ShooterTest {
 		}
 		assertEquals(null,SceneManager.getInstance().getGameObjectByName("Enemy")) ; 
 		try {
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,13 +59,13 @@ public class ShooterTest {
 		Thread.sleep(100);
 		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		Point2D.Float point = new Point2D.Float(8, 8) ;
-		Thread.sleep(100) ;
+		Thread.sleep(1000) ;
 		p.setPosition(point);
 		
 		assertEquals(p.getPosition(),point) ;
-		Thread.sleep(100) ;
+		Thread.sleep(1000) ;
 		p.Rotate(20);
-		Thread.sleep(100) ;
+		Thread.sleep(1000) ;
 		assertEquals(p.getTransform().getRotation(),20);
 		p.setDamage(50);
 		assertEquals(50, p.getDamage());
@@ -93,7 +93,7 @@ public class ShooterTest {
 		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		m.StartWaves();
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,25 +114,33 @@ public class ShooterTest {
 			assertEquals(false,null == SceneManager.getInstance().getGameObjectByName("Missle")) ;
 			float x = p.getPosition().x ; 
 			robot.keyPress(KeyEvent.VK_LEFT); //Move Left
-			Thread.sleep(100);
+			Thread.sleep(1000);
 			assertTrue(x > p.getPosition().x) ;
 			x = p.getPosition().x ; 
 			robot.keyPress(KeyEvent.VK_RIGHT); //MOve Right
-			Thread.sleep(100);
+			Thread.sleep(1000);
 			assertTrue(x < p.getPosition().x) ;
 			x = p.getPosition().y ; 
 			robot.keyPress(KeyEvent.VK_UP);//Move up
-			Thread.sleep(100);
+			Thread.sleep(1000);
 			assertTrue(x > p.getPosition().y) ;
 			x = p.getPosition().y ; 
 			robot.keyPress(KeyEvent.VK_DOWN);//Move down
-			Thread.sleep(100);
+			Thread.sleep(1000);
 			assertTrue(x < p.getPosition().y) ;
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
+	}
+	@Test
+	public void testEnemys() throws InterruptedException{
+		GameManager m = new GameManager("Manager") ; 
+		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
+		Enemy e = new Enemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
+		Thread.sleep(100);
+		assertEquals(false,null == SceneManager.getInstance().getGameObjectByName("Missle")) ;
 	}
 	
 	
