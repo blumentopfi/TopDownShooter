@@ -2,10 +2,8 @@ package shooter.objects;
 
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
-import framework.components.Collider;
 import framework.components.RectangleCollider;
 import framework.components.Sprite;
 import framework.main.GameObject;
@@ -15,21 +13,26 @@ import framework.rendering.Time;
 /**
  * Created by Eike Nils on 21.04.2017.
  */
-public class Enemy extends GameObject {
+public abstract class Enemy extends GameObject {
 
     public float speed = 1f;
-    public int health = 100;
-    public static int MOVE_DISTANCE = 100;
-    public int value = 20 ;
-    public int moveCounter = 0;
-    public int tempMove = 4;
+    public int health;
+    public int value;
+
+
+
     long FireRate = 500  ;
     long NextFire = 0  ;
+
+    public static int MOVE_DISTANCE = 100;
     public boolean isRotated = false;
+    public int moveCounter = 0;
+    public int tempMove = 4;
     static Random random = new Random() ;
     // 0 = left, 1 = right, 2 = straight, 3 = initial.
     public int lastMove = 3;
-    GameManager manager ; 
+
+    GameManager manager ;
     
     public Enemy(String PathToSprite, String Name, float posX, float posY) {
         super(Name);
@@ -43,12 +46,15 @@ public class Enemy extends GameObject {
     public int getValue(){
     	return value ; 
     }
+    public void setValue(int newValue) {
+        this.value = newValue;
+    }
 
     public void Update(){
     	super.Update();
     	this.move();
         if (NextFire < System.currentTimeMillis() ){
-            this.shootSingle();
+            this.shoot();
             NextFire = System.currentTimeMillis() + FireRate ;
         }
         if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
@@ -123,18 +129,7 @@ public class Enemy extends GameObject {
             moveCounter = 0;
         }
     }
-    private void shootSingle(){
-        if(lastMove == 1) {
-            GameObject MyBullet = new MissleEnemy(200,new Point2D.Float(1, +4)) ;
-            MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
-            MyBullet.Rotate(180 - 27) ;
-        }
-        if(lastMove == 0) {
-            GameObject MyBullet = new MissleEnemy(200,new Point2D.Float(-1, +4)) ;
-            MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y + 1f));
-            MyBullet.Rotate(180 + 27) ;
-        }
-    }
+    public abstract void shoot();
 
     public void addDamage(int damage){
     	health -= damage ; 
