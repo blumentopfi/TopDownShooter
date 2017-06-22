@@ -14,19 +14,19 @@ public class Background extends GameObject {
 	public Background() {
         super("Background");
         this.setPosition(new Point2D.Float(5,0));
-        this.addComponent(new Sprite("Assets/Splashscreens/Map_2.png",this));
+        this.addComponent(new Sprite("Assets/Splashscreens/map_2_fixed.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
     }
 	public Background(boolean test) {
         super("Background");
-        this.setPosition(new Point2D.Float(5,-19.95f));
-        this.addComponent(new Sprite("Assets/Splashscreens/Map_2.png",this));
+        this.setPosition(new Point2D.Float(5,-20f));
+        this.addComponent(new Sprite("Assets/Splashscreens/map_2_fixed.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
     }	
 	public Background(Point2D.Float x) {
 		super("Background");
         this.setPosition(x);
-        this.addComponent(new Sprite("Assets/Splashscreens/map.png",this));
+        this.addComponent(new Sprite("Assets/Splashscreens/map_2_fixed.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
 	}
 	

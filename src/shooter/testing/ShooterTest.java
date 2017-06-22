@@ -8,6 +8,7 @@ import framework.rendering.Camera;
 import shooter.objects.Enemy;
 import shooter.objects.GameManager;
 import shooter.objects.Player;
+import shooter.objects.SimpleEnemy;
 import shooter.scenes.MenuScene;
 import shooter.scenes.TestScene;
 import java.awt.Robot;
@@ -32,7 +33,7 @@ public class ShooterTest {
 		Thread.sleep(100);
 		GameManager m = new GameManager("Manager") ; 
 		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ; 
-		new Enemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
+		new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
 		p.setPosition(new Point2D.Float(5, 2));
 		p.setDamage(50000);
 		p.shoot(); 
