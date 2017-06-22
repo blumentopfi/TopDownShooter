@@ -7,18 +7,25 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.Toolkit;
+import java.awt.Transparency;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import framework.main.GameObject;
@@ -95,7 +102,6 @@ public class Camera extends Thread {
 		  	public GameView(){
 		  		super() ; 
 		  	}
-
 	}
 	
 	
@@ -105,8 +111,6 @@ public class Camera extends Thread {
 
 	public void doDrawing(Graphics g) {
 		boolean Debug = false ;  
-		
-		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
 			GameObject Object = gameObjectsinScene.get(i) ;
@@ -115,6 +119,7 @@ public class Camera extends Thread {
 					if (true || this.getGameWindow().getBounds().intersects(new Rectangle2D.Float(test.x,test.y,(float)Object.getWidth(),(float)Object.getHeight()))){
 					if (Object.getSprite() != null){
 						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; 
+						
 						g.drawImage(Object.getSprite().getImage(), (int)(PointToRender.x - (Object.getSprite().getWidth()/2)), ((int)PointToRender.y - (Object.getSprite().getHeight()/2)), null) ;
 					}
 					if (Debug){
@@ -139,8 +144,6 @@ public class Camera extends Thread {
 					}
 				}
 		}
-	
-	
 		
 	}
 	public Point2D.Float WorldCoordToScreenCoord (Point2D.Float WorldPoint){

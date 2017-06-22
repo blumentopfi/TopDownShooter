@@ -56,6 +56,31 @@ public abstract class GameObject {
 	 */
 	public void Rotate(int Winkel){
 		Winkel = Winkel % 360 ; 
+		if (this.getAnimator()!=null){
+			int current_rotation = this.getSprite().rotation ;
+			if (current_rotation > Winkel){
+				if (this.getAnimator()!= null){
+					for (Sprite s : this.getAnimator().getSpriteSheet()){
+						s.rotate(360 - current_rotation + Winkel);
+						s.rotation = Winkel ; 
+					}
+				}
+				
+			}
+			
+			if(current_rotation < Winkel){
+				if (this.getAnimator()!= null){
+					for (Sprite s : this.getAnimator().getSpriteSheet()){
+						s.rotate(Winkel-current_rotation);
+						s.rotation = Winkel ; 
+					}
+				}
+			}
+			
+			this.getSprite().rotation = Winkel ; 
+			this.m_transform.setRotation(Winkel);
+			
+		}
 		if (this.getSprite() != null){
 			int current_rotation = this.getSprite().rotation ;
 			if (current_rotation > Winkel){
@@ -133,13 +158,7 @@ public abstract class GameObject {
 			})) ; 
 			threads.get(i).start();
 		}
-		for(int i = 0; i < threads.size(); i++)
-			try {
-				threads.get(i).join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-	};
+	}
 	/**
 	 * 
 	 * @param Name
