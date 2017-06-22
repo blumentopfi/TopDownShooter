@@ -62,6 +62,8 @@ public class Player extends GameObject {
 		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/1.png")));
 		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/2.png")));
 		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/3.png")));
+		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/4.png")));
+		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/5.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    
@@ -69,7 +71,7 @@ public class Player extends GameObject {
 		//this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
 		this.addComponent(new OvalCollider(this, 2.0));
 		this.setPosition(new Point2D.Float(5,5));	
-		this.setDimension(new Dimension((int)this.getWidth()/2,(int)this.getHeight()/2));
+		this.setDimension(new Dimension((int)this.getWidth()/4,(int)this.getHeight()/4));
 		this.ActionMapInputMapInitialize(); 
 		this.addComponent(new Animator(myAnimation,this,50));
 		this.UpperBoundsY = SceneManager.getInstance().getMainCamera().getGameView().getHeight() ;

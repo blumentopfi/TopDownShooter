@@ -57,12 +57,13 @@ public abstract class GameObject {
 	public void Rotate(int Winkel){
 		Winkel = Winkel % 360 ; 
 		if (this.getSprite() != null){
-			int current_rotation = this.m_transform.getRotation() ;
+			int current_rotation = this.getSprite().rotation ;
 			if (current_rotation > Winkel){
 				this.getSprite().rotate(360 - current_rotation + Winkel);
 				if (this.getAnimator()!= null){
 					for (Sprite s : this.getAnimator().getSpriteSheet()){
 						s.rotate(360 - current_rotation + Winkel);
+						s.rotation = Winkel ; 
 					}
 				}
 				
@@ -73,20 +74,24 @@ public abstract class GameObject {
 				if (this.getAnimator()!= null){
 					for (Sprite s : this.getAnimator().getSpriteSheet()){
 						s.rotate(Winkel-current_rotation);
+						s.rotation = Winkel ; 
 					}
 				}
 			}
 			
-			
+			this.getSprite().rotation = Winkel ; 
 			this.m_transform.setRotation(Winkel);
 			
 			
 		}
 	}
 	public Collider getCollider(){
-		for (Component c : m_Components){
+		for (int i = 0 ; i < m_Components.size() ; i++ ){
+			Component c = m_Components.get(i) ;
+			if (c != null){
 			if (c instanceof Collider){
 				return (Collider)c ; 
+			}
 			}
 		}
 		return null ; 
@@ -120,9 +125,20 @@ public abstract class GameObject {
 	 * Super update updates all the components
 	 */
 	public void Update(){
+		List<Thread> threads = new ArrayList<Thread>() ; 
 		for (int i = 0 ; i < m_Components.size() ; i++){
-			m_Components.get(i).ComponentUpdate();
+			Component c = m_Components.get(i) ;
+			threads.add(new Thread(() -> {
+				c.ComponentUpdate();
+			})) ; 
+			threads.get(i).start();
 		}
+		for(int i = 0; i < threads.size(); i++)
+			try {
+				threads.get(i).join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 	};
 	/**
 	 * 
@@ -138,6 +154,11 @@ public abstract class GameObject {
 		this.m_transform.setSize(d);
 		if (this.getSprite() != null){
 			this.getSprite().resize(d);
+		}
+		if (this.getAnimator() != null){
+			for (Sprite s : this.getAnimator().getSpriteSheet()){
+				s.resize(d);
+			}
 		}
 		if (this.getCollider() != null){
 			this.getCollider().UpdateCollider();

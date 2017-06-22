@@ -151,6 +151,9 @@ public abstract class Enemy extends GameObject {
     	if (drop == 3){
     		new UpgradePowerUp(this.getPosition()) ;  
     	}
+    	//Explosion e = new Explosion("Explosion") ;
+		//e.setPosition(this.getPosition());
+		//e.setDimension(new Dimension(e.getTransform().getSize().width*3,e.getTransform().getSize().height *3 ));
     }
     public float getSpeed() {
         return speed;

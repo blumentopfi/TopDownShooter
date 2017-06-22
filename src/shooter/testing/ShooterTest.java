@@ -82,7 +82,7 @@ public class ShooterTest {
 	@Test
 	public void testSceneWorldFunctions() throws InterruptedException{
 		Camera main_camera = SceneManager.getInstance().getMainCamera() ; 
-		Thread.sleep(100);
+		Thread.sleep(1000);
 		Point2D.Float a = new Point2D.Float(5, 5) ; 
 		Point2D.Float b = main_camera.WorldCoordToScreenCoord(main_camera.ScreenCoordToWorldCoord(a)) ; 
 		assertEquals(a.x,b.x,0) ;
@@ -139,9 +139,12 @@ public class ShooterTest {
 	public void testEnemys() throws InterruptedException{
 		GameManager m = new GameManager("Manager") ; 
 		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
-		Enemy e = new Enemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
+		Enemy e = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
 		Thread.sleep(100);
-		assertEquals(false,null == SceneManager.getInstance().getGameObjectByName("Missle")) ;
+		assertTrue(!(null == SceneManager.getInstance().getGameObjectByName("Missle"))) ; //Does the enemy shoot?
+		Point2D.Float point = new Point2D.Float(e.getPosition().x, e.getPosition().y) ;
+		Thread.sleep(1000);
+		assertTrue(point.y < e.getPosition().y) ;
 	}
 	
 	

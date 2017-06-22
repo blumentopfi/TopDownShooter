@@ -27,7 +27,7 @@ import framework.main.GameObject;
 public class Sprite extends Component {
 	BufferedImage my_sprite_image; // image of the sprite ;
 	GameObject my_object;// GameObject the sprite is assigned to ;
-
+	public int rotation = 0  ; 
 	/**
 	 * Constructor
 	 * 

@@ -29,7 +29,7 @@ public class AdvancedEnemy extends Enemy {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.addComponent(new Animator(myAnimation,this,50));
+        //this.addComponent(new Animator(myAnimation,this,1000));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package shooter.objects;
 
+import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,17 +18,20 @@ public  class Explosion extends GameObject {
 	Animator myAnimator ; 
 	public Explosion(String Name){
 		super(Name) ; 
-		this.addComponent(new Sprite("Assets/ProjectileSprite/Explosion/0.png",this));
+		this.addComponent(new Sprite("Assets/ProjectileSprite/Explosion/1_0.png",this));
 		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
 		try {
-			for (int i = 0 ; i < 7 ; i++) 
-				myAnimation.add(ImageIO.read(new File("Assets/ProjectileSprite/Explosion/" + i + ".png")));
+			for (int i = 0 ; i < 17 ; i++) 
+				myAnimation.add(ImageIO.read(new File("Assets/ProjectileSprite/Explosion/1_" + i + ".png")));
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    
-		myAnimator = new Animator(myAnimation,this,false,50) ; 
+		this.setDimension(new Dimension(this.getTransform().getSize().width/2,this.getTransform().getSize().height/2));
+		myAnimator = new Animator(myAnimation,this,false,100) ; 
 		this.addComponent(myAnimator);
+		
+		
 	}
 	public void Update(){
 		super.Update() ; 
