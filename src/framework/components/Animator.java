@@ -55,8 +55,7 @@ public class Animator extends Component {
 					hasFinished = true;
 					return ; 
 				}			
-					this.switchImage(SpriteSheet.get(FrameCount));
-
+				this.switchImage(SpriteSheet.get(FrameCount));
 				NextFrame = System.currentTimeMillis() + SwitchRate;
 				FrameCount++;
 			}
