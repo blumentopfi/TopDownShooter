@@ -55,7 +55,7 @@ public class Enemy extends GameObject {
 			this.Destroy();
 		}
         if (health <= 0 ){
-        	manager.AddScore(this.getValue());
+        	if (manager != null) manager.AddScore(this.getValue());
         	this.Destroy();
         }
     }
@@ -144,7 +144,7 @@ public class Enemy extends GameObject {
     }
     public void Destroy(){
     	super.Destroy();
-    	manager.addKilledEnemy();
+    	if (manager != null) manager.addKilledEnemy();
     	Random random = new Random(System.nanoTime()) ; 
     	int drop = random.nextInt(10) ; 
     	if (drop == 1){

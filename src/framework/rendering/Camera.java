@@ -108,7 +108,8 @@ public class Camera extends Thread {
 		
 		
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
-		for (GameObject Object: gameObjectsinScene){	
+		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
+			GameObject Object = gameObjectsinScene.get(i) ;
 				if (Object != null){
 					Point2D.Float test = this.WorldCoordToScreenCoord(Object.getPosition()) ;
 					if (true || this.getGameWindow().getBounds().intersects(new Rectangle2D.Float(test.x,test.y,(float)Object.getWidth(),(float)Object.getHeight()))){

@@ -115,7 +115,6 @@ public class Sprite extends Component {
 	 * @param winkel
 	 */
 	public void rotate(int winkel) {
-
 		my_sprite_image = rotateImage(my_sprite_image, winkel);
 	}
 

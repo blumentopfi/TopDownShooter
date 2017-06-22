@@ -154,6 +154,7 @@ public class Player extends GameObject {
 		this.health-=damage ; 
 	}
 	public void shoot(){
+		System.out.println("Shot");
 		if (NextFire < System.currentTimeMillis() ){
 		switch(my_weapon){
 		case DOUBLE:

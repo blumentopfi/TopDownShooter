@@ -21,6 +21,7 @@ public class GameManager extends GameObject {
 	int Score = 0 ;
 	int killedEnemies = 0;
 	int Wave = 0;
+	private boolean waves;
 
 	public static int MAX_ENEMY_NUMBER = 5;
 
@@ -36,10 +37,13 @@ public class GameManager extends GameObject {
 		Stats = new JLabel() ; 
 		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(Stats);
 		Stats.setFont(new Font("Serif", Font.PLAIN, 35));
+	}	
+	public void StartWaves(){
+		waves = true ; 
 	}
 	public void Update(){
 		super.Update();
-		setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ; 
+		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ; 
 		//SceneManager.getInstance().PrintAllGameObjectsByName();
 		FPSLabel.setText("FPS: " + (int)framework.main.SceneManager.getInstance().getMainCamera().m_fpscounter.fps()) ; 
 		Player Player = (Player)framework.main.SceneManager.getInstance().getGameObjectByName("MainPlayer") ;
@@ -60,6 +64,9 @@ public class GameManager extends GameObject {
 			}
 
 		}
+	}
+	public int getScore(){
+		return Score ; 
 	}
 	
 	public void AddScore(int points){

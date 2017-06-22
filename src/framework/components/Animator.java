@@ -32,7 +32,9 @@ public class Animator extends Component {
 		}
 		this.SwitchRate = rate ; 
 	}
-
+	public List<Sprite> getSpriteSheet(){
+		return SpriteSheet ; 
+	}
 	public Animator(List<BufferedImage> SpriteSheet, GameObject initObject, boolean looping,int rate) {
 		this.myObject = initObject;
 		for (int i = 0 ; i < SpriteSheet.size() ; i++){

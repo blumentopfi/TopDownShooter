@@ -13,15 +13,22 @@ import framework.components.Animator;
 import framework.components.RectangleCollider;
 import framework.components.Sprite;
 import framework.main.GameObject;
+import framework.main.Scene;
+import framework.main.SceneManager;
+import shooter.scenes.TestScene;
 
 public  class TestObject extends GameObject {
-	Animator myAnimator ; 
-	public TestObject(String Name){
+	TestScene myScene ; 
+	public TestObject(String Name,TestScene testScene){
 		super(Name) ; 
-		this.addComponent(new Sprite("Assets/ProjectileSprite/Explosion/0.png",this));
-		this.addComponent(new RectangleCollider(this));
+		this.myScene = testScene ; 
 	}
 	public void Update(){
+		if (SceneManager.getInstance().getGameObjectByName("Enemy") == null){
+			this.myScene.EnemyDead(); 
+			this.Destroy(); 
+		}
 	}
+
 
 }

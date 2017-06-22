@@ -60,16 +60,25 @@ public abstract class GameObject {
 			int current_rotation = this.m_transform.getRotation() ;
 			if (current_rotation > Winkel){
 				this.getSprite().rotate(360 - current_rotation + Winkel);
+				if (this.getAnimator()!= null){
+					for (Sprite s : this.getAnimator().getSpriteSheet()){
+						s.rotate(360 - current_rotation + Winkel);
+					}
+				}
+				
 			}
 			
 			if(current_rotation < Winkel){
 				this.getSprite().rotate(Winkel-current_rotation);
-				//System.out.println(Winkel-current_rotation);
+				if (this.getAnimator()!= null){
+					for (Sprite s : this.getAnimator().getSpriteSheet()){
+						s.rotate(Winkel-current_rotation);
+					}
+				}
 			}
 			
 			
 			this.m_transform.setRotation(Winkel);
-			//System.out.println(this.m_transform.getRotation());
 			
 			
 		}
@@ -86,6 +95,14 @@ public abstract class GameObject {
 		for (Component c : m_Components){
 			if (c instanceof Sprite){
 				return (Sprite)c ; 
+			}
+		}
+		return null ; 
+	}
+	public Animator getAnimator(){
+		for (Component c : m_Components){
+			if (c instanceof Animator){
+				return (Animator)c ; 
 			}
 		}
 		return null ; 
@@ -134,7 +151,10 @@ public abstract class GameObject {
 	}
 
 	public Point2D.Float getPosition(){
+		if (this.m_transform != null){
 		return this.m_transform.getPosition() ;
+		}
+		return null ; 
 	}
 
 	public void setPosition(Point2D.Float newPosition){

@@ -19,7 +19,7 @@ public class Background extends GameObject {
     }
 	public Background(boolean test) {
         super("Background");
-        this.setPosition(new Point2D.Float(5,-20f));
+        this.setPosition(new Point2D.Float(5,-19.95f));
         this.addComponent(new Sprite("Assets/Splashscreens/Map_2.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
     }	
@@ -33,7 +33,7 @@ public class Background extends GameObject {
 	public void Update(){
 		this.setPosition(new Point2D.Float(this.getPosition().x,this.getPosition().y + 0.03f ));
 		if (this.getPosition().y >= 20){
-			this.setPosition(new Point2D.Float(5, -18.75f));
+			this.setPosition(new Point2D.Float(5, -18.7f));
 			}
 	}
 }

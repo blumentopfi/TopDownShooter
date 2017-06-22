@@ -24,6 +24,7 @@ public class ShooterMainScene extends Scene {
 		new Background(true) ; 
 		new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		gameManager = new GameManager("Manager") ;
+		gameManager.StartWaves(); 
 		
 	}
 	public GameManager getManager(){
