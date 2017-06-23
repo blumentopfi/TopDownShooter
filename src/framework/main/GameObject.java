@@ -153,10 +153,7 @@ public abstract class GameObject {
 		List<Thread> threads = new ArrayList<Thread>() ; 
 		for (int i = 0 ; i < m_Components.size() ; i++){
 			Component c = m_Components.get(i) ;
-			threads.add(new Thread(() -> {
 				c.ComponentUpdate();
-			})) ; 
-			threads.get(i).start();
 		}
 	}
 	/**

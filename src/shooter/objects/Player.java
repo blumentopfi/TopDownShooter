@@ -26,6 +26,8 @@ import javax.imageio.ImageIO;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -34,6 +36,7 @@ import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
 import framework.components.Animator;
+import framework.components.Audio;
 import framework.components.Collider;
 import framework.components.OvalCollider;
 import framework.components.RectangleCollider;
@@ -47,6 +50,7 @@ public class Player extends GameObject {
 	Point direction ; 
 	float dx ; 
 	float dy ; 
+	Audio a ;
 	long FireRate = 100;
 	long NextFire = 0  ;
 	int health = 10000 ;
@@ -76,6 +80,24 @@ public class Player extends GameObject {
 		this.addComponent(new Animator(myAnimation,this,50));
 		this.UpperBoundsY = SceneManager.getInstance().getMainCamera().getGameView().getHeight() ;
 		this.UpperBoundsX = SceneManager.getInstance().getMainCamera().getGameView().getWidth() ; 
+		a = new Audio() ;
+		try {
+			a.AddSound("Pew", "Assets/Sound/laser1.wav");
+			a.AddSound("Pew1", "Assets/Sound/laser1.wav");
+			a.AddSound("Pew2", "Assets/Sound/laser1.wav");
+			a.AddSound("Pew3", "Assets/Sound/laser1.wav");
+			
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.addComponent(a);
 	}
 	public int getDamage() {
 		return damage;
@@ -99,6 +121,7 @@ public class Player extends GameObject {
 	}
 	
 	public void UpgradeWeapon(){
+		
 		switch(this.my_weapon){
 		case DOUBLE:
 			this.my_weapon = Weapon.TRIPLE ; 
@@ -158,6 +181,16 @@ public class Player extends GameObject {
 	public void shoot(){
 		System.out.println("Shot");
 		if (NextFire < System.currentTimeMillis() ){
+			
+				if (!a.PlaySound("Pew")){
+					if (!a.PlaySound("Pew1")){
+						if (!a.PlaySound("Pew2")){
+							if (!a.PlaySound("Pew3")) ;
+						}
+					}
+				}
+			
+			
 		switch(my_weapon){
 		case DOUBLE:
 			shootDouble() ; 
