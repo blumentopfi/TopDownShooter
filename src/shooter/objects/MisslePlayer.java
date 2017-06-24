@@ -20,16 +20,22 @@ public class MisslePlayer extends Missle {
 		if (collidingObject.getName() == "Enemy"){
 		Enemy collidingEnemy = (Enemy)collidingObject ; 
 		collidingEnemy.addDamage(damage);
-		//Explosion e = new Explosion("Explosion") ;
-		//e.setPosition(this.getPosition());
-		//e.setDimension(new Dimension((int)e.getWidth()/3,(int)e.getHeight()/3));
+		new Thread(() -> {
+			Explosion e = new Explosion("Explosion") ;
+			e.setPosition(this.getPosition());
+			//e.setDimension(new Dimension((int)e.getWidth()/3,(int)e.getHeight()/3));
+		}).start();
+		
 		this.Destroy();
 		}
 		if (collidingObject.getName() == "Boss"){
 			Boss collidingEnemy = (Boss)collidingObject ;
 			collidingEnemy.addDamage(damage);
-			//Explosion e = new Explosion("Explosion") ;
-			//e.setPosition(this.getPosition());
+			new Thread(() -> {
+				Explosion e = new Explosion("Explosion") ;
+				e.setPosition(this.getPosition());
+				//e.setDimension(new Dimension((int)e.getWidth()/3,(int)e.getHeight()/3));
+			}).start();
 			this.Destroy();
 		}
 	}
