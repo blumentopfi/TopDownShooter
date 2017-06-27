@@ -25,6 +25,24 @@ public class HealthBar extends BasicProgressBarUI {
     protected Dimension getPreferredInnerHorizontal() {
         return new Dimension(146, 20);
     }
+    
+    private Color LerpColor(Color start, Color end, double percentage){
+    	Color x = start ; 
+    	Color y = end ; 
+    	float blending = (float)percentage; 
+
+    	float inverse_blending = 1 - blending;
+
+    	float red =   x.getRed()   * blending   +   y.getRed()   * inverse_blending;
+    	float green = x.getGreen() * blending   +   y.getGreen() * inverse_blending;
+    	float blue =  x.getBlue()  * blending   +   y.getBlue()  * inverse_blending;
+
+    	//note that if i pass float values they have to be in the range of 0.0-1.0 
+    	//and not in 0-255 like the ones i get returned by the getters.
+    	Color blended = new Color (red / 255, green / 255, blue / 255);
+    	return blended ; 
+    }
+    
     @Override
     protected void paintDeterminate(Graphics g, JComponent c) {
         Graphics2D g2d = (Graphics2D) g.create();
@@ -43,12 +61,15 @@ public class HealthBar extends BasicProgressBarUI {
         } else if (dProgress > 1) {
             dProgress = 1;
         }
+        
+        
 
         iInnerWidth = (int) Math.round(iInnerWidth * dProgress);
 
         Rectangle2D.Double fill = new Rectangle2D.Double(iStrokWidth * 2, iStrokWidth * 2,
                 iInnerWidth, iInnerHeight);
-        g2d.setColor(c.getForeground());
+        //g2d.setColor(c.getForeground());
+        g2d.setColor(LerpColor(Color.green,Color.red,dProgress));
         g2d.fill(fill);
 
         g2d.dispose();

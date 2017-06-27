@@ -7,11 +7,15 @@ import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Time;
+import shooter.UI.HealthBar;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
+
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 import static shooter.objects.Enemy.random;
 
@@ -28,7 +32,6 @@ public class Boss extends GameObject {
     long FireRate = 500  ;
     long NextFire = 0  ;
     GameManager manager ;
-
     public Boss(String PathToSprite, String Name, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
@@ -37,11 +40,14 @@ public class Boss extends GameObject {
         this.addComponent(new OvalCollider(this, 1.2));
         manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
         this.setDimension(new Dimension((int)(this.getWidth()*2.0),(int)(this.getHeight()*2.0)));
+      
     }
 
     public int getValue(){
         return value ;
     }
+    
+
 
     public void Update(){
         super.Update();

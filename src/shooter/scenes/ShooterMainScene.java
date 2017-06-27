@@ -23,7 +23,6 @@ public class ShooterMainScene extends Scene {
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		new Background() ; 
 		new Background(true) ; 
-	
 		long time = System.nanoTime() ; 
 		ExplosionPool.init();  
 		System.out.println(System.nanoTime() - time) ;

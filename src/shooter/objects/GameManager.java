@@ -2,6 +2,7 @@ package shooter.objects;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.Random;
