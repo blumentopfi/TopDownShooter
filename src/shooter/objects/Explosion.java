@@ -37,10 +37,8 @@ public  class Explosion extends GameObject {
 		super.Update() ; 
 		if (myAnimator != null){
 		if (myAnimator.hasFinished()){
-			this.Destroy();
+			ExplosionPool.returnExplosionToPool(this);
 		}
-		}
-		
+		}	
 	}
-
 }

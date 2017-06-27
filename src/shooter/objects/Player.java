@@ -179,7 +179,6 @@ public class Player extends GameObject {
 		this.health-=damage ; 
 	}
 	public void shoot(){
-		System.out.println("Shot");
 		if (NextFire < System.currentTimeMillis() ){
 			
 				if (!a.PlaySound("Pew")){

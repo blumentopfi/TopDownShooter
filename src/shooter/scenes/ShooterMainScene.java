@@ -10,6 +10,7 @@ import framework.main.Scene;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
 import shooter.objects.Background;
+import shooter.objects.ExplosionPool;
 import shooter.objects.GameManager;
 import shooter.objects.HealthPowerUp;
 import shooter.objects.Player;
@@ -23,6 +24,9 @@ public class ShooterMainScene extends Scene {
 		new Background() ; 
 		new Background(true) ; 
 		new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
+		long time = System.nanoTime() ; 
+		ExplosionPool.init();  
+		System.out.println(System.nanoTime() - time) ;
 		gameManager = new GameManager("Manager") ;
 		gameManager.StartWaves(); 
 		

@@ -4,11 +4,15 @@ import framework.main.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author Fin Töter
+ * @version 1.0 
+ */
 public class QuadTree {
 	 
 	  private int MAX_OBJECTS = 5;
-	  private int MAX_LEVELS = 10;
+	  private int MAX_LEVELS = 5;
 	 
 	  private int level;
 	  private List<GameObject> objects;

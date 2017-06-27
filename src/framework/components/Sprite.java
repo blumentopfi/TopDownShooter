@@ -17,6 +17,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import framework.main.GameObject;
+import framework.main.SceneManager;
 
 /**
  * Class for our Sprite Component which holds the Image Infos
@@ -67,22 +68,10 @@ public class Sprite extends Component {
 
 	public Sprite(BufferedImage image, GameObject my) {
 		my_object = my;
-		// We convert the Sprite to the best Format for the graphics card
-		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice device = env.getDefaultScreenDevice();
-		GraphicsConfiguration config = device.getDefaultConfiguration(); // convert
-																			// Image
-																			// to
-																			// a
-																			// memory
-																			// type
-																			// that
-																			// given
-																			// Graphic
-																			// cards
-																			// supports
+		// We convert the Sprite to the best format for the graphics card
+		
 		my_sprite_image = image;
-		BufferedImage tmp = config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
+		BufferedImage tmp = SceneManager.config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
 				Transparency.BITMASK);
 		tmp.getGraphics().drawImage(my_sprite_image, 0, 0, null);
 		my_sprite_image = tmp;

@@ -43,7 +43,10 @@ public class Animator extends Component {
 		this.looping = looping;
 		this.SwitchRate = rate ; 
 	}
-
+	public void Reset(){
+		FrameCount = 0 ; 
+		hasFinished = false ; 
+	}
 	@Override
 	public void ComponentUpdate() {
 		if (!hasFinished) {

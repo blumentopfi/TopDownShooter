@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -107,11 +108,37 @@ public class InputManager implements ActionListener {
 		}
 
 	}
-
+/**
+ * Not using that yet
+ * @param shapeA
+ * @param shapeB
+ * @return
+ */
 private static boolean testIntersection(Shape shapeA, Shape shapeB) {
-   Area areaA = new Area(shapeA);
-   areaA.intersect(new Area(shapeB));
-   return !areaA.isEmpty();
+   if (shapeA instanceof Rectangle2D.Float){
+	   if (shapeB instanceof Ellipse2D.Float){
+		   
+	   }
+	   if (shapeB instanceof Rectangle2D.Float){
+		   Rectangle2D.Float a = (Rectangle2D.Float) shapeA; 
+		   Rectangle2D.Float b = (Rectangle2D.Float) shapeB; 
+		   return a.intersects(b) ;
+		   
+	   }
+   }
+   if (shapeA instanceof Ellipse2D.Float){
+	   if (shapeB instanceof Rectangle2D.Float){
+		   
+	   }
+	   if (shapeB instanceof Ellipse2D.Float){
+		   Ellipse2D.Float a = (Ellipse2D.Float) shapeA; 
+		   Ellipse2D.Float b = (Ellipse2D.Float) shapeB;
+		   return true
+	   }
+   }
+   
+   
+   return false ;
 }
 	
 	private void CheckCollisions(List<GameObject> gameObjectsinScene){
@@ -160,43 +187,11 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 		if (!paused){
 		for (int i = 0; i < gameObjectsinScene.size(); i++) {
 			GameObject Object = gameObjectsinScene.get(i);
-			Object.Update();
+			if (Object.isActive()) Object.Update();
 		}
 		}
 		
 		CheckCollisions(gameObjectsinScene) ; 
-
-		/*
-		// Old Collision Checking
-		for (int i = 0; i < gameObjectsinScene.size(); i++) {
-			try {
-				GameObject objectA = gameObjectsinScene.get(i);
-				Collider colliderToCheckA;
-				colliderToCheckA = objectA.getCollider();
-				if (colliderToCheckA != null) {
-					Shape ShapeA = colliderToCheckA.getCollidingShape();
-					for (int j = 0; j < gameObjectsinScene.size(); j++) {
-						try {
-							GameObject objectB = gameObjectsinScene.get(j);
-							if (objectB != objectA) {
-								Collider colliderToCheckB;
-								colliderToCheckB = objectB.getCollider();
-								if (colliderToCheckB != null) {
-									Shape ShapeB = colliderToCheckB.getCollidingShape();
-									if (ShapeA.intersects(ShapeB.getBounds2D())) {
-										objectA.OnCollision(objectB);
-										objectB.OnCollision(objectA);
-									}
-								}
-
-							}
-						} catch (IndexOutOfBoundsException e) {
-						}
-					}
-				}
-			} catch (IndexOutOfBoundsException e) {
-			}
-		}*/
 		// If there are destroyed gameObject remove them
 		SceneManager.getInstance().GetAllGameObjectsInScene()
 				.removeAll(SceneManager.getInstance().getGameObjectToDelete());

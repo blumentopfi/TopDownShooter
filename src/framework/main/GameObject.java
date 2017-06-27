@@ -26,6 +26,7 @@ public abstract class GameObject {
 	private String m_name ; 
 	private int m_tag ;  
 	private Transform m_transform ; 
+	private boolean isActive = true ; 
 	private List<Component> m_Components = new ArrayList<Component>() ; // List of Components that are attached
 	/**
 	 * Add a component
@@ -219,6 +220,12 @@ public abstract class GameObject {
 
 	public void setTag(int tag) {
 		m_tag = tag;
+	}
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 }
