@@ -33,8 +33,10 @@ public class ShooterTest {
 	public void testShotAndKill() throws InterruptedException{
 		ExplosionPool.init(); 
 		Thread.sleep(100);
+		
+		//Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ; 
 		GameManager m = new GameManager("Manager") ; 
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ; 
+		Player p = m.getPlayer() ; 
 		new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
 		p.setPosition(new Point2D.Float(5, 2));
 		p.setDamage(50000);
@@ -92,8 +94,9 @@ public class ShooterTest {
 	}
 	@Test
 	public void testWaveSpawning(){
+		
+		//Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		GameManager m = new GameManager("Manager") ;
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		m.StartWaves();
 		try {
 			Thread.sleep(2000);
@@ -139,8 +142,9 @@ public class ShooterTest {
 	}
 	@Test
 	public void testEnemys() throws InterruptedException{
+		
+		//Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		GameManager m = new GameManager("Manager") ; 
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		Enemy e = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 9, 0);
 		Thread.sleep(500);
 		Point2D.Float point = new Point2D.Float(e.getPosition().x, e.getPosition().y) ;

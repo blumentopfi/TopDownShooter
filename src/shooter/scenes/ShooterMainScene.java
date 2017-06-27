@@ -23,7 +23,7 @@ public class ShooterMainScene extends Scene {
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		new Background() ; 
 		new Background(true) ; 
-		new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
+	
 		long time = System.nanoTime() ; 
 		ExplosionPool.init();  
 		System.out.println(System.nanoTime() - time) ;

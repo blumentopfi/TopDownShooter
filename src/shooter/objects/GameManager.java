@@ -1,44 +1,53 @@
 package shooter.objects;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.Random;
 
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 import framework.main.GameObject;
 import framework.main.SceneManager;
+import shooter.UI.HealthBar;
 
 public class GameManager extends GameObject {
 	JLabel ScoreLabel ;
 	JLabel FPSLabel ;
 
-
+	JProgressBar m_healthbar = new JProgressBar() ;
 	JLabel Stats ;
 	Boolean boss = false;
 	Boolean bossKilled = false;
-
+	Player main_player  ;
 	int Score = 0 ;
 	int killedEnemies = 0;
 	int Wave = 1;
 	private boolean waves;
-
+	public Player getPlayer(){
+		return this.main_player ; 
+	}
 
 	public static int MAX_ENEMY_NUMBER = 5;
 
 	public GameManager(String Name){
 		super(Name) ;
+		main_player = 	new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
-		FPSLabel = new JLabel("FPS: ") ; 
 		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(ScoreLabel);
-		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		FPSLabel.setFont(new Font("Serif", Font.PLAIN, 35));
+		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));	
 		ScoreLabel.setText(ScoreLabel.getText() + Score);
-		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(FPSLabel);
+		m_healthbar.setUI(new HealthBar());
 		Stats = new JLabel() ; 
 		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(Stats);
+		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(m_healthbar);
 		Stats.setFont(new Font("Serif", Font.PLAIN, 35));
+		Stats.setText("HP:");
+		m_healthbar.setMaximum(main_player.getHealth());
+		m_healthbar.setValue(main_player.getHealth());
+		m_healthbar.setForeground(Color.GREEN);
 	}
 	public void StartWaves(){
 		waves = true ;
@@ -47,10 +56,8 @@ public class GameManager extends GameObject {
 		super.Update();
 		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;
 		//SceneManager.getInstance().PrintAllGameObjectsByName();
-		FPSLabel.setText("FPS: " + (int)framework.main.SceneManager.getInstance().getMainCamera().m_fpscounter.fps()) ; 
-		Player Player = (Player)framework.main.SceneManager.getInstance().getGameObjectByName("MainPlayer") ;
-		if (Player != null) Stats.setText("HP: " + Player.getHealth() + "\n" + "DMG: " + Player.getDamage());
-
+		
+		drawHealth() ; 
 
 		if (killedEnemies >= (Wave * 10)) {
 			if (!boss) {
@@ -62,6 +69,11 @@ public class GameManager extends GameObject {
 
 		}
 	}
+	
+	public void drawHealth(){
+		m_healthbar.setValue(this.main_player.getHealth()) ; 
+	}
+	
 	public int getScore(){
 		return Score ;
 	}
