@@ -12,6 +12,7 @@ import framework.rendering.Camera;
 import shooter.objects.Background;
 import shooter.objects.Enemy;
 import shooter.objects.Explosion;
+import shooter.objects.ExplosionPool;
 import shooter.objects.GameManager;
 import shooter.objects.HealthPowerUp;
 import shooter.objects.Player;
@@ -23,9 +24,10 @@ public class TestScene extends Scene {
 	public static boolean valid = false ; 
 	@Override
 	public void init() {
+		SceneManager.getInstance() ; 
 		main_Camera = new Camera(1000,1000,new Rectangle2D.Float(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
-		
+
 		test = new TestObject("test",this) ; 
 	}
 	public GameManager getManager(){

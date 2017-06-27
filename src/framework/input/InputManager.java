@@ -133,7 +133,7 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 	   if (shapeB instanceof Ellipse2D.Float){
 		   Ellipse2D.Float a = (Ellipse2D.Float) shapeA; 
 		   Ellipse2D.Float b = (Ellipse2D.Float) shapeB;
-		   return true
+		   return true ;
 	   }
    }
    

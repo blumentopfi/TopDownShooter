@@ -1,6 +1,7 @@
 package shooter.objects;
 
 import java.awt.Font;
+import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.Random;
 
@@ -83,6 +84,8 @@ public class GameManager extends GameObject {
 			float pos_X = random.nextInt(9 - 1 + 1) + 1;
 			float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
 			new AdvancedEnemy("Assets/PlaneSprites/Advanced/JU87B2.png", "Enemy", pos_X, pos_Y);
+			Meteorit m = new Meteorit("Meteo") ;
+			m.setPosition(new Point2D.Float(pos_X, pos_Y));
 		}
 
 	}

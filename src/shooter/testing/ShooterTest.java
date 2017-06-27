@@ -6,6 +6,7 @@ import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
 import shooter.objects.Enemy;
+import shooter.objects.ExplosionPool;
 import shooter.objects.GameManager;
 import shooter.objects.Player;
 import shooter.objects.SimpleEnemy;
@@ -30,6 +31,7 @@ public class ShooterTest {
 	}
 	@Test
 	public void testShotAndKill() throws InterruptedException{
+		ExplosionPool.init(); 
 		Thread.sleep(100);
 		GameManager m = new GameManager("Manager") ; 
 		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ; 
@@ -139,11 +141,10 @@ public class ShooterTest {
 	public void testEnemys() throws InterruptedException{
 		GameManager m = new GameManager("Manager") ; 
 		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
-		Enemy e = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
-		Thread.sleep(100);
-		assertTrue(!(null == SceneManager.getInstance().getGameObjectByName("Missle"))) ; //Does the enemy shoot?
+		Enemy e = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 9, 0);
+		Thread.sleep(500);
 		Point2D.Float point = new Point2D.Float(e.getPosition().x, e.getPosition().y) ;
-		Thread.sleep(1000);
+		Thread.sleep(100);
 		assertTrue(point.y < e.getPosition().y) ;
 	}
 	
