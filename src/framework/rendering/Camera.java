@@ -73,17 +73,17 @@ public class Camera extends Thread {
 	}
 	
 	public void AddGUIElement(JComponent test){
-		GUIElements.add(test) ; 
+		//GUIElements.add(test) ; 
 		m_GameView.add(test) ; 
 		m_GameView.revalidate();
 		m_GameView.repaint(); 
 	}
 	
 	public void RemoveGUIElement(JComponent toremove){
-		m_GameView.remove(toremove);
-		GUIElements.remove(toremove);
-		m_GameView.revalidate();
-		m_GameView.repaint(); 
+		//m_GameView.remove(toremove);
+		//GUIElements.remove(toremove);
+		//m_GameView.revalidate();
+		//m_GameView.repaint(); 
 	}
 	
 	public void OverrideLayout(LayoutManager New){
