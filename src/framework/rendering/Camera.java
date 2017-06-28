@@ -80,10 +80,10 @@ public class Camera extends Thread {
 	}
 	
 	public void RemoveGUIElement(JComponent toremove){
-		//m_GameView.remove(toremove);
+		m_GameView.remove(toremove);
 		//GUIElements.remove(toremove);
-		//m_GameView.revalidate();
-		//m_GameView.repaint(); 
+		m_GameView.revalidate();
+		m_GameView.repaint(); 
 	}
 	
 	public void OverrideLayout(LayoutManager New){

@@ -116,12 +116,7 @@ public class MenuScene extends Scene {
 				, Image.SCALE_DEFAULT)) ;
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ; 
 		BackgroundImage.setBounds(0, 0, main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight());
-		main_Camera.AddGUIElement(BackgroundImage);
-		
-
-		
-		
-		
+		main_Camera.AddGUIElement(BackgroundImage);		
 	}
 	
 	public void finishScene(){

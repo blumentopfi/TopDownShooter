@@ -36,7 +36,12 @@ public class HealthBar extends BasicProgressBarUI {
     	float red =   x.getRed()   * blending   +   y.getRed()   * inverse_blending;
     	float green = x.getGreen() * blending   +   y.getGreen() * inverse_blending;
     	float blue =  x.getBlue()  * blending   +   y.getBlue()  * inverse_blending;
-
+    	
+    	red = framework.math.MyMath.Clamp(255, 0, red);
+    	green = framework.math.MyMath.Clamp(255, 0, green);
+    	blue = framework.math.MyMath.Clamp(255, 0, blue);
+    
+    	
     	//note that if i pass float values they have to be in the range of 0.0-1.0 
     	//and not in 0-255 like the ones i get returned by the getters.
     	Color blended = new Color (red / 255, green / 255, blue / 255);
@@ -69,7 +74,24 @@ public class HealthBar extends BasicProgressBarUI {
         Rectangle2D.Double fill = new Rectangle2D.Double(iStrokWidth * 2, iStrokWidth * 2,
                 iInnerWidth, iInnerHeight);
         //g2d.setColor(c.getForeground());
-        g2d.setColor(LerpColor(Color.green,Color.red,dProgress));
+        
+        if (dProgress > 0.5){
+        	float OldRange = (1f - 0.5f) ;  
+        	float NewRange = (1 - 0) ;  
+        	float NewValue = (float) (((dProgress - 0.5f) * NewRange) / OldRange) ;
+        	System.out.println(NewValue);
+        	g2d.setColor(LerpColor(Color.green,Color.yellow,NewValue));
+        }
+        if (dProgress <= 0.5){
+        	float OldRange = (0.5f - 0f) ;  
+        	float NewRange = (1 - 0) ;  
+        	float NewValue = (float) (((dProgress - 0f) * NewRange) / OldRange) ;
+        	System.out.println(NewValue);
+        	g2d.setColor(LerpColor(Color.yellow,Color.red,NewValue));
+        }
+        
+        
+        //g2d.setColor(LerpColor(Color.green,Color.red,dProgress));
         g2d.fill(fill);
 
         g2d.dispose();
