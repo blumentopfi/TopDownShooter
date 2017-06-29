@@ -16,7 +16,7 @@ import framework.rendering.Time;
 public abstract class Enemy extends GameObject {
 
     public float speed = 1f;
-    public int health;
+    public int health = 100;
     public int value;
 
 
@@ -58,10 +58,12 @@ public abstract class Enemy extends GameObject {
             NextFire = System.currentTimeMillis() + FireRate ;
         }
         if (this.getPosition().y > SceneManager.getInstance().getMainCamera().getViewRect().getMaxY()){
+        	System.out.println("Destroy because of Clamping");
 			this.Destroy();
 		}
         if (health <= 0 ){
         	if (manager != null) manager.AddScore(this.getValue());
+        	System.out.println("Destroyed by missing Helath");
         	this.Destroy();
         }
     }
@@ -151,9 +153,6 @@ public abstract class Enemy extends GameObject {
     	if (drop == 3){
     		new UpgradePowerUp(this.getPosition()) ;  
     	}
-    	//Explosion e = new Explosion("Explosion") ;
-		//e.setPosition(this.getPosition());
-		//e.setDimension(new Dimension(e.getTransform().getSize().width*3,e.getTransform().getSize().height *3 ));
     }
     public float getSpeed() {
         return speed;

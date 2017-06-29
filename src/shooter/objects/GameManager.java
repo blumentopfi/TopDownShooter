@@ -21,6 +21,7 @@ public class GameManager extends GameObject {
 	JLabel FPSLabel ;
 
 	JProgressBar m_healthbar = new JProgressBar() ;
+	JProgressBar m_bossbar = new JProgressBar() ;
 	JLabel Stats ;
 	Boolean boss = false;
 	Boolean bossKilled = false;
@@ -29,6 +30,7 @@ public class GameManager extends GameObject {
 	int killedEnemies = 0;
 	int Wave = 1;
 	private boolean waves;
+	Boss m_boss ; 
 	public Player getPlayer(){
 		return this.main_player ; 
 	}
@@ -43,38 +45,44 @@ public class GameManager extends GameObject {
 		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));	
 		ScoreLabel.setText(ScoreLabel.getText() + Score);
 		m_healthbar.setUI(new HealthBar());
+		m_bossbar.setUI(new HealthBar());
 		Stats = new JLabel() ; 
 		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(Stats);
 		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(m_healthbar);
+		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(m_bossbar);
 		Stats.setFont(new Font("Serif", Font.PLAIN, 35));
 		Stats.setText("HP:");
 		m_healthbar.setMaximum(main_player.getHealth());
 		m_healthbar.setValue(main_player.getHealth());
-		m_healthbar.setForeground(Color.GREEN);
+		m_bossbar.setVisible(false);
+		
 	}
 	public void StartWaves(){
 		waves = true ;
 	}
 	public void Update(){
 		super.Update();
-		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;
-		//SceneManager.getInstance().PrintAllGameObjectsByName();
-		
+		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;		
 		drawHealth() ; 
-
 		if (killedEnemies >= (Wave * 10)) {
+			if (boss != null){
 			if (!boss) {
 				System.out.println("Killed Enemies: " + killedEnemies);
 				System.out.println("Boss created");
-				new Boss("Assets/PlaneSprites/Enemy B-17.png", "Boss", 5, -3);
+				m_boss = new Boss("Assets/PlaneSprites/Enemy B-17.png", "Boss", 5, -3);
 				boss = true;
+				m_bossbar.setMaximum(m_boss.getHealth());
+				m_bossbar.setVisible(true);
+				m_bossbar.setValue(m_boss.getHealth());
+			}
 			}
 
 		}
 	}
 	
 	public void drawHealth(){
-		m_healthbar.setValue(this.main_player.getHealth()) ; 
+		if (main_player != null) m_healthbar.setValue(this.main_player.getHealth()) ; 
+		if (m_boss != null) m_bossbar.setValue(this.m_boss.getHealth());
 	}
 	
 	public int getScore(){
@@ -112,5 +120,6 @@ public class GameManager extends GameObject {
 		boss = false;
 		Wave++;
 		killedEnemies = 0;
+		m_bossbar.setVisible(false);
 	}
 }

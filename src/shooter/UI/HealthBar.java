@@ -79,14 +79,12 @@ public class HealthBar extends BasicProgressBarUI {
         	float OldRange = (1f - 0.5f) ;  
         	float NewRange = (1 - 0) ;  
         	float NewValue = (float) (((dProgress - 0.5f) * NewRange) / OldRange) ;
-        	System.out.println(NewValue);
         	g2d.setColor(LerpColor(Color.green,Color.yellow,NewValue));
         }
         if (dProgress <= 0.5){
         	float OldRange = (0.5f - 0f) ;  
         	float NewRange = (1 - 0) ;  
         	float NewValue = (float) (((dProgress - 0f) * NewRange) / OldRange) ;
-        	System.out.println(NewValue);
         	g2d.setColor(LerpColor(Color.yellow,Color.red,NewValue));
         }
         

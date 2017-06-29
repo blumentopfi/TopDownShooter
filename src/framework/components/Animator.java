@@ -14,11 +14,12 @@ import framework.rendering.Camera;
 /**
  * 
  * @author 7toeter
- *
+ * 
+ * 
  */
 public class Animator extends Component {
-	GameObject myObject; // Object the Animator is assgined to
-	List<Sprite> SpriteSheet = new ArrayList<Sprite>();
+	GameObject m_myObject; // Object the Animator is assgined to
+	List<Sprite> m_SpriteSheet = new ArrayList<Sprite>();
 	int FrameCount = 0;
 	long NextFrame = 0;
 	int SwitchRate = 10;
@@ -26,19 +27,19 @@ public class Animator extends Component {
 	boolean hasFinished = false;
 
 	public Animator(List<BufferedImage> SpriteSheet, GameObject initObject,int rate) {
-		this.myObject = initObject;
+		this.m_myObject = initObject;
 		for (int i = 0 ; i < SpriteSheet.size() ; i++){
-			this.SpriteSheet.add(new Sprite(SpriteSheet.get(i),initObject)) ; 
+			this.m_SpriteSheet.add(new Sprite(SpriteSheet.get(i),initObject)) ; 
 		}
 		this.SwitchRate = rate ; 
 	}
 	public List<Sprite> getSpriteSheet(){
-		return SpriteSheet ; 
+		return m_SpriteSheet ; 
 	}
 	public Animator(List<BufferedImage> SpriteSheet, GameObject initObject, boolean looping,int rate) {
-		this.myObject = initObject;
+		this.m_myObject = initObject;
 		for (int i = 0 ; i < SpriteSheet.size() ; i++){
-			this.SpriteSheet.add(new Sprite(SpriteSheet.get(i),initObject)) ; 
+			this.m_SpriteSheet.add(new Sprite(SpriteSheet.get(i),initObject)) ; 
 		}
 		this.looping = looping;
 		this.SwitchRate = rate ; 
@@ -51,14 +52,14 @@ public class Animator extends Component {
 	public void ComponentUpdate() {
 		if (!hasFinished) {
 			if (NextFrame < System.currentTimeMillis()) {
-				if (FrameCount >= SpriteSheet.size() && looping == true) {
+				if (FrameCount >= m_SpriteSheet.size() && looping == true) {
 					FrameCount = 0;
 				}
-				if (FrameCount >= SpriteSheet.size() && looping == false) {
+				if (FrameCount >= m_SpriteSheet.size() && looping == false) {
 					hasFinished = true;
 					return ; 
 				}			
-				this.switchImage(SpriteSheet.get(FrameCount));
+				this.switchImage(m_SpriteSheet.get(FrameCount));
 				NextFrame = System.currentTimeMillis() + SwitchRate;
 				FrameCount++;
 			}
@@ -66,8 +67,8 @@ public class Animator extends Component {
 	}
 
 	public void switchImage(Sprite image) {
-		myObject.removeComponent(myObject.getSprite());
-		myObject.addComponent(image);
+		m_myObject.removeComponent(m_myObject.getSprite());
+		m_myObject.addComponent(image);
 	}
 
 	public boolean hasFinished() {

@@ -18,6 +18,7 @@ public  class Explosion extends GameObject {
 	Animator myAnimator ; 
 	public Explosion(String Name){
 		super(Name) ; 
+		this.setActive(false);
 		this.addComponent(new Sprite("Assets/ProjectileSprite/Explosion/1_0.png",this));
 		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
 		try {

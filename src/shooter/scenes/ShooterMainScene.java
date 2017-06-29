@@ -24,7 +24,10 @@ public class ShooterMainScene extends Scene {
 		new Background() ; 
 		new Background(true) ; 
 		long time = System.nanoTime() ; 
-		ExplosionPool.init();  
+		
+		new Thread(() -> {
+			ExplosionPool.init();  
+		}).start();
 		System.out.println(System.nanoTime() - time) ;
 		gameManager = new GameManager("Manager") ;
 		gameManager.StartWaves(); 

@@ -1,6 +1,8 @@
 package shooter.scenes;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import framework.components.UIString;
 import framework.input.InputManager;
 import framework.main.Scene;
 import framework.main.SceneManager;
@@ -183,6 +186,8 @@ public class MenuScene extends Scene {
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ; 
 		BackgroundImage.setBounds(0, 0, main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight());
 		main_Camera.AddGUIElement(BackgroundImage);		
+		
+		main_Camera.AddString(new UIString(30,30,"TESTING",Color.YELLOW));
 		MainMenu() ; 
 	}
 	

@@ -21,7 +21,7 @@ public class MisslePlayer extends Missle {
 		Enemy collidingEnemy = (Enemy)collidingObject ; 
 		collidingEnemy.addDamage(damage);
 		Explosion e = ExplosionPool.getExplosion() ;
-		e.setPosition(this.getPosition());
+		if (e != null) e.setPosition(this.getPosition());
 		
 		this.Destroy();
 		}

@@ -1,6 +1,7 @@
 package framework.components;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -88,7 +89,7 @@ public class Sprite extends Component {
 	 * @param degrees
 	 * @return rotatedImage
 	 */
-	private static BufferedImage rotateImage(BufferedImage src, double degrees) {
+	private static BufferedImage rotateImage(BufferedImage src, double degrees) { 	
 		AffineTransform affineTransform = AffineTransform.getRotateInstance(Math.toRadians(degrees), src.getWidth() / 2,
 				src.getHeight() / 2);
 		BufferedImage rotatedImage = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
