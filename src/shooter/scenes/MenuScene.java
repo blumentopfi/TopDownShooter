@@ -19,6 +19,7 @@ import framework.rendering.Camera;
 import shooter.objects.GameManager;
 import shooter.objects.HealthPowerUp;
 import shooter.objects.Player;
+import shooter.options.Options;
 
 public class MenuScene extends Scene {
 	JButton StartButton ; 
@@ -26,6 +27,24 @@ public class MenuScene extends Scene {
 	JButton OptionButton ; 
 	JLabel BackgroundImage ; 
 	JLabel Titel ; 	
+	JButton BackButton ; 
+	JButton MutedButton ; 
+	void MainMenu(){
+		StartButton.setVisible(true);
+		QuitButton.setVisible(true);
+		OptionButton.setVisible(true);
+		BackButton.setVisible(false);
+		MutedButton.setVisible(false);
+	}
+	void OptionMenu(){
+		StartButton.setVisible(false);
+		QuitButton.setVisible(false);
+		OptionButton.setVisible(false);
+		BackButton.setVisible(true);
+		MutedButton.setVisible(true);
+	}
+	
+	
 	@Override
 	public void init() {
 		main_Camera = new Camera(1000,1000,new Rectangle2D.Float(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
@@ -87,6 +106,8 @@ public class MenuScene extends Scene {
 		    }
 		});
 		main_Camera.AddGUIElement(QuitButton);
+		
+		
 		icon2 = new ImageIcon(new ImageIcon("Assets/Menu/optionst_buttons.png").getImage()) ;
 		OptionButton = new JButton(icon2) ; 
 		x = main_Camera.getGameWindow().getWidth()/2 - icon2.getIconWidth()/2 ;
@@ -98,7 +119,7 @@ public class MenuScene extends Scene {
 		OptionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                OptionMenu() ; 
             }
         });
 		OptionButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,11 +133,57 @@ public class MenuScene extends Scene {
 		});
 		main_Camera.AddGUIElement(OptionButton);
 		
+		
+		icon2 = new ImageIcon(new ImageIcon("Assets/Menu/BackButton.png").getImage().getScaledInstance(100, 100, 0)) ;
+		BackButton = new JButton(icon2) ; 
+		x = 0 ;
+		y = main_Camera.getGameWindow().getHeight() - 150  ; 
+		BackButton.setBounds(x, y, icon2.getIconWidth(), icon2.getIconHeight());
+		BackButton.setOpaque(false);
+		BackButton.setContentAreaFilled(false);
+		BackButton.setBorderPainted(false);
+		BackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainMenu() ; 
+            }
+        });
+		main_Camera.AddGUIElement(BackButton);
+
+		MutedButton = new JButton(icon2) ; 
+		
+		System.out.println(Options.getMuted());
+		 if (Options.getMuted()){
+        	 icon2 = (new ImageIcon(new ImageIcon("Assets/Menu/ButtonMuted.png").getImage()));
+        }else{
+        	 icon2 = (new ImageIcon(new ImageIcon("Assets/Menu/ButtonNotMuted.png").getImage()));
+        }
+		 x = main_Camera.getGameWindow().getWidth()/2 - icon2.getIconWidth()/2  ;
+			y = main_Camera.getGameWindow().getHeight()/2  - icon2.getIconHeight()/2 ; 
+		MutedButton.setIcon(icon2);
+		MutedButton.setBounds(x, y, icon2.getIconWidth(),icon2.getIconHeight() );
+		MutedButton.setOpaque(false);
+		MutedButton.setContentAreaFilled(false);
+		MutedButton.setBorderPainted(false);	
+		MutedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Options.ToggleAudio();
+                if (Options.getMuted()){
+                	 MutedButton.setIcon(new ImageIcon(new ImageIcon("Assets/Menu/ButtonMuted.png").getImage()));
+                }else{
+                	 MutedButton.setIcon(new ImageIcon(new ImageIcon("Assets/Menu/ButtonNotMuted.png").getImage()));
+                }
+            }
+        });
+		main_Camera.AddGUIElement(MutedButton);
+		
 		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/background.jpg").getImage().getScaledInstance( main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight()
 				, Image.SCALE_DEFAULT)) ;
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ; 
 		BackgroundImage.setBounds(0, 0, main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight());
 		main_Camera.AddGUIElement(BackgroundImage);		
+		MainMenu() ; 
 	}
 	
 	public void finishScene(){
