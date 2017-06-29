@@ -37,10 +37,11 @@ public class Boss extends GameObject {
 
     GameManager manager ;
 
-    public Boss(String PathToSprite, String Name, float posX, float posY) {
+    public Boss(String PathToSprite, String Name, int new_health, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
+        this.health = new_health;
 
         this.addComponent(new OvalCollider(this, 1.2));
         manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;

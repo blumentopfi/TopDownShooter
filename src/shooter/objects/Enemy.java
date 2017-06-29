@@ -143,7 +143,7 @@ public abstract class Enemy extends GameObject {
     	Random random = new Random(System.nanoTime()) ; 
     	int drop = random.nextInt(10) ; 
     	if (drop == 1){
-    	new HealthPowerUp(this.getPosition(),50) ; 
+    	new HealthPowerUp(this.getPosition(),1000) ;
     	}
     	if (drop == 2){
     		new DamagePowerUp(this.getPosition(),50) ; 
