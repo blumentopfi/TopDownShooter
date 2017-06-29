@@ -19,8 +19,6 @@ public abstract class Enemy extends GameObject {
     public int health;
     public int value;
 
-
-
     long FireRate = 500  ;
     long NextFire = 0  ;
 

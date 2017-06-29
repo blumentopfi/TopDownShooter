@@ -141,7 +141,7 @@ public class ShooterTest {
 		
 	}
 	@Test
-	public void testEnemys() throws InterruptedException{
+	public void testEnemies() throws InterruptedException{
 		
 		//Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		GameManager m = new GameManager("Manager") ; 
@@ -151,8 +151,5 @@ public class ShooterTest {
 		Thread.sleep(100);
 		assertTrue(point.y < e.getPosition().y) ;
 	}
-	
-	
-	
-	
+
 }
