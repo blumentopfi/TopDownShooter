@@ -55,7 +55,7 @@ public class Player extends GameObject {
 	long FireRate = 100;
 	long NextFire = 0  ;
 
-	int health = 10000 ;
+	int health = 1000 ;
 	int damage = 50 ;  
 
 	int UpperBoundsY ;
@@ -156,10 +156,8 @@ public class Player extends GameObject {
 		this.setPosition(new Point2D.Float(MyMath.Clamp(9.5f, 0,this.getPosition().x + (dx*(float)Time.deltaTime)), MyMath.Clamp(9.5f, 0,this.getPosition().y +(dy*(float)Time.deltaTime))));
 		if (health <= 0){
 			int final_Score = manager.getScore();
-
-			String scoreString = "Score | " + final_Score;
 			try (FileWriter fw = new FileWriter("highscore.txt", true)) {
-				fw.write(scoreString + System.lineSeparator() );
+				fw.write(final_Score + System.lineSeparator() );
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
