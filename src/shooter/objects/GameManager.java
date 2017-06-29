@@ -95,11 +95,11 @@ public class GameManager extends GameObject {
 	}
 	
 	public void initPause(){
-		this.PauseLabel1.setForeground(Color.RED);
+		this.PauseLabel1.setForeground(Color.CYAN);
 		this.PauseLabel1.setText("PAU");
 		PauseLabel1.setFont(new Font("Verdana", Font.PLAIN, 79));
 		AddToPanel(2,2,PauseLabel1);
-		this.PauseLabel2.setForeground(Color.RED);
+		this.PauseLabel2.setForeground(Color.CYAN);
 		this.PauseLabel2.setText("SED");
 		PauseLabel2.setFont(new Font("Verdana", Font.PLAIN, 79));
 		AddToPanel(2,3,PauseLabel2);

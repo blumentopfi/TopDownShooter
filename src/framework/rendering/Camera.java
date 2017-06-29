@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -22,6 +23,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +56,6 @@ public class Camera extends Thread {
 		m_fpscounter = new FPSCounter() ; 
 		m_fpscounter.start();
 		this.start();	
-		
 		render() ; 
 	}
 	public Rectangle2D.Float getViewRect(){
