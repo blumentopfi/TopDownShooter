@@ -16,6 +16,8 @@ import framework.main.GameObject;
 import framework.main.SceneManager;
 import shooter.UI.HealthBar;
 
+import static shooter.objects.Enemy.random;
+
 public class GameManager extends GameObject {
 	JLabel ScoreLabel ;
 	JLabel FPSLabel ;
@@ -30,7 +32,7 @@ public class GameManager extends GameObject {
 	int Wave = 1;
 	private boolean waves;
 	public Player getPlayer(){
-		return this.main_player ; 
+		return this.main_player ;
 	}
 
 	public static int MAX_ENEMY_NUMBER = 5;
@@ -40,7 +42,7 @@ public class GameManager extends GameObject {
 		main_player = 	new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
 		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(ScoreLabel);
-		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));	
+		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));
 		ScoreLabel.setText(ScoreLabel.getText() + Score);
 		m_healthbar.setUI(new HealthBar());
 		Stats = new JLabel() ; 
@@ -59,8 +61,8 @@ public class GameManager extends GameObject {
 		super.Update();
 		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;
 		//SceneManager.getInstance().PrintAllGameObjectsByName();
-		
-		drawHealth() ; 
+
+		drawHealth() ;
 
 		if (killedEnemies >= (Wave * 10)) {
 			if (!boss) {
@@ -72,11 +74,11 @@ public class GameManager extends GameObject {
 
 		}
 	}
-	
+
 	public void drawHealth(){
-		m_healthbar.setValue(this.main_player.getHealth()) ; 
+		m_healthbar.setValue(this.main_player.getHealth()) ;
 	}
-	
+
 	public int getScore(){
 		return Score ;
 	}
@@ -96,6 +98,24 @@ public class GameManager extends GameObject {
 		}
 		if (enemyCounter < MAX_ENEMY_NUMBER && !boss) {
 			Random random = new Random(System.nanoTime());
+
+			double a = Wave;
+			double chance = Math.pow(a, 3.00);
+			double check = random.nextInt(100)+1 ;
+			if (chance <= check){
+				float pos_X = random.nextInt(9 - 1 + 1) + 1;
+				float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
+				new SimpleEnemy("Assets/PlaneSprites/Biploar_Y.png", "Enemy", pos_X, pos_Y);
+
+			}
+			if (chance > check){
+				float pos_X = random.nextInt(9 - 1 + 1) + 1;
+				float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
+				new AdvancedEnemy("Assets/PlaneSprites/Advanced/JU87B2.png", "Enemy", pos_X, pos_Y);
+
+			}
+
+			}
 			float pos_X = random.nextInt(9 - 1 + 1) + 1;
 			float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
 			new AdvancedEnemy("Assets/PlaneSprites/Advanced/JU87B2.png", "Enemy", pos_X, pos_Y);
@@ -103,7 +123,6 @@ public class GameManager extends GameObject {
 			m.setPosition(new Point2D.Float(pos_X, pos_Y));
 		}
 
-	}
 	public void addKilledEnemy() {
 		killedEnemies++;
 	}

@@ -24,7 +24,7 @@ import static shooter.objects.Enemy.random;
  */
 public class Boss extends GameObject {
     public float speed = 1.5f;
-    public int health = 10000;
+    public int health = 3000;
     public static int MOVE_DISTANCE = 100;
     public int value = 20 ;
     public int moveCounter = 0;

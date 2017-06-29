@@ -106,8 +106,8 @@ public class Player extends GameObject {
 		System.out.println(e.getX());
 		System.out.println(e.getY());
 		System.out.println(SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(e.getPoint()));
-		if (e.getButton() == MouseEvent.BUTTON1) InputManager.Pause();
-		if (e.getButton() == MouseEvent.BUTTON2) InputManager.UnPause(); 
+		//if (e.getButton() == MouseEvent.BUTTON1) InputManager.Pause();
+		//if (e.getButton() == MouseEvent.BUTTON2) InputManager.UnPause();
 	} 
 
 	public void setDamage(int damage) {
