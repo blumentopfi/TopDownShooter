@@ -4,3 +4,4 @@ Score | 20
 Score | 100
 Score | 280
 Score | 1440
+Score | 900

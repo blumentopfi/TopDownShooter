@@ -51,12 +51,28 @@ public class Boss extends GameObject {
     public int getValue(){
         return value ;
     }
-
+	private void shootTriple(int offset){
+		GameObject MyBullet = new MissleEnemy(25,new Point2D.Float(0, +4)) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+offset, this.getPosition().y -0.5f));
+		MyBullet.Rotate(180);
+		MyBullet = new MissleEnemy(25,new Point2D.Float(-1, 4)) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.3f+offset, this.getPosition().y -0.5f));
+		MyBullet.Rotate(180);
+		MyBullet = null ; 
+		MyBullet = new MissleEnemy(25,new Point2D.Float(+1, 4)) ; 
+		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.3f+offset, this.getPosition().y -0.5f));
+		MyBullet.Rotate(180);
+		MyBullet = null ; 
+	}
     public void Update(){
         super.Update();
         move();
         if (NextFire < System.currentTimeMillis() ){
-            this.shootSingle();
+            if (manager.Wave > 1){
+        	this.shootTriple(2);
+        	this.shootTriple(-2);}else{
+        		shootSingle() ; 
+        	}
             NextFire = System.currentTimeMillis() + FireRate ;
         }
 
