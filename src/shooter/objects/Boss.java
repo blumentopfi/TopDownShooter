@@ -32,7 +32,7 @@ public class Boss extends GameObject {
     public int moveCounter = 0;
     public int lastMove = 2;
 
-    long FireRate = 500  ;
+    long FireRate = 200  ;
     long NextFire = 0  ;
 
     GameManager manager ;

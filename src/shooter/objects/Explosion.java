@@ -28,7 +28,7 @@ public  class Explosion extends GameObject {
 			e.printStackTrace();
 		}    
 		this.setDimension(new Dimension(this.getTransform().getSize().width/2,this.getTransform().getSize().height/2));
-		myAnimator = new Animator(myAnimation,this,false,100) ; 
+		myAnimator = new Animator(myAnimation,this,false,25) ; 
 		this.addComponent(myAnimator);
 		
 		
