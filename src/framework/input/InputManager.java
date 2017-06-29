@@ -45,6 +45,10 @@ public class InputManager implements ActionListener {
 	public static void UnPause(){
 		paused = false ; 
 	}
+	
+	public static boolean isPause(){
+		return paused ; 
+	}
 
 	public InputManager() {
 		window = SceneManager.getInstance().getMainCamera().getGameWindow();

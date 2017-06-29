@@ -50,7 +50,7 @@ public class GameOverScene extends Scene {
 		main_Camera.AddGUIElement(StartButton);
 		
 		
-		ImageIcon icon2 = new ImageIcon(new ImageIcon("Assets/Menu/QuitButton.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
+		ImageIcon icon2 = new ImageIcon(new ImageIcon("Assets/Menu/exit_buttons.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
 		QuitButton = new JButton(icon2) ; 
 		x = main_Camera.getGameWindow().getWidth()/2 - 300 ;
 		y =  5 * main_Camera.getGameWindow().getHeight()/8 - 100  ; 

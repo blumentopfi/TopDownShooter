@@ -24,7 +24,6 @@ public  class Explosion extends GameObject {
 		try {
 			for (int i = 0 ; i < 17 ; i++) 
 				myAnimation.add(ImageIO.read(new File("Assets/ProjectileSprite/Explosion/1_" + i + ".png")));
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    

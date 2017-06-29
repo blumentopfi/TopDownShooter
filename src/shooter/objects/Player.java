@@ -194,7 +194,7 @@ public class Player extends GameObject {
 		this.health-=damage ; 
 	}
 	public void shoot(){
-		if (NextFire < System.currentTimeMillis() ){
+		if (NextFire < System.currentTimeMillis() &&!InputManager.isPause()){
 			
 				if (!a.PlaySound("Pew")){
 					if (!a.PlaySound("Pew1")){
@@ -276,8 +276,16 @@ public class Player extends GameObject {
 		        
 		    }
 		};
+		Action pause = new AbstractAction() {
+		    public void actionPerformed(ActionEvent e) {
+		        manager.Pause();  
+		        
+		    }
+		};
 		inputMap.put(KeyStroke.getKeyStroke("SPACE"),"shoot") ; 
 		actionMap.put("shoot",shooting) ;
+		inputMap.put(KeyStroke.getKeyStroke("ESCAPE"),"pause") ; 
+		actionMap.put("pause",pause) ;
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0,false),"left") ; 
 		actionMap.put("left",left) ;
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0,false),"right") ; 
