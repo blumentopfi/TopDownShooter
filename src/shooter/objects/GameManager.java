@@ -2,6 +2,7 @@ package shooter.objects;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.io.File;
@@ -9,9 +10,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import framework.input.InputManager;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import shooter.UI.HealthBar;
@@ -25,15 +30,24 @@ public class GameManager extends GameObject {
 	JProgressBar m_healthbar = new JProgressBar() ;
 	JProgressBar m_bossbar = new JProgressBar() ;
 	JLabel Stats ;
+	JLabel BossLabel ; 
 	Boolean boss = false;
 	Boolean bossKilled = false;
 	Player main_player  ;
-
+	JButton PlayButton = new JButton() ; 
+	JLabel PauseLabel1 = new JLabel() ; 
+	JLabel PauseLabel2 = new JLabel() ; 
+	JPanel gameView ; 
 	int Score = 0 ;
 	int killedEnemies = 0;
 	int Wave = 1;
 	private boolean waves;
 	Boss m_boss ; 
+	int i = 6 ; 
+	int j = 6 ; 
+	JPanel[][] panelHolder = new JPanel[i][j] ; 
+	
+	
 	public Player getPlayer(){
 		return this.main_player ;
 	}
@@ -42,29 +56,75 @@ public class GameManager extends GameObject {
 
 	public GameManager(String Name){
 		super(Name) ;
+		SceneManager.getInstance().getMainCamera().OverrideLayout(new GridLayout(i,j,0,0));
+		for(int m = 0; m < i; m++) {
+			   for(int n = 0; n < j; n++) {
+			      panelHolder[m][n] = new JPanel();
+			      panelHolder[m][n].setOpaque(false);
+			      SceneManager.getInstance().getMainCamera().AddGUIElement(panelHolder[m][n]);
+			   }
+			}
+	
 		main_player = 	new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
-		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(ScoreLabel);
-		ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 35));
+		ScoreLabel.setFont(new Font("Verdana", Font.PLAIN, 25));
 		ScoreLabel.setText(ScoreLabel.getText() + Score);
+		BossLabel = new JLabel("Score: ",JLabel.LEFT);
+		BossLabel.setFont(new Font("Verdana", Font.PLAIN, 25));
+		BossLabel.setText("BOSS:");
 		m_healthbar.setUI(new HealthBar());
 		m_bossbar.setUI(new HealthBar());
 		Stats = new JLabel() ; 
-		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(Stats);
-		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(m_healthbar);
-		framework.main.SceneManager.getInstance().getMainCamera().AddGUIElement(m_bossbar);
-		Stats.setFont(new Font("Serif", Font.PLAIN, 35));
+		AddToPanel(0,5,ScoreLabel);
+		AddToPanel(0,0,Stats) ;
+		AddToPanel(0,1,m_healthbar) ;
+		AddToPanel(0,3,BossLabel);
+		AddToPanel(0,4,m_bossbar) ;
+		Stats.setFont(new Font("Verdana", Font.PLAIN, 25));
 		Stats.setText("HP:");
 		m_healthbar.setMaximum(main_player.getHealth());
 		m_healthbar.setValue(main_player.getHealth());
 		m_bossbar.setVisible(false);
-		
+		BossLabel.setVisible(false);
+		gameView = SceneManager.getInstance().getMainCamera().getGameView() ;
+		initPause() ; 
 	}
-
+	
+	private void AddToPanel(int x, int y,JComponent c){
+		this.panelHolder[x][y].add(c);
+	}
+	
+	public void initPause(){
+		this.PauseLabel1.setForeground(Color.RED);
+		this.PauseLabel1.setText("PAU");
+		PauseLabel1.setFont(new Font("Verdana", Font.PLAIN, 79));
+		AddToPanel(2,2,PauseLabel1);
+		this.PauseLabel2.setForeground(Color.RED);
+		this.PauseLabel2.setText("SED");
+		PauseLabel2.setFont(new Font("Verdana", Font.PLAIN, 79));
+		AddToPanel(2,3,PauseLabel2);
+		Pause() ; 
+	
+	}
+	
 	public void StartWaves(){
 		waves = true ;
 	}
 
+	
+	
+	public void Pause(){
+		if (PauseLabel1.isVisible()){
+			InputManager.UnPause();
+		}else{
+			InputManager.Pause();  
+		}
+		PauseLabel1.setVisible(!PauseLabel1.isVisible());
+		PauseLabel2.setVisible(!PauseLabel2.isVisible());
+		
+	}
+	
+	
 	public void Update(){
 		super.Update();
 		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;		
@@ -79,12 +139,13 @@ public class GameManager extends GameObject {
 				m_bossbar.setMaximum(m_boss.getHealth());
 				m_bossbar.setVisible(true);
 				m_bossbar.setValue(m_boss.getHealth());
+				BossLabel.setVisible(true);
 			}
 			}
 
 		}
 	}
-
+	
 	public void drawHealth(){
 		if (main_player != null) m_healthbar.setValue(this.main_player.getHealth()) ; 
 		if (m_boss != null) m_bossbar.setValue(this.m_boss.getHealth());
@@ -102,7 +163,8 @@ public class GameManager extends GameObject {
 	
 	public void setupEnemies(List<GameObject> gos) {
 		int enemyCounter = 0;
-		for (GameObject enemies : gos) {
+		for (int i = 0 ; i< gos.size() ; i++) {
+			GameObject enemies = gos.get(i) ;
 			if (enemies.getName().equals("Enemy")) {
 				enemyCounter++;
 			}
@@ -143,5 +205,6 @@ public class GameManager extends GameObject {
 		Wave++;
 		killedEnemies = 0;
 		m_bossbar.setVisible(false);
+		BossLabel.setVisible(false);
 	}
 }
