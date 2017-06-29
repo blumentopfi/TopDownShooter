@@ -94,6 +94,7 @@ public class GameOverScene extends Scene {
 
 		JLabel headline = new JLabel("Highscores", JLabel.CENTER);
 		headline.setForeground(Color.WHITE);
+
 		headline.setFont (headline.getFont ().deriveFont (64.0f));
 		headline.setBounds((main_Camera.getGameWindow().getWidth()/2 - 200),100,400,100);
 		headline.setVisible(true);
