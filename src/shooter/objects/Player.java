@@ -11,8 +11,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 import shooter.objects.Missle;
 import shooter.scenes.GameOverScene;
@@ -50,17 +49,26 @@ public class Player extends GameObject {
 	Point direction ; 
 	float dx ; 
 	float dy ; 
+
 	Audio a ;
+
 	long FireRate = 100;
 	long NextFire = 0  ;
+
 	int health = 10000 ;
 	int damage = 50 ;  
-	int UpperBoundsY ; 
-	int UpperBoundsX ; 
+
+	int UpperBoundsY ;
+	int UpperBoundsX ;
+
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
-	Weapon my_weapon = Weapon.SINGLE ; 
+	Weapon my_weapon = Weapon.SINGLE ;
+
+	GameManager manager;
+
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
+		manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
 		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
 		try {
 		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/1.png")));
@@ -106,8 +114,8 @@ public class Player extends GameObject {
 		System.out.println(e.getX());
 		System.out.println(e.getY());
 		System.out.println(SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(e.getPoint()));
-		if (e.getButton() == MouseEvent.BUTTON1) InputManager.Pause();
-		if (e.getButton() == MouseEvent.BUTTON2) InputManager.UnPause(); 
+		//if (e.getButton() == MouseEvent.BUTTON1) InputManager.Pause();
+		//if (e.getButton() == MouseEvent.BUTTON2) InputManager.UnPause();
 	} 
 
 	public void setDamage(int damage) {
@@ -147,6 +155,14 @@ public class Player extends GameObject {
 		super.Update();
 		this.setPosition(new Point2D.Float(MyMath.Clamp(9.5f, 0,this.getPosition().x + (dx*(float)Time.deltaTime)), MyMath.Clamp(9.5f, 0,this.getPosition().y +(dy*(float)Time.deltaTime))));
 		if (health <= 0){
+			int final_Score = manager.getScore();
+
+			String scoreString = "Score | " + final_Score;
+			try (FileWriter fw = new FileWriter("highscore.txt", true)) {
+				fw.write(scoreString + System.lineSeparator() );
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			this.Destroy();
 			SceneManager.getInstance().SetScene(new GameOverScene());
 		}

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>shooter</OriginalElement>
+  <nodes>
+    <node x="2020.7395833333335" y="1030.5">shooter.objects.MisslePlayer</node>
+    <node x="1465.6145833333335" y="0.0">framework.main.GameObject</node>
+    <node x="1066.0" y="696.5">shooter.objects.TestObject</node>
+    <node x="0.0" y="1663.5">framework.components.RectangleCollider</node>
+    <node x="2328.2395833333335" y="564.5">shooter.objects.GameManager</node>
+    <node x="1843.0" y="2118.0">shooter.scenes.ShooterMainScene</node>
+    <node x="2124.2395833333335" y="697.0">shooter.objects.Background</node>
+    <node x="1551.0" y="2085.0">shooter.scenes.MenuScene</node>
+    <node x="991.25" y="1306.5">framework.components.Animator</node>
+    <node x="448.0" y="1883.0">framework.main.SceneManager</node>
+    <node x="0.0" y="520.0">shooter.objects.Player</node>
+    <node x="1446.25" y="1182.0">framework.rendering.Camera</node>
+    <node x="1783.0" y="2414.0">framework.rendering.Time</node>
+    <node x="1561.7395833333335" y="1030.0">shooter.objects.DamagePowerUp</node>
+    <node x="1569.0" y="2414.0">shooter.main.Shooter</node>
+    <node x="715.0" y="2414.0">framework.rendering.RenderThread</node>
+    <node x="1371.0" y="2118.0">shooter.scenes.TestScene</node>
+    <node x="2789.2395833333335" y="564.0">shooter.objects.Boss</node>
+    <node x="51.0" y="1883.0">framework.input.InputManager</node>
+    <node x="692.75" y="1182.0">framework.components.Component</node>
+    <node x="1606.7239583333335" y="696.5">shooter.objects.Explosion</node>
+    <node x="1915.2395833333335" y="685.5">shooter.objects.Missle</node>
+    <node x="148.25" y="1306.0">framework.components.Collider</node>
+    <node x="1338.7395833333335" y="1030.0">shooter.objects.HealthPowerUp</node>
+    <node x="429.0" y="2414.0">framework.rendering.FPSCounter</node>
+    <node x="1240.0" y="2414.0">framework.geometry.Transform</node>
+    <node x="1473.5" y="1883.0">framework.main.Scene</node>
+    <node x="0.0" y="2414.0">framework.geometry.QuadTree</node>
+    <node x="182.5" y="1020.0">shooter.objects.Player.Weapon</node>
+    <node x="1765.7395833333335" y="1030.5">shooter.objects.MissleEnemy</node>
+    <node x="1059.0" y="2074.0">shooter.scenes.GameOverScene</node>
+    <node x="1661.75" y="1704.0">framework.rendering.Camera.GameView</node>
+    <node x="994.0052083333335" y="1041.5">shooter.objects.UpgradePowerUp</node>
+    <node x="983.0" y="2414.0">rendering.MenuView</node>
+    <node x="1315.0" y="674.5">shooter.objects.PowerUp</node>
+    <node x="0.0" y="2184.0">framework.input.InputManager.MouseInput</node>
+    <node x="578.25" y="1317.0">framework.components.Sprite</node>
+    <node x="527.0" y="531.0">shooter.objects.Enemy</node>
+    <node x="391.0" y="1652.0">framework.components.OvalCollider</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="framework.components.OvalCollider" target="framework.components.Collider">
+      <point x="0.0" y="-93.0" />
+      <point x="521.0" y="1627.0" />
+      <point x="455.75" y="1627.0" />
+      <point x="102.5" y="148.0" />
+    </edge>
+    <edge source="framework.rendering.Camera.GameView" target="framework.rendering.Camera">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="236.0" />
+    </edge>
+    <edge source="shooter.objects.TestObject" target="framework.main.GameObject">
+      <point x="0.0" y="-48.5" />
+      <point x="1180.5" y="490.0" />
+      <point x="1636.4479166666667" y="490.0" />
+      <point x="-136.66666666666674" y="225.0" />
+    </edge>
+    <edge source="shooter.objects.Boss" target="framework.main.GameObject">
+      <point x="0.0" y="-181.0" />
+      <point x="3018.7395833333335" y="470.0" />
+      <point x="2046.4479166666667" y="470.0" />
+      <point x="273.33333333333326" y="225.0" />
+    </edge>
+    <edge source="framework.components.Sprite" target="framework.components.Component">
+      <point x="0.0" y="-137.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="shooter.scenes.MenuScene" target="framework.main.Scene">
+      <point x="0.0" y="-81.0" />
+      <point x="1687.0" y="2054.0" />
+      <point x="1592.875" y="2054.0" />
+      <point x="23.875" y="70.5" />
+    </edge>
+    <edge source="shooter.objects.DamagePowerUp" target="shooter.objects.PowerUp">
+      <point x="0.0" y="-48.5" />
+      <point x="1653.7395833333335" y="995.0" />
+      <point x="1500.8333333333335" y="995.0" />
+      <point x="74.33333333333326" y="70.5" />
+    </edge>
+    <edge source="shooter.objects.Player.Weapon" target="shooter.objects.Player">
+      <point x="0.0" y="-58.5" />
+      <point x="0.0" y="225.0" />
+    </edge>
+    <edge source="shooter.scenes.TestScene" target="framework.main.Scene">
+      <point x="0.0" y="-48.0" />
+      <point x="1451.0" y="2054.0" />
+      <point x="1545.125" y="2054.0" />
+      <point x="-23.875" y="70.5" />
+    </edge>
+    <edge source="shooter.objects.UpgradePowerUp" target="shooter.objects.PowerUp">
+      <point x="0.0" y="-37.0" />
+      <point x="1103.5052083333335" y="995.0" />
+      <point x="1352.166666666667" y="995.0" />
+      <point x="-74.33333333333326" y="70.5" />
+    </edge>
+    <edge source="shooter.objects.PowerUp" target="framework.main.GameObject">
+      <point x="0.0" y="-70.5" />
+      <point x="1426.5" y="500.0" />
+      <point x="1704.78125" y="500.0" />
+      <point x="-68.33333333333348" y="225.0" />
+    </edge>
+    <edge source="shooter.objects.Player" target="framework.main.GameObject">
+      <point x="0.0" y="-225.0" />
+      <point x="253.5" y="470.0" />
+      <point x="1499.7812500000002" y="470.0" />
+      <point x="-273.33333333333326" y="225.0" />
+    </edge>
+    <edge source="shooter.objects.HealthPowerUp" target="shooter.objects.PowerUp">
+      <point x="0.0" y="-48.5" />
+      <point x="1440.2395833333335" y="995.0" />
+      <point x="1426.5" y="995.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+    <edge source="framework.components.Animator" target="framework.components.Component">
+      <point x="0.0" y="-147.5" />
+      <point x="1196.25" y="1281.0" />
+      <point x="829.4166666666666" y="1281.0" />
+      <point x="54.66666666666663" y="37.0" />
+    </edge>
+    <edge source="framework.components.Collider" target="framework.components.Component">
+      <point x="0.0" y="-148.0" />
+      <point x="353.25" y="1281.0" />
+      <point x="720.0833333333334" y="1281.0" />
+      <point x="-54.66666666666663" y="37.0" />
+    </edge>
+    <edge source="shooter.objects.Background" target="framework.main.GameObject">
+      <point x="0.0" y="-48.0" />
+      <point x="2216.2395833333335" y="490.0" />
+      <point x="1909.78125" y="490.0" />
+      <point x="136.66666666666652" y="225.0" />
+    </edge>
+    <edge source="shooter.scenes.ShooterMainScene" target="framework.main.Scene">
+      <point x="0.0" y="-48.0" />
+      <point x="1923.0" y="2044.0" />
+      <point x="1640.625" y="2044.0" />
+      <point x="71.625" y="70.5" />
+    </edge>
+    <edge source="shooter.objects.Explosion" target="framework.main.GameObject">
+      <point x="0.0" y="-48.5" />
+      <point x="1721.2239583333335" y="500.0" />
+      <point x="1773.1145833333335" y="500.0" />
+      <point x="0.0" y="225.0" />
+    </edge>
+    <edge source="shooter.objects.MissleEnemy" target="shooter.objects.Missle">
+      <point x="0.0" y="-48.0" />
+      <point x="1883.2395833333335" y="995.0" />
+      <point x="1962.4895833333335" y="995.0" />
+      <point x="-47.25" y="59.5" />
+    </edge>
+    <edge source="shooter.scenes.GameOverScene" target="framework.main.Scene">
+      <point x="0.0" y="-92.0" />
+      <point x="1205.0" y="2044.0" />
+      <point x="1497.375" y="2044.0" />
+      <point x="-71.625" y="70.5" />
+    </edge>
+    <edge source="shooter.objects.MisslePlayer" target="shooter.objects.Missle">
+      <point x="0.0" y="-48.0" />
+      <point x="2136.2395833333335" y="995.0" />
+      <point x="2056.9895833333335" y="995.0" />
+      <point x="47.25" y="59.5" />
+    </edge>
+    <edge source="shooter.objects.GameManager" target="framework.main.GameObject">
+      <point x="0.0" y="-180.5" />
+      <point x="2548.7395833333335" y="480.0" />
+      <point x="1978.1145833333335" y="480.0" />
+      <point x="205.0" y="225.0" />
+    </edge>
+    <edge source="shooter.objects.Missle" target="framework.main.GameObject">
+      <point x="0.0" y="-59.5" />
+      <point x="2009.7395833333335" y="500.0" />
+      <point x="1841.4479166666667" y="500.0" />
+      <point x="68.33333333333326" y="225.0" />
+    </edge>
+    <edge source="shooter.objects.Enemy" target="framework.main.GameObject">
+      <point x="0.0" y="-214.0" />
+      <point x="786.5" y="480.0" />
+      <point x="1568.1145833333335" y="480.0" />
+      <point x="-205.0" y="225.0" />
+    </edge>
+    <edge source="framework.input.InputManager.MouseInput" target="framework.input.InputManager">
+      <point x="0.0" y="-92.5" />
+      <point x="0.0" y="125.5" />
+    </edge>
+    <edge source="framework.components.RectangleCollider" target="framework.components.Collider">
+      <point x="0.0" y="-81.5" />
+      <point x="185.5" y="1627.0" />
+      <point x="250.75" y="1627.0" />
+      <point x="-102.5" y="148.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.30000000000000004" x="1443.333333333333" y="1219.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -23,15 +23,20 @@ import static shooter.objects.Enemy.random;
  * Created by 5knopp on 01.06.2017.
  */
 public class Boss extends GameObject {
+
     public float speed = 1.5f;
-    public int health = 10000;
+    public int health = 3000;
+
     public static int MOVE_DISTANCE = 100;
     public int value = 20 ;
     public int moveCounter = 0;
     public int lastMove = 2;
+
     long FireRate = 500  ;
     long NextFire = 0  ;
+
     GameManager manager ;
+
     public Boss(String PathToSprite, String Name, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
@@ -46,8 +51,6 @@ public class Boss extends GameObject {
     public int getValue(){
         return value ;
     }
-    
-
 
     public void Update(){
         super.Update();
@@ -62,6 +65,7 @@ public class Boss extends GameObject {
             this.Destroy();
         }
     }
+
     public void move() {
         if(this.getPosition().y < 2) {
             this.setPosition(new Point2D.Float(this.getPosition().x, (float) (this.getPosition().y + speed *Time.deltaTime)));
@@ -96,6 +100,7 @@ public class Boss extends GameObject {
         }
 
     }
+
     private void shootSingle(){
         double maxWidth = this.getWidth();
         double maxHeight = this.getHeight();
@@ -121,15 +126,18 @@ public class Boss extends GameObject {
     public void addDamage(int damage){
         health -= damage ;
     }
+
     public void setSpeed(float newSpeed) {
         speed = newSpeed;
     }
+
     public void Destroy(){
         super.Destroy();
         manager.killedBoss();
         System.out.println("killedBoss");
 
     }
+
     public float getSpeed() {
         return speed;
     }

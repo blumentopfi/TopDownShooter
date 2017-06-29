@@ -1,0 +1,4 @@
+Score | 20
+Score | 40
+Score | 20
+Score | 100
