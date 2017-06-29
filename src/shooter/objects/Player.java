@@ -55,7 +55,7 @@ public class Player extends GameObject {
 	long FireRate = 100;
 	long NextFire = 0  ;
 
-	int health = 1000 ;
+	int health = 10000 ;
 	int damage = 50 ;  
 
 	int UpperBoundsY ;

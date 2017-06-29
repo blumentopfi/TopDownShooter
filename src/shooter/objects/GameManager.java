@@ -134,7 +134,7 @@ public class GameManager extends GameObject {
 			if (!boss) {
 				System.out.println("Killed Enemies: " + killedEnemies);
 				System.out.println("Boss created");
-				m_boss = new Boss("Assets/PlaneSprites/Enemy B-17.png", "Boss", 5, -3);
+				m_boss = new Boss("Assets/PlaneSprites/Enemy B-17.png", "Boss", (3000 * 2), 5, -3);
 				boss = true;
 				m_bossbar.setMaximum(m_boss.getHealth());
 				m_bossbar.setVisible(true);
