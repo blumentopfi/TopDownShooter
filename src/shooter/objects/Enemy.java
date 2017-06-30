@@ -140,6 +140,7 @@ public abstract class Enemy extends GameObject {
     public void Destroy(){
     	super.Destroy();
     	if (manager != null) manager.addKilledEnemy();
+    	
     	Random random = new Random(System.nanoTime()) ; 
     	int drop = random.nextInt(10) ; 
     	if (drop == 1){
@@ -151,6 +152,13 @@ public abstract class Enemy extends GameObject {
     	if (drop == 3){
     		new UpgradePowerUp(this.getPosition()) ;  
     	}
+    	if (this.getHealth() <= 0 ){
+    	ExplosionPlane e = (ExplosionPlane)manager.ExplosionsPlane.getExplosion() ; 
+    	e.setPosition(this.getPosition());
+    	e.Boom();
+    	}
+    	//e.setDimension(new Dimension((int)e.getTransform().getSize().getWidth(),(int)e.getTransform().getSize().getHeight()));
+    	
     }
     public float getSpeed() {
         return speed;

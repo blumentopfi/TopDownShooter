@@ -46,7 +46,8 @@ public class GameManager extends GameObject {
 	int i = 6 ; 
 	int j = 6 ; 
 	JPanel[][] panelHolder = new JPanel[i][j] ; 
-	
+	public ObjectPool ExplosionsSciFi = new ObjectPool() ; 
+	public ObjectPool ExplosionsPlane = new ObjectPool() ; 
 	
 	public Player getPlayer(){
 		return this.main_player ;
@@ -64,7 +65,12 @@ public class GameManager extends GameObject {
 			      SceneManager.getInstance().getMainCamera().AddGUIElement(panelHolder[m][n]);
 			   }
 			}
-	
+		new Thread(() -> {
+			ExplosionsSciFi.init(true);  
+		}).start();
+		new Thread(() -> {
+			ExplosionsPlane.init(false);  
+		}).start();
 		main_player = 	new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
 		ScoreLabel.setFont(new Font("Verdana", Font.PLAIN, 25));

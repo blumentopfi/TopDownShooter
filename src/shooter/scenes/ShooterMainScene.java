@@ -10,7 +10,7 @@ import framework.main.Scene;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
 import shooter.objects.Background;
-import shooter.objects.ExplosionPool;
+import shooter.objects.ObjectPool;
 import shooter.objects.GameManager;
 import shooter.objects.HealthPowerUp;
 import shooter.objects.Player;
@@ -25,9 +25,7 @@ public class ShooterMainScene extends Scene {
 		new Background(true) ; 
 		long time = System.nanoTime() ; 
 		
-		new Thread(() -> {
-			ExplosionPool.init();  
-		}).start();
+
 		System.out.println(System.nanoTime() - time) ;
 		gameManager = new GameManager("Manager") ;
 		gameManager.StartWaves(); 

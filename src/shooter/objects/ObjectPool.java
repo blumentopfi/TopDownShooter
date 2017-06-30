@@ -5,12 +5,12 @@ import java.util.List;
 
 import framework.math.Pair;
 
-public  class ExplosionPool {
-	static private int Size = 60 ; 
-	static private List<Pair<Boolean,Explosion>> m_Explosions = new ArrayList<Pair<Boolean,Explosion>>() ; 
-	static private List<Boolean> m_readyStates = new ArrayList<Boolean>() ; 
+public class ObjectPool {
+	 private int Size = 60 ; 
+	 private List<Pair<Boolean,Explosion>> m_Explosions = new ArrayList<Pair<Boolean,Explosion>>() ; 
+	 private List<Boolean> m_readyStates = new ArrayList<Boolean>() ; 
 	
-	static public Explosion getExplosion(){
+	 public Explosion getExplosion(){
 		for (int i = 0 ; i < m_Explosions.size();i++ ){
 			if (m_Explosions.get(i).getFirst()){
 				m_Explosions.get(i).setFirst(false);
@@ -20,18 +20,23 @@ public  class ExplosionPool {
 		}
 		return null ; 
 	}
-	static public void returnExplosionToPool(Explosion e ){
+	 public void returnExplosionToPool(Explosion e ){
 		for (int i = 0 ; i < m_Explosions.size() ; i++){
 			if (m_Explosions.get(i).getSecond() == e){
 				m_Explosions.get(i).setFirst(true);
 				m_Explosions.get(i).getSecond().setActive(false);
-				m_Explosions.get(i).getSecond().myAnimator.Reset();
+				m_Explosions.get(i).getSecond().getAnimator().Reset();
 			}
 		}
 	}
-	static public void init() {
+	 public void init(boolean SciFiExplo) {
 		for (int i = 0 ; i < Size ; i++){
-			Explosion e = new Explosion("Explo") ;
+			Explosion e ; 
+			if (SciFiExplo){
+			e = new ExplosionSciFi("Explo") ;
+			}else{
+			e = new ExplosionPlane("Explo") ;
+			}
 			e.setActive(false);
 			m_Explosions.add(new Pair<Boolean,Explosion>(true,e)) ; 
 			

@@ -9,7 +9,7 @@ import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
 import shooter.objects.Enemy;
-import shooter.objects.ExplosionPool;
+import shooter.objects.ObjectPool;
 import shooter.objects.GameManager;
 import shooter.objects.Player;
 import shooter.objects.SimpleEnemy;

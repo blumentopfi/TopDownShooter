@@ -12,7 +12,7 @@ import framework.rendering.Camera;
 import shooter.objects.Background;
 import shooter.objects.Enemy;
 import shooter.objects.Explosion;
-import shooter.objects.ExplosionPool;
+import shooter.objects.ObjectPool;
 import shooter.objects.GameManager;
 import shooter.objects.HealthPowerUp;
 import shooter.objects.Player;

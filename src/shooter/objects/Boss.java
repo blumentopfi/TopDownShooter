@@ -151,6 +151,31 @@ public class Boss extends GameObject {
     public void Destroy(){
         super.Destroy();
         manager.killedBoss();
+        
+        Random random = new Random(System.nanoTime());
+    	new Thread(() -> {
+    		float x = this.getPosition().x ; 
+            float y = this.getPosition().y ; 
+            float random_x_offset = 0 ; 
+            float random_y_offset = 0 ; 
+    		 ExplosionPlane e ;
+    		 for (int i = 0 ; i < 20 ; i++){
+    			 e = (ExplosionPlane)manager.ExplosionsPlane.getExplosion() ; 
+    			 random_y_offset = random.nextFloat()*(2-random.nextInt(5)) ; 
+    			 random_x_offset = random.nextFloat()*(2-random.nextInt(5)) ;
+    			 e.setPosition(new Point2D.Float(x + random_x_offset, y + random_y_offset));
+    			 e.Boom();
+    			 try {
+					Thread.sleep(random.nextInt(80));
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    		 }
+		}).start();
+       
+
+    	
         System.out.println("killedBoss");
 
     }

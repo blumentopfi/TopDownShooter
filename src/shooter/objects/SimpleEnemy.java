@@ -1,8 +1,16 @@
 package shooter.objects;
 
+import framework.components.Animator;
 import framework.main.GameObject;
 
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
 
 /**
  * Created by Eike Nils on 22.06.2017.
