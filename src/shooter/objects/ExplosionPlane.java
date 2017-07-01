@@ -32,7 +32,7 @@ public  class ExplosionPlane extends Explosion {
 			e.printStackTrace();
 		}    
 		this.setDimension(new Dimension(this.getTransform().getSize().width/2,this.getTransform().getSize().height/2));
-		myAnimator = new Animator(myAnimation,this,false,50) ; 
+		myAnimator = new Animator(myAnimation,this,false,25) ; 
 		this.addComponent(myAnimator);
 		this.addComponent(a = new Audio());
 		try {
