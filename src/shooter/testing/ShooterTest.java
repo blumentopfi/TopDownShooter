@@ -1,11 +1,15 @@
 package shooter.testing;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
 import shooter.objects.Enemy;
+import shooter.objects.ObjectPool;
 import shooter.objects.GameManager;
 import shooter.objects.Player;
 import shooter.objects.SimpleEnemy;
@@ -19,37 +23,47 @@ import static org.junit.Assert.*;
 import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
+import java.lang.annotation.Repeatable;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
-
+@RunWith(Parameterized.class)
 public class ShooterTest {
 	TestScene test ; 
 	public ShooterTest() {
 		SceneManager.getInstance();
 		SceneManager.init(test = new TestScene()); 
 	}
+	@Parameterized.Parameters
+	    public static List<Object[]> data() {
+	        return Arrays.asList(new Object[1][0]);
+	    }
 	@Test
 	public void testShotAndKill() throws InterruptedException{
+		//ExplosionPool.init(); 
 		Thread.sleep(100);
 		GameManager m = new GameManager("Manager") ; 
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ; 
-		new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
-		p.setPosition(new Point2D.Float(5, 2));
+		Player p = m.getPlayer() ; 
+		Enemy enemy = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
+		enemy.lastMove = 2  ; 
+		p.setPosition(new Point2D.Float(5, 7));
 		p.setDamage(50000);
-		p.shoot(); 
+		Robot robot;
 		try {
-			Thread.sleep(1000);
+			robot = new Robot();
+			robot.keyPress(KeyEvent.VK_SPACE); //Shooting
+		} catch (AWTException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			Thread.sleep(1500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(null,SceneManager.getInstance().getGameObjectByName("Enemy")) ; 
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		assertEquals(20,m.getScore());
 		p.Destroy();
 		m.Destroy(); 
@@ -90,11 +104,12 @@ public class ShooterTest {
 	}
 	@Test
 	public void testWaveSpawning(){
+		
+		//Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		GameManager m = new GameManager("Manager") ;
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		m.StartWaves();
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,7 +120,7 @@ public class ShooterTest {
 		}
 		assertEquals(5,Counter) ;	
 	}
-	@Test
+	@Test  
 	public void testKeyInput() throws InterruptedException{
 		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
 		try {
@@ -115,19 +130,19 @@ public class ShooterTest {
 			assertEquals(false,null == SceneManager.getInstance().getGameObjectByName("Missle")) ;
 			float x = p.getPosition().x ; 
 			robot.keyPress(KeyEvent.VK_LEFT); //Move Left
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			assertTrue(x > p.getPosition().x) ;
 			x = p.getPosition().x ; 
 			robot.keyPress(KeyEvent.VK_RIGHT); //MOve Right
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			assertTrue(x < p.getPosition().x) ;
 			x = p.getPosition().y ; 
 			robot.keyPress(KeyEvent.VK_UP);//Move up
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			assertTrue(x > p.getPosition().y) ;
 			x = p.getPosition().y ; 
 			robot.keyPress(KeyEvent.VK_DOWN);//Move down
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			assertTrue(x < p.getPosition().y) ;
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
@@ -136,18 +151,14 @@ public class ShooterTest {
 		
 	}
 	@Test
-	public void testEnemys() throws InterruptedException{
+	public void testEnemies() throws InterruptedException{
+
 		GameManager m = new GameManager("Manager") ; 
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
-		Enemy e = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
-		Thread.sleep(100);
-		assertTrue(!(null == SceneManager.getInstance().getGameObjectByName("Missle"))) ; //Does the enemy shoot?
+		Enemy e = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 9, 0);
+		Thread.sleep(500);
 		Point2D.Float point = new Point2D.Float(e.getPosition().x, e.getPosition().y) ;
-		Thread.sleep(1000);
+		Thread.sleep(100);
 		assertTrue(point.y < e.getPosition().y) ;
 	}
-	
-	
-	
-	
+
 }

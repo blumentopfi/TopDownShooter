@@ -13,35 +13,19 @@ import javax.imageio.ImageIO;
 import framework.components.Animator;
 import framework.components.Sprite;
 import framework.main.GameObject;
+import framework.main.SceneManager;
 
-public  class Explosion extends GameObject {
+public  class
+Explosion extends GameObject {
 	Animator myAnimator ; 
+	GameManager manager ; 
 	public Explosion(String Name){
 		super(Name) ; 
-		this.addComponent(new Sprite("Assets/ProjectileSprite/Explosion/1_0.png",this));
-		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
-		try {
-			for (int i = 0 ; i < 17 ; i++) 
-				myAnimation.add(ImageIO.read(new File("Assets/ProjectileSprite/Explosion/1_" + i + ".png")));
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}    
-		this.setDimension(new Dimension(this.getTransform().getSize().width/2,this.getTransform().getSize().height/2));
-		myAnimator = new Animator(myAnimation,this,false,100) ; 
-		this.addComponent(myAnimator);
-		
+		this.manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
 		
 	}
 	public void Update(){
-		super.Update() ; 
-		if (myAnimator != null){
-			if (myAnimator.hasFinished()){
-				this.Destroy();
-			}
-		}
-		
-		
+		super.Update();
 	}
-
 }

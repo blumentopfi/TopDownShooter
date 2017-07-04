@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -22,12 +23,14 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import framework.components.UIString;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.RenderThread;
@@ -39,7 +42,7 @@ public class Camera extends Thread {
 	public long deltaTime = 0 ; 
 	public long timeSinceLastFrame = 0 ; 
 	//protected JLabel ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
-	protected List<JComponent> GUIElements  = new ArrayList<JComponent>() ; 
+	protected List<UIString> GUIElements  = new ArrayList<UIString>() ; 
 	public Camera(int height , int width,Rectangle2D.Float ViewRect, JFrame gameWindow){
 		m_GameView = new GameView() ; 
 		this.ViewRect = ViewRect ;
@@ -53,7 +56,6 @@ public class Camera extends Thread {
 		m_fpscounter = new FPSCounter() ; 
 		m_fpscounter.start();
 		this.start();	
-		
 		render() ; 
 	}
 	public Rectangle2D.Float getViewRect(){
@@ -73,7 +75,6 @@ public class Camera extends Thread {
 	}
 	
 	public void AddGUIElement(JComponent test){
-		GUIElements.add(test) ; 
 		m_GameView.add(test) ; 
 		m_GameView.revalidate();
 		m_GameView.repaint(); 
@@ -81,9 +82,15 @@ public class Camera extends Thread {
 	
 	public void RemoveGUIElement(JComponent toremove){
 		m_GameView.remove(toremove);
-		GUIElements.remove(toremove);
 		m_GameView.revalidate();
 		m_GameView.repaint(); 
+	}
+	
+	public void AddString(UIString a){
+		this.GUIElements.add(a) ;
+	}
+	public void RemoveString(UIString b){
+		this.GUIElements.remove(b) ;
 	}
 	
 	public void OverrideLayout(LayoutManager New){
@@ -114,7 +121,7 @@ public class Camera extends Thread {
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; 
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
 			GameObject Object = gameObjectsinScene.get(i) ;
-				if (Object != null){
+				if (Object != null && Object.isActive()){
 					Point2D.Float test = this.WorldCoordToScreenCoord(Object.getPosition()) ;
 					if (true || this.getGameWindow().getBounds().intersects(new Rectangle2D.Float(test.x,test.y,(float)Object.getWidth(),(float)Object.getHeight()))){
 					if (Object.getSprite() != null){
@@ -144,12 +151,20 @@ public class Camera extends Thread {
 					}
 				}
 		}
+		for (UIString s : this.GUIElements){
+			g.setColor(s.color);
+			System.out.println("Drawing: " + s.string);
+			System.out.println(g.getFont().getFontName()) ; 
+			g.drawString(s.string, s.x, s.y);
+		}
 		
 	}
 	public Point2D.Float WorldCoordToScreenCoord (Point2D.Float WorldPoint){
 		Point2D.Float ScreenPoint = new Point2D.Float(0,0) ; 
+		if (m_GameWindow != null && ViewRect != null && WorldPoint != null){
 		ScreenPoint.y = (float) (m_GameWindow.getHeight() / ViewRect.getHeight() * WorldPoint.y) ; 
 		ScreenPoint.x = (float) (m_GameWindow.getWidth() / ViewRect.getWidth() * WorldPoint.x) ; 
+		}
 		return ScreenPoint ; 
 	}
 

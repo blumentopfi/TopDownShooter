@@ -9,7 +9,11 @@ import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 
-
+/**
+ * 
+ * @author 7toeter
+ *
+ */
 public class Background extends GameObject {
 	public Background() {
         super("Background");

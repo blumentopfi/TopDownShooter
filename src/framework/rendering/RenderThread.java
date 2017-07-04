@@ -20,7 +20,6 @@ public class RenderThread extends Thread {
 				double check = time-last_time ;
 				check = check/1000000000f ; 
 				Time.deltaTime = check ; 
-				//System.out.println(Time.deltaTime);
 				last_time = time ; 
 				render() ;  
 				try {
@@ -35,7 +34,14 @@ public class RenderThread extends Thread {
 		
 		private void render () { 
 			if (SceneManager.getInstance().getMainCamera() != null){
-			SceneManager.getInstance().getMainCamera().getGameView().repaint();
+				new Thread(() -> {
+					try{
+					SceneManager.getInstance().getMainCamera().getGameView().repaint();
+					}catch(NullPointerException e){
+						//ignore
+					}
+				}).start();
+		
 			}		
 		}
 		

@@ -1,5 +1,8 @@
 package framework.main; 
 import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -29,6 +32,7 @@ public class SceneManager {
 	static Scene m_Scene ; 
 	static JFrame game_Window ; 
 	static InputManager input_manager ; 
+	static public GraphicsConfiguration config ; 
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
 	public static void init(Scene StartScene) {
@@ -36,6 +40,9 @@ public class SceneManager {
 		game_Window = new JFrame("TopDownShooter") ; //create the window
 		SceneManager.getInstance().SetScene(StartScene); //Set the first Scene
 		input_manager = new InputManager()  ; //create an input manager 
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = env.getDefaultScreenDevice();
+		config = device.getDefaultConfiguration();
 	}
 	
 	public List<GameObject> getGameObjectToDelete(){
