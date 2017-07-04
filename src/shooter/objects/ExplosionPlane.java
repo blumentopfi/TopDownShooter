@@ -16,7 +16,11 @@ import framework.components.Animator;
 import framework.components.Audio;
 import framework.components.Sprite;
 import framework.main.GameObject;
-
+/**
+ * Stylish Explosion for enemy Planes
+ * @author Fin
+ *
+ */
 public  class ExplosionPlane extends Explosion {
 	Animator myAnimator ; 
 	Audio a ; 
@@ -44,13 +48,13 @@ public  class ExplosionPlane extends Explosion {
 	public void Update(){
 		super.Update() ; 
 		if (myAnimator != null){
-		if (myAnimator.hasFinished()){
+		if (myAnimator.hasFinished()){ //if animation is finished return this to pool
 			manager.ExplosionsPlane.returnExplosionToPool(this);
 			
 		}
 		}	
 	}
 	public void Boom(){
-		a.PlaySound("BOOOOOM");
+		a.PlaySound("BOOOOOM"); //BOOOOOOOOM
 	}
 }

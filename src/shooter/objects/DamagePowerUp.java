@@ -7,7 +7,11 @@ import java.awt.geom.Rectangle2D;
 
 import framework.components.*;
 import framework.components.Sprite;
-
+/**
+ * Damage Power Up if collected ups the damage of the player
+ * @author Fin
+ *
+ */
 public class DamagePowerUp extends PowerUp {
 	private int damageUp ; 
 	public DamagePowerUp(Point2D.Float SpawnPoint, int damageUp){

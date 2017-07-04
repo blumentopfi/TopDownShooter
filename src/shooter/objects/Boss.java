@@ -52,6 +52,10 @@ public class Boss extends GameObject {
     public int getValue(){
         return value ;
     }
+    /**
+     * Shoot three bullets with a given offset from the Bosses Position
+     * @param offset
+     */
 	private void shootTriple(int offset){
 		GameObject MyBullet = new MissleEnemy(25,new Point2D.Float(0, +4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+offset, this.getPosition().y -0.5f));
@@ -69,7 +73,7 @@ public class Boss extends GameObject {
         super.Update();
         move();
         if (NextFire < System.currentTimeMillis() ){
-            if (manager.Wave > 1){
+            if (manager.Wave > 1){ //If player got wave 1 to die Boss gets harder
         	this.shootTriple(2);
         	this.shootTriple(-2);}else{
         		shootSingle() ; 
@@ -77,12 +81,14 @@ public class Boss extends GameObject {
             NextFire = System.currentTimeMillis() + FireRate ;
         }
 
-        if (health <= 0 ){
+        if (health <= 0 ){ //If we die  give the Player a high score value
             manager.AddScore(this.getValue());
             this.Destroy();
         }
     }
-
+    /**
+     * move Left right randomly
+     */
     public void move() {
         if(this.getPosition().y < 2) {
             this.setPosition(new Point2D.Float(this.getPosition().x, (float) (this.getPosition().y + speed *Time.deltaTime)));
@@ -117,7 +123,9 @@ public class Boss extends GameObject {
         }
 
     }
-
+    /**
+     * Shoot a single Bullet
+     */
     private void shootSingle(){
         double maxWidth = this.getWidth();
         double maxHeight = this.getHeight();
@@ -139,11 +147,14 @@ public class Boss extends GameObject {
         MyBulletLeft.Rotate(180);
         MyBulletRight.Rotate(180) ;
     }
-
+    /**
+     * receive damage
+     * @param damage
+     */
     public void addDamage(int damage){
         health -= damage ;
     }
-
+    
     public void setSpeed(float newSpeed) {
         speed = newSpeed;
     }
@@ -153,6 +164,7 @@ public class Boss extends GameObject {
         manager.killedBoss();
         
         Random random = new Random(System.nanoTime());
+        //AFTER THIS IS THE COOLEST THREADED EXPLOSION EFFECT BOOOOOOOOOOOOM
     	new Thread(() -> {
     		float x = this.getPosition().x ; 
             float y = this.getPosition().y ; 
@@ -173,10 +185,6 @@ public class Boss extends GameObject {
 				}
     		 }
 		}).start();
-       
-
-    	
-        System.out.println("killedBoss");
 
     }
 

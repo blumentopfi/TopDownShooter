@@ -14,7 +14,11 @@ import framework.components.Animator;
 import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
-
+/**
+ * Mother Class for our Explosion Types
+ * @author Fin
+ *
+ */
 public  class
 Explosion extends GameObject {
 	Animator myAnimator ; 

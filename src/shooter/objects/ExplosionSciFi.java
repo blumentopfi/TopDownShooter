@@ -13,7 +13,11 @@ import javax.imageio.ImageIO;
 import framework.components.Animator;
 import framework.components.Sprite;
 import framework.main.GameObject;
-
+/**
+ * Stylish Explosion for our shots, nice blue effect
+ * @author Fin
+ *
+ */
 public  class ExplosionSciFi extends Explosion {
 	Animator myAnimator ; 
 	public ExplosionSciFi(String Name){
@@ -27,16 +31,14 @@ public  class ExplosionSciFi extends Explosion {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    
-		this.setDimension(new Dimension(this.getTransform().getSize().width/2,this.getTransform().getSize().height/2));
+		//  this.setDimension(new Dimension(this.getTransform().getSize().width/2,this.getTransform().getSize().height/2));
 		myAnimator = new Animator(myAnimation,this,false,50) ; 
 		this.addComponent(myAnimator);
-		
-		
 	}
 	public void Update(){
 		super.Update() ; 
 		if (myAnimator != null){
-		if (myAnimator.hasFinished()){
+		if (myAnimator.hasFinished()){ //if we have finished return ourselfs to the pool
 			manager.ExplosionsSciFi.returnExplosionToPool(this);
 		}
 		}	

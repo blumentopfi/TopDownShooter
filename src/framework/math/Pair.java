@@ -1,5 +1,11 @@
 package framework.math;
-
+/**
+ *  little Class for a generic Tuple
+ * @author Fin
+ * 
+ * @param <T>
+ * @param <Z>
+ */
 public class Pair<T,Z> {
 		T FirstComponent ; 
 		Z SecondComponent ; 
