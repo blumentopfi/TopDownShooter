@@ -9,14 +9,26 @@ import java.awt.geom.Rectangle2D.Float;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
-
+/**
+ * Rectangle Collider component, used for collision
+ * @author Fin
+ *@version 1.0
+ */
 public class RectangleCollider extends Collider {
-	
+	/**
+	 * Constructor to init collider with user specified size
+	 * @param collidingRectangle
+	 * @param initObject
+	 */
 	public RectangleCollider(Rectangle2D.Float collidingRectangle, GameObject initObject) {
 		super(initObject);
 		this.collidingShape = collidingRectangle ; 
 		this.HasOverridenSize = true ; 
 	}
+	/**
+	 * Constructor to init collider with size of object
+	 * @param initObject
+	 */
 	public RectangleCollider(GameObject initObject) {
 		super(initObject);
 	

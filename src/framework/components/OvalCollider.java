@@ -10,15 +10,28 @@ import java.awt.geom.Rectangle2D.Float;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
-
+/**
+ * Oval Collider component, used for collision
+ * @author Fin
+ *@version 1.0
+ */
 public class OvalCollider extends Collider {
 	double factor;
-	
+	/**
+	 * Constructor to init collider with user specified size
+	 * @param collidingRectangle
+	 * @param initObject
+	 */
 	public OvalCollider(Ellipse2D.Float collidingEllipse, GameObject initObject) {
 		super(initObject);
 		this.collidingShape = collidingEllipse ; 
 		this.HasOverridenSize = true ; 
 	}
+	/**
+	 * Constructor to init collider with size of object
+	 * @param collidingRectangle
+	 * @param initObject
+	 */
 	public OvalCollider(GameObject initObject, double scale_factor) {
 		super(initObject);
 		this.factor = scale_factor;

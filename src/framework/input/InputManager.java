@@ -66,7 +66,11 @@ public class InputManager implements ActionListener {
 		window.setFocusable(true);
 		window.setFocusTraversalKeysEnabled(true);
 	}
-
+	/**
+	 * Class to that broadcasts MouseInput to all GameObjects
+	 * @author Fin
+	 *
+	 */
 	class MouseInput implements MouseListener {
 		List<GameObject> gameObjectsinScene;
 
@@ -92,7 +96,9 @@ public class InputManager implements ActionListener {
 			// TODO Auto-generated method stub
 
 		}
-
+		/**
+		 * Go through all GameObjects and give them the MouseEvent
+		 */
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			for (int i = 0; i < gameObjectsinScene.size(); i++) {
@@ -101,7 +107,9 @@ public class InputManager implements ActionListener {
 			}
 
 		}
-
+		/**
+		 * Go through all GameObjects and give them the MouseEvent
+		 */
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
 			for (int i = 0; i < gameObjectsinScene.size(); i++) {
@@ -144,7 +152,12 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
    
    return false ;
 }
-	
+	/**
+	 * Function to detect Collisions via a Quad Tree
+	 *
+ 	 * @see <a href="Wikipedia Quad Tree">https://de.wikipedia.org/wiki/Quadtree</a>
+	 * @param gameObjectsinScene
+	 */
 	private void CheckCollisions(List<GameObject> gameObjectsinScene){
 		//New Collision Detection using a Quad Tree
 		QuadTree quad = new QuadTree(0, camera.getViewRect());
@@ -155,13 +168,13 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 			}
 		}
 		List<GameObject> returnedObjects = new ArrayList<GameObject>();
-		for (int i = 0; i < gameObjectsinScene.size(); i++) {
+		for (int i = 0; i < gameObjectsinScene.size(); i++) { //iterate through objects
 			GameObject objectA = gameObjectsinScene.get(i);
-			Collider colliderToCheckA = objectA.getCollider();
+			Collider colliderToCheckA = objectA.getCollider() ; 
 			if (colliderToCheckA != null) {
 				returnedObjects.clear();
 				Shape ShapeA = colliderToCheckA.getCollidingShape();
-				quad.retrieve(returnedObjects, gameObjectsinScene.get(i));
+				quad.retrieve(returnedObjects, gameObjectsinScene.get(i)); //get Objects in the same node in tree
 				for (int j = 0; j < returnedObjects.size(); j++) {
 					GameObject objectB = returnedObjects.get(j);			
 					if (objectB != objectA) {
@@ -169,7 +182,7 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 						colliderToCheckB = objectB.getCollider();
 						if (colliderToCheckB != null) {
 							Shape ShapeB = colliderToCheckB.getCollidingShape();
-							if (ShapeA.intersects(ShapeB.getBounds2D())) {
+							if (ShapeA.intersects(ShapeB.getBounds2D())) { //check Collisions between
 								objectA.OnCollision(objectB);
 								objectB.OnCollision(objectA);
 							}

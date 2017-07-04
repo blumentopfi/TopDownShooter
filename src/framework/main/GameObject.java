@@ -111,6 +111,10 @@ public abstract class GameObject {
 			
 		}
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public Collider getCollider(){
 		for (int i = 0 ; i < m_Components.size() ; i++ ){
 			Component c = m_Components.get(i) ;
@@ -122,6 +126,29 @@ public abstract class GameObject {
 		}
 		return null ; 
 	}
+	/**
+	 * text function to get generic Component, cant get this to work
+	 * @param type
+	 * @return
+	 */
+	public<T extends Component>  T getComponent (Class<T> type){
+		
+		for (int i = 0 ; i <m_Components.size() ; i++){
+			Component c = m_Components.get(i) ; 
+			if (c!=null){
+				/*if (c.getClass().getTypeName().equals(){
+					return type.cast(c) ; 
+				}*/
+			}
+		}	
+		return null;
+		
+	}
+	
+	/**
+	 * 
+	 * @return Sprite of Object
+	 */
 	public Sprite getSprite(){
 		for (Component c : m_Components){
 			if (c instanceof Sprite){
@@ -130,6 +157,10 @@ public abstract class GameObject {
 		}
 		return null ; 
 	}
+	/**
+	 * 
+	 * @return Animator of Object
+	 */
 	public Animator getAnimator(){
 		for (Component c : m_Components){
 			if (c instanceof Animator){

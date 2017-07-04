@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * 
- * @author Fin TÃ¶ter
+ * @author Fin Töter
  * @version 1.0 
  */
 public class QuadTree {

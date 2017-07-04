@@ -10,11 +10,16 @@ import java.awt.geom.Rectangle2D;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
-
+/**
+ * Abstract mother class for our Colliders
+ * @author Fin
+ * @version 1.5
+ * Switched to Abstract Class to implement more Collider Types
+ */
 public abstract class Collider extends Component {
 	GameObject myObject ; //Object the Collider is assgined to
-	Shape collidingShape ; 
-	boolean HasOverridenSize = false ; 
+	Shape collidingShape ; //Shape of the Collider
+	boolean HasOverridenSize = false ; //See if user set size manually
 	/**
 	 * Mother Class for the Collider 
 	 * @param collidingRectangle
@@ -36,10 +41,23 @@ public abstract class Collider extends Component {
 	abstract void setY(float newY) ; 
 	public abstract float getX() ; 
 	public abstract float getY() ; 
+	/**
+	 * see if this Collider interesects with another
+	 * @param A
+	 * @return
+	 */
 	public abstract boolean intersects(Collider A) ; 
+	/**
+	 * 
+	 * @return Width
+	 */
 	public  float getWidth(){
 		return (float) this.collidingShape.getBounds2D().getWidth();
 	}
+	/**
+	 * 
+	 * @return Height
+	 */
 	public  float getHeight() {
 		return (float) this.collidingShape.getBounds2D().getHeight();
 	}
@@ -56,10 +74,10 @@ public abstract class Collider extends Component {
 	public Shape getCollidingShape(){
 		return this.collidingShape ;
 	}
-	abstract Shape gameObjectToShape(GameObject object) ; 
 	/**
-	 * Convert the Image of an Rectangle in Screen Size to a rectangle in GameSize
+	 * return the gameObject in form of the colliding Shape 
 	 * @param object
-	 * @return Rectangle in Game Size
+	 * @return
 	 */
+	abstract Shape gameObjectToShape(GameObject object) ; 
 }

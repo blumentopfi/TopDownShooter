@@ -31,7 +31,7 @@ public class Sprite extends Component {
 	GameObject my_object;// GameObject the sprite is assigned to ;
 	public int rotation = 0  ; 
 	/**
-	 * Constructor
+	 * Init the Sprite with a path to an image
 	 * 
 	 * @param PathToSprite
 	 * @param my
@@ -66,7 +66,11 @@ public class Sprite extends Component {
 		// Setting the size of the sprite to the size of gameObject
 		my_object.setDimension(new Dimension(this.getWidth(), this.getHeight()));
 	}
-
+	/**
+	 * init the Sprite with an already loaded image
+	 * @param image
+	 * @param my
+	 */
 	public Sprite(BufferedImage image, GameObject my) {
 		my_object = my;
 		// We convert the Sprite to the best format for the graphics card

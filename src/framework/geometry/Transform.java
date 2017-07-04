@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+import framework.input.InputManager;
+
 /**
  * Class which holds all the informations regarding position, rotation and dimension
  * @author Fin
@@ -29,6 +31,7 @@ public class Transform {
 	}
 	public Dimension getSize() {
 		return m_size;
+		
 	}
 	public void setSize(Dimension size) {
 		this.m_size = size;

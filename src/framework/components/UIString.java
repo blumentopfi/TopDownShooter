@@ -1,7 +1,11 @@
 package framework.components;
 
 import java.awt.Color;
-
+/**
+ * @deprecated
+ * @author Fin
+ *
+ */
 public class UIString {
 	public String string ; 
 	public int x ; 
