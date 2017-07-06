@@ -16,11 +16,12 @@ import framework.rendering.Camera;
  *@version 1.0
  */
 public class OvalCollider extends Collider {
-	double factor;
+	private double factor;
+
 	/**
-	 * Constructor to init collider with user specified size
-	 * @param collidingRectangle
-	 * @param initObject
+	 * Constructor to init collider with manual size
+	 * @param collidingEllipse our Collsion Shape
+	 * @param initObject mother Object
 	 */
 	public OvalCollider(Ellipse2D.Float collidingEllipse, GameObject initObject) {
 		super(initObject);
@@ -29,8 +30,8 @@ public class OvalCollider extends Collider {
 	}
 	/**
 	 * Constructor to init collider with size of object
-	 * @param collidingRectangle
-	 * @param initObject
+	 * @param scale_factor radius
+	 * @param initObject mother Object
 	 */
 	public OvalCollider(GameObject initObject, double scale_factor) {
 		super(initObject);

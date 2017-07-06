@@ -25,7 +25,7 @@ Explosion extends GameObject {
 	GameManager manager ; 
 	public Explosion(String Name){
 		super(Name) ; 
-
+	    //get the manager
 		this.manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
 		
 	}

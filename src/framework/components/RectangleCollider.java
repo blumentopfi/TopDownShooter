@@ -17,8 +17,8 @@ import framework.rendering.Camera;
 public class RectangleCollider extends Collider {
 	/**
 	 * Constructor to init collider with user specified size
-	 * @param collidingRectangle
-	 * @param initObject
+	 * @param collidingRectangle colliding Shape
+	 * @param initObject Mother Object
 	 */
 	public RectangleCollider(Rectangle2D.Float collidingRectangle, GameObject initObject) {
 		super(initObject);
@@ -27,7 +27,7 @@ public class RectangleCollider extends Collider {
 	}
 	/**
 	 * Constructor to init collider with size of object
-	 * @param initObject
+	 * @param initObject Mother Object
 	 */
 	public RectangleCollider(GameObject initObject) {
 		super(initObject);

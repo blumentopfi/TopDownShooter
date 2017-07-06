@@ -33,8 +33,8 @@ public class Sprite extends Component {
 	/**
 	 * Init the Sprite with a path to an image
 	 * 
-	 * @param PathToSprite
-	 * @param my
+	 * @param PathToSprite Path to the image
+	 * @param my mother Object
 	 */
 	public Sprite(String PathToSprite, GameObject my) {
 		my_object = my;
@@ -68,8 +68,8 @@ public class Sprite extends Component {
 	}
 	/**
 	 * init the Sprite with an already loaded image
-	 * @param image
-	 * @param my
+	 * @param image image that the Sprite should hold
+	 * @param my Mother Object
 	 */
 	public Sprite(BufferedImage image, GameObject my) {
 		my_object = my;
@@ -89,9 +89,9 @@ public class Sprite extends Component {
 	/**
 	 * Function to rotate Images
 	 * 
-	 * @param src
-	 * @param degrees
-	 * @return rotatedImage
+	 * @param src Image to rotate
+	 * @param degrees degree which we shall rotate the picture
+	 * @return rotatedImage rotated src
 	 */
 	private static BufferedImage rotateImage(BufferedImage src, double degrees) { 	
 		AffineTransform affineTransform = AffineTransform.getRotateInstance(Math.toRadians(degrees), src.getWidth() / 2,
@@ -106,7 +106,7 @@ public class Sprite extends Component {
 	/**
 	 * API Interface to rotate a sprite
 	 * 
-	 * @param winkel
+	 * @param winkel rotate
 	 */
 	public void rotate(int winkel) {
 		my_sprite_image = rotateImage(my_sprite_image, winkel);

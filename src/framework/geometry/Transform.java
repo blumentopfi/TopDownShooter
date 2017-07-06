@@ -12,12 +12,12 @@ import framework.input.InputManager;
  *
  */
 public class Transform {
-	private Point2D.Float m_position ; 
-	private Dimension m_size ;
-	private int rotation = 0 ; 
+	private Point2D.Float m_position ; //our Position
+	private Dimension m_size ; // our Size
+	private int m_rotation = 0 ; 
 	/**
-	 * @param size
-	 * @param position
+	 * @param size Size of the transform
+	 * @param position Position of the transform
 	 */
 	public Transform(Dimension size , Point2D.Float position){
 		m_size = size ; 
@@ -37,10 +37,10 @@ public class Transform {
 		this.m_size = size;
 	}
 	public int getRotation() {
-		return rotation;
+		return m_rotation;
 	}
 	public void setRotation(int rotation) {
-		this.rotation = rotation;
+		this.m_rotation = rotation;
 	} 
 	
 }

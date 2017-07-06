@@ -21,9 +21,8 @@ public abstract class Collider extends Component {
 	Shape collidingShape ; //Shape of the Collider
 	boolean HasOverridenSize = false ; //See if user set size manually
 	/**
-	 * Mother Class for the Collider 
-	 * @param collidingRectangle
-	 * @param initObject
+	 * Mother Class for the Collider
+	 * @param initObject mother object
 	 */
 	public Collider(GameObject initObject){
 		this.myObject = initObject ; 

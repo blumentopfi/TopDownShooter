@@ -27,8 +27,8 @@ public class Audio extends Component {
 	}
 	/**
 	 * Adds the desired Sound with a Path To a File and a Name so we can call it later
-	 * @param Name
-	 * @param PathToSound
+	 * @param Name Name of the sound
+	 * @param PathToSound Path to the sound file
 	 * @throws UnsupportedAudioFileException
 	 * @throws IOException
 	 * @throws LineUnavailableException
@@ -43,7 +43,7 @@ public class Audio extends Component {
 	 * Plays the before desired Sound, 
 	 * returns true if all goes well, 
 	 * returns false if the Sound is already playing
-	 * @param name
+	 * @param name Name of the Sound you want to play
 	 * @return
 	 */
 	public boolean PlaySound(String name){

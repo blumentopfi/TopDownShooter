@@ -30,7 +30,7 @@ public abstract class GameObject {
 	private List<Component> m_Components = new ArrayList<Component>() ; // List of Components that are attached
 	/**
 	 * Add a component
-	 * @param component
+	 * @param component Component we want to add
 	 */
 	public void addComponent(Component component){
 		m_Components.add(component) ;
@@ -47,13 +47,13 @@ public abstract class GameObject {
 	}
 	/**
 	 * That happens on Collision
-	 * @param collidingObject
+	 * @param collidingObject The object this collides with
 	 */
 	public void OnCollision(GameObject collidingObject) {
 	}
 	/**
-	 * Set the rotation of the gameObject
-	 * @param Winkel
+	 * Set the rotation of the gameObject with absolute values : so rotate(90) = 90 degrees and not += 90
+	 * @param Winkel Which degree we want this to rotate
 	 */
 	public void Rotate(int Winkel){
 		Winkel = Winkel % 360 ; 
@@ -112,7 +112,7 @@ public abstract class GameObject {
 		}
 	}
 	/**
-	 * 
+	 *  Get the Collider of the object
 	 * @return
 	 */
 	public Collider getCollider(){
@@ -189,7 +189,7 @@ public abstract class GameObject {
 		}
 	}
 	/**
-	 * 
+	 * Init the GameObject with a Name ;
 	 * @param Name
 	 */
 	public GameObject(String Name){

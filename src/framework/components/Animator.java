@@ -27,11 +27,11 @@ public class Animator extends Component {
 	boolean looping = true; //is Animatiorn looping
 	boolean hasFinished = false; //is Animation finished
 	/**
-	 * Konstruktur des Animators, wir benötigen ein SpriteSheet das Object was uns als Komponent 
-	 * hinzugefügt hat, und die rate in der wir den SpriteSheet durchgehen sollen, das hier loopt per default
-	 * @param SpriteSheet
-	 * @param initObject
-	 * @param rate 
+	 * Konstruktur des Animators, wir benï¿½tigen ein SpriteSheet das Object was uns als Komponent 
+	 * hinzugefï¿½gt hat, und die rate in der wir den SpriteSheet durchgehen sollen, das hier loopt per default
+	 * @param SpriteSheet Sprite Sheet of the Animator
+	 * @param initObject Mother object
+	 * @param rate  rate in which we change the Sprites
 	 */
 	public Animator(List<BufferedImage> SpriteSheet, GameObject initObject,int rate) {
 		this.m_myObject = initObject;
@@ -48,12 +48,12 @@ public class Animator extends Component {
 		return m_SpriteSheet ; 
 	}
 	/**
-	 * Konstruktur des Animators, wir benötigen ein SpriteSheet das Object was uns als Komponent 
-	 * hinzugefügt hat, und die rate in der wir den SpriteSheet durchgehen sollen.
-	 * @param SpriteSheet
-	 * @param initObject
-	 * @param looping
-	 * @param rate
+	 * Konstruktur des Animators, wir benï¿½tigen ein SpriteSheet das Object was uns als Komponent 
+	 * hinzugefï¿½gt hat, und die rate in der wir den SpriteSheet durchgehen sollen.
+	 * @param SpriteSheet Sprite Sheet of the Animator
+	 * @param initObject Mother object
+	 * @param rate  rate in which we change the Sprites
+	 * @param looping should the animator loop
 	 */
 	public Animator(List<BufferedImage> SpriteSheet, GameObject initObject, boolean looping,int rate) {
 		this.m_myObject = initObject;

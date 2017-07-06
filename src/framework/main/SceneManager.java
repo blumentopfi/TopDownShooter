@@ -95,7 +95,7 @@ public class SceneManager {
 	}
 	/**
 	 * Return the gameObject when you know the name of it
-	 * @param Name
+	 * @param Name Name of gameOBject to find
 	 * @return gameObject
 	 */
 	public GameObject getGameObjectByName(String Name){
@@ -120,14 +120,14 @@ public class SceneManager {
 	}
 	/**
 	 * Add a GameObject to the scene
-	 * @param toAdd
+	 * @param toAdd Object we want to add
 	 */
 	public void AddGameObjectToScene(GameObject toAdd){
 		m_GameObjectsInScene.add(toAdd) ; 
 	}
 	/**
 	 * Return every gameObject that is in the scene
-	 * @return
+	 * @return every GameObject in Scene
 	 */
 	public List<GameObject> GetAllGameObjectsInScene (){
 		return m_GameObjectsInScene ; 

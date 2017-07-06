@@ -9,9 +9,9 @@ public class MyMath {
 
 	/**
 	 * Clamp the Value between Min and Max
-	 * @param UpperBounds
-	 * @param LowerBounds
-	 * @param value
+	 * @param UpperBounds Upper Bounds of the range
+	 * @param LowerBounds Lower Bounds of the range
+	 * @param value value to clamp
 	 * @return Min when value < LowerBounds Max when value > UpperBounds otherwise value
 	 */
 	public static float Clamp (float UpperBounds,float LowerBounds,float value){

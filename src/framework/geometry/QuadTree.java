@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * 
- * @author Fin Töter
+ * @author Fin Tï¿½ter
  * @version 1.0 
  */
 public class QuadTree {
 	 
-	  private int MAX_OBJECTS = 5;
-	  private int MAX_LEVELS = 5;
-	 
-	  private int level;
-	  private List<GameObject> objects;
-	  private Rectangle2D.Float bounds;
-	  private QuadTree[] nodes;
+	  private int MAX_OBJECTS = 5; //Objects we hold in one node
+	  private int MAX_LEVELS = 5; //Max node Depth
+
+	  private int level; // which level we are on
+	  private List<GameObject> objects; // the object we hold
+	  private Rectangle2D.Float bounds; //Size of the wuad
+	  private QuadTree[] nodes ;  // List that holds our nodes
 	 
 	 /*
 	  * Constructor
