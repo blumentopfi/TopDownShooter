@@ -127,18 +127,18 @@ public abstract class GameObject {
 		return null ; 
 	}
 	/**
-	 * text function to get generic Component, cant get this to work
+	 * Generic function to get a generic Component not used everywhere
 	 * @param type
 	 * @return
 	 */
 	public<T extends Component>  T getComponent (Class<T> type){
-		
+
 		for (int i = 0 ; i <m_Components.size() ; i++){
 			Component c = m_Components.get(i) ; 
 			if (c!=null){
-				/*if (c.getClass().getTypeName().equals(){
+				if (c.getClass().getTypeName().equals(type.getTypeName()) || c.getClass().getSuperclass().getTypeName().equals(type.getTypeName())){
 					return type.cast(c) ; 
-				}*/
+				}
 			}
 		}	
 		return null;

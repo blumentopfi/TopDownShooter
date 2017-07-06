@@ -170,7 +170,7 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 		List<GameObject> returnedObjects = new ArrayList<GameObject>();
 		for (int i = 0; i < gameObjectsinScene.size(); i++) { //iterate through objects
 			GameObject objectA = gameObjectsinScene.get(i);
-			Collider colliderToCheckA = objectA.getCollider() ; 
+			Collider colliderToCheckA = objectA.getComponent(Collider.class);
 			if (colliderToCheckA != null) {
 				returnedObjects.clear();
 				Shape ShapeA = colliderToCheckA.getCollidingShape();
@@ -179,7 +179,7 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 					GameObject objectB = returnedObjects.get(j);			
 					if (objectB != objectA) {
 						Collider colliderToCheckB;
-						colliderToCheckB = objectB.getCollider();
+						colliderToCheckB = objectA.getComponent(Collider.class);
 						if (colliderToCheckB != null) {
 							Shape ShapeB = colliderToCheckB.getCollidingShape();
 							if (ShapeA.intersects(ShapeB.getBounds2D())) { //check Collisions between
