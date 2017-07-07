@@ -3,7 +3,7 @@ package framework.math;
  *  little Class for a generic Tuple
  * @author Fin
  * 
- * @param <T> Type of first 
+ * @param <T> Type of first
  * @param <Z>
  */
 public class Pair<T,Z> {

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -24,7 +25,7 @@ import framework.main.SceneManager;
  */
 public abstract class GameObject {
 	private String m_name ; 
-	private int m_tag ;  
+	private long m_id  ;
 	private Transform m_transform ; 
 	private boolean m_isActive = true ; 
 	private List<Component> m_Components = new ArrayList<Component>() ; // List of Components that are attached
@@ -193,6 +194,11 @@ public abstract class GameObject {
 	 * @param Name
 	 */
 	public GameObject(String Name){
+		Random random = new Random(System.nanoTime()) ;
+		m_id = random.nextLong() ;  
+		if(m_id < 0){
+			m_id = m_id * -1 ; 
+		}
 		m_name = Name ;
 		SceneManager.getInstance().AddGameObjectToScene(this);
 		m_transform = new Transform(new Dimension(0,0),new Point2D.Float(0,0)) ; //set default point to 0,0 and size to size of the image
@@ -244,13 +250,8 @@ public abstract class GameObject {
 	public void setName(String name) {
 		m_name = name;
 	}
-
-	public int getTag() {
-		return m_tag;
-	}
-
-	public void setTag(int tag) {
-		m_tag = tag;
+	public long getId(){
+		return m_id ; 
 	}
 	public boolean isActive() {
 		return m_isActive;

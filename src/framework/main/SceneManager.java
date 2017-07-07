@@ -48,6 +48,14 @@ public class SceneManager {
 	public List<GameObject> getGameObjectToDelete(){
 		return m_GameObjectsToDelete;
 	}
+	public GameObject getGameObjectbyId(long id){
+		for (int i = 0 ; i < this.m_GameObjectsInScene.size() ; i++){
+			if (id == this.m_GameObjectsInScene.get(i).getId()){
+				return this.m_GameObjectsInScene.get(i) ; 
+			}
+		}
+		return null ; 
+	}
 
 	/**
 	 * Switch to another Scene
