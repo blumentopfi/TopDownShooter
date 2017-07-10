@@ -19,7 +19,12 @@ import framework.main.GameObject;
  *
  */
 public  class ExplosionSciFi extends Explosion {
-	Animator myAnimator ; 
+	Animator myAnimator ;
+
+	/**
+	 * Explosion for the Sci-Fi-Bullets of the player.
+	 * @param Name The name of this game-object.
+	 */
 	public ExplosionSciFi(String Name){
 		super(Name) ; 
 		this.setActive(false);
@@ -35,6 +40,11 @@ public  class ExplosionSciFi extends Explosion {
 		myAnimator = new Animator(myAnimation,this,false,50) ; 
 		this.addComponent(myAnimator);
 	}
+
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
 	public void Update(){
 		super.Update() ; 
 		if (myAnimator != null){

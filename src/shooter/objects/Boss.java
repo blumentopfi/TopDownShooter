@@ -20,7 +20,9 @@ import javax.swing.JProgressBar;
 import static shooter.objects.Enemy.random;
 
 /**
- * Created by 5knopp on 01.06.2017.
+ * Created by Eike Nils on 01.06.2017.
+ * Game-object for a simple Boss-enemy.
+ * Similar to "Enemy" - Class, but with different movement and scalable shooting-modes.
  */
 public class Boss extends GameObject {
 
@@ -37,6 +39,14 @@ public class Boss extends GameObject {
 
     GameManager manager ;
 
+    /**
+     * Constructor for Boss.
+     * @param PathToSprite The Path to the Sprite.
+     * @param Name The name of the object.
+     * @param new_health Initial health of the boss.
+     * @param posX Starting-coordinate X.
+     * @param posY Starting-coordinate Y.
+     */
     public Boss(String PathToSprite, String Name, int new_health, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
@@ -49,12 +59,16 @@ public class Boss extends GameObject {
       
     }
 
+    /**
+     * Returns the value (score) of this game-object.
+     * @return The Value of this object.
+     */
     public int getValue(){
         return value ;
     }
     /**
      * Shoot three bullets with a given offset from the Bosses Position
-     * @param offset
+     * @param offset The spread between the bullets.
      */
 	private void shootTriple(int offset){
 		GameObject MyBullet = new MissleEnemy(25,new Point2D.Float(0, +4)) ; 
@@ -69,6 +83,11 @@ public class Boss extends GameObject {
 		MyBullet.Rotate(180);
 		MyBullet = null ; 
 	}
+
+    /**
+     * Update-function for this game-object.
+     * Gets called by the Timer and manages all behavior of this object.
+     */
     public void Update(){
         super.Update();
         move();
@@ -87,7 +106,8 @@ public class Boss extends GameObject {
         }
     }
     /**
-     * move Left right randomly
+     * Move randomly to the left, right or stay at the current position.
+     * Similar to movement in "Enemy" - class.
      */
     public void move() {
         if(this.getPosition().y < 2) {
@@ -148,17 +168,24 @@ public class Boss extends GameObject {
         MyBulletRight.Rotate(180) ;
     }
     /**
-     * receive damage
-     * @param damage
+     * Deduct the given damage from the boss's health.
+     * @param damage The damage to deduct.
      */
     public void addDamage(int damage){
         health -= damage ;
     }
-    
+
+    /**
+     * Set the speed at which the boss moves.
+     * @param newSpeed The speed of movement.
+     */
     public void setSpeed(float newSpeed) {
         speed = newSpeed;
     }
 
+    /**
+     * Destroy the boss and play a explosion-animation.
+     */
     public void Destroy(){
         super.Destroy();
         manager.killedBoss();
@@ -188,14 +215,26 @@ public class Boss extends GameObject {
 
     }
 
+    /**
+     * Get the speed at which the boss moves.
+     * @return The speed of the boss.
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     * Retuns the current health of the boss.
+     * @return The health of the boss.
+     */
     public int getHealth() {
         return health;
     }
 
+    /**
+     * Set the health of the boss.
+     * @param health The value to set the health to.
+     */
     public void setHealth(int health) {
         this.health = health;
     }

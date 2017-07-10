@@ -31,7 +31,14 @@ public abstract class Enemy extends GameObject {
     public int lastMove = 3;
 
     GameManager manager ;
-    
+
+    /**
+     * Constructor of the Base-Class "Enemy"
+     * @param PathToSprite The Path to the Sprite.
+     * @param Name The Name of the game-object.
+     * @param posX Starting-coordinate X.
+     * @param posY Starting-coordinate Y.
+     */
     public Enemy(String PathToSprite, String Name, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
@@ -40,14 +47,27 @@ public abstract class Enemy extends GameObject {
         manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ; 
         this.setDimension(new Dimension((int)(this.getWidth()*0.6),(int)(this.getHeight()*0.6)));
     }
-    
+
+    /**
+     * Returns the Value (score) of the Enemy.
+     * @return The score of the Enemy.
+     */
     public int getValue(){
     	return value ; 
     }
+
+    /**
+     * Set the value of the Enemy.
+     * @param newValue The score value to set to.
+     */
     public void setValue(int newValue) {
         this.value = newValue;
     }
 
+    /**
+     * Update-function for this game-object.
+     * Gets called by the Timer and manages all behavior of this object.
+     */
     public void Update(){
     	super.Update();
     	this.move();
@@ -65,6 +85,11 @@ public abstract class Enemy extends GameObject {
         	this.Destroy();
         }
     }
+
+    /**
+     * Generates random movement.
+     * Left, right or stationary and does not fly out of the viewport.
+     */
     public void move() {
         if(lastMove == 3) {
             lastMove = random.nextInt(3);
@@ -129,14 +154,32 @@ public abstract class Enemy extends GameObject {
             moveCounter = 0;
         }
     }
+
+    /**
+     * Abstract function for shooting.
+     * Is implemented by SimpleEnemy and AdvancedEnemy.
+     */
     public abstract void shoot();
 
+    /**
+     * Deduct damage from the enemies current health.
+     * @param damage The damage to deduct.
+     */
     public void addDamage(int damage){
     	health -= damage ; 
     }
+
+    /**
+     * Set the speed of the enemy.
+     * @param newSpeed The speed to set to.
+     */
     public void setSpeed(float newSpeed) {
         speed = newSpeed;
     }
+
+    /**
+     * Destroy the enemy and spawn a random PowerUp.
+     */
     public void Destroy(){
     	super.Destroy();
     	if (manager != null) manager.addKilledEnemy();
@@ -160,14 +203,27 @@ public abstract class Enemy extends GameObject {
     	//e.setDimension(new Dimension((int)e.getTransform().getSize().getWidth(),(int)e.getTransform().getSize().getHeight()));
     	
     }
+
+    /**
+     * Get the speed of the enemy.
+     * @return The speed of the enemy.
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     * Get the current health of the enemy.
+     * @return The current health.
+     */
     public int getHealth() {
         return health;
     }
 
+    /**
+     * Set the health of the enemy.
+     * @param health The health to set to.
+     */
     public void setHealth(int health) {
         this.health = health;
     }

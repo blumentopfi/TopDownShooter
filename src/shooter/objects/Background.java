@@ -44,7 +44,11 @@ public class Background extends GameObject {
         this.addComponent(new Sprite("Assets/Splashscreens/map_2_fixed.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
 	}
-	
+
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
 	public void Update(){
 		this.setPosition(new Point2D.Float(this.getPosition().x,this.getPosition().y + 0.03f ));
 		if (this.getPosition().y >= 20){ //If we get out of the screen reset to the top

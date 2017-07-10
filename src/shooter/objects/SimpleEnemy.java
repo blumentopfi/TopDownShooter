@@ -1,28 +1,30 @@
 package shooter.objects;
 
-import framework.components.Animator;
 import framework.main.GameObject;
-
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
 
 /**
  * Created by Eike Nils on 22.06.2017.
  */
 public class SimpleEnemy extends Enemy {
 
+    /**
+     * Constructor for SimpleEnemy.
+     * @param PathToSprite The path to the sprite.
+     * @param Name The Name of the game-object.
+     * @param posX Starting-coordinate X.
+     * @param posY Starting-coordinate Y.
+     */
     public SimpleEnemy(String PathToSprite, String Name, float posX, float posY) {
         super(PathToSprite, Name, posX, posY);
         setHealth(100);
         setValue(20);
     }
 
+    /**
+     * Implementation of abstract void.
+     * Shoot a single bullet.
+     */
     @Override
     public void shoot() {
         if(lastMove == 1) {

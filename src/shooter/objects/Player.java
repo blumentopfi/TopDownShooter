@@ -66,6 +66,11 @@ public class Player extends GameObject {
 
 	GameManager manager;
 
+	/**
+	 * Constructor for the player.
+	 * @param PathToSprite The path to the sprite.
+	 * @param Name The name of this game-object.
+	 */
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
 		manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
@@ -107,27 +112,54 @@ public class Player extends GameObject {
 		}
 		this.addComponent(a);
 	}
+
+	/**
+	 * Get the current damage of the player.
+	 * @return The damage of the player.
+	 */
 	public int getDamage() {
 		return damage;
 	}
+
+	/**
+	 * Listener for mouse-pressed events.
+	 * @param e The MouseEvent.
+	 */
 	public void MousePressed(MouseEvent e) {
 		System.out.println(e.getX());
 		System.out.println(e.getY());
 		System.out.println(SceneManager.getInstance().getMainCamera().ScreenCoordToWorldCoord(e.getPoint()));
 		//if (e.getButton() == MouseEvent.BUTTON1) InputManager.Pause();
 		//if (e.getButton() == MouseEvent.BUTTON2) InputManager.UnPause();
-	} 
+	}
 
+	/**
+	 * Set the damage of the player.
+	 * @param damage The damage to set to.
+	 */
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
+
+	/**
+	 * Get the current health of the player.
+	 * @return The current health.
+	 */
 	public int getHealth(){
 		return health ; 
 	}
+
+	/**
+	 * Set the health of the player.
+	 * @param toset The health to set to.
+	 */
 	public void setHealth(int toset){
 		this.health = toset ; 
 	}
-	
+
+	/**
+	 * Increase the type of weapon of the player.
+	 */
 	public void UpgradeWeapon(){
 		
 		switch(this.my_weapon){
@@ -143,14 +175,22 @@ public class Player extends GameObject {
 			break;
 		}
 	}
-	
+
+	/**
+	 * Manage collisions.
+	 * @param collidingObject The object this collides with
+	 */
 	public void OnCollision(GameObject collidingObject) {
 		if (collidingObject.getName() == "Enemy"){
 		System.out.println("Destroyed by Player");
 		collidingObject.Destroy(); 
 		}
 	}
-	
+
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
 	public void Update(){
 		super.Update();
 		this.setPosition(new Point2D.Float(MyMath.Clamp(9.5f, 0,this.getPosition().x + (dx*(float)Time.deltaTime)), MyMath.Clamp(9.5f, 0,this.getPosition().y +(dy*(float)Time.deltaTime))));
@@ -167,6 +207,9 @@ public class Player extends GameObject {
  
 	}
 
+	/**
+	 * Shoot a double-shot.
+	 */
 	private void shootDouble(){
 		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.15f, this.getPosition().y -0.5f));
@@ -174,11 +217,19 @@ public class Player extends GameObject {
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x-0.15f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
+
+	/**
+	 * Shoot a single-shot.
+	 */
 	private void shootSingle(){
 		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
+
+	/**
+	 * Shoot a triple-shot.
+	 */
 	private void shootTriple(){
 		GameObject MyBullet = new MisslePlayer(damage,new Point2D.Float(0, -4)) ; 
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x, this.getPosition().y -0.5f));
@@ -189,10 +240,18 @@ public class Player extends GameObject {
 		MyBullet.setPosition(new Point2D.Float(this.getPosition().x+0.3f, this.getPosition().y -0.5f));
 		MyBullet = null ; 
 	}
-	
+
+	/**
+	 * Deduct damage from the players health.
+	 * @param damage The damage to deduct.
+	 */
 	public void addDamage(int damage){
 		this.health-=damage ; 
 	}
+
+	/**
+	 * Shoot bullets.
+	 */
 	public void shoot(){
 		if (NextFire < System.currentTimeMillis() &&!InputManager.isPause()){
 			
@@ -224,6 +283,10 @@ public class Player extends GameObject {
 		}
 		
 	}
+
+	/**
+	 * Initialize the Input-map for controlling the plane.
+	 */
 	public void ActionMapInputMapInitialize(){
 		ActionMap actionMap = SceneManager.getInstance().getActionMap() ; 
 		InputMap inputMap = SceneManager.getInstance().getInputMap() ; 

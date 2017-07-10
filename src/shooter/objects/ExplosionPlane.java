@@ -23,7 +23,12 @@ import framework.main.GameObject;
  */
 public  class ExplosionPlane extends Explosion {
 	Animator myAnimator ; 
-	Audio a ; 
+	Audio a ;
+
+	/**
+	 * Constructor for explosions for planes.
+	 * @param Name The name of this game-object.
+	 */
 	public ExplosionPlane(String Name){
 		super(Name) ; 
 		this.setActive(false);
@@ -45,6 +50,11 @@ public  class ExplosionPlane extends Explosion {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
 	public void Update(){
 		super.Update() ; 
 		if (myAnimator != null){
@@ -54,6 +64,10 @@ public  class ExplosionPlane extends Explosion {
 		}
 		}	
 	}
+
+	/**
+	 * Play the sound of the explosion
+	 */
 	public void Boom(){
 		a.PlaySound("BOOOOOM"); //BOOOOOOOOM
 	}

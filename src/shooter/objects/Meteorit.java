@@ -13,6 +13,10 @@ public class Meteorit extends GameObject {
 	int damage = 200;
 	public float speed = 3f;
 
+	/**
+	 * Constructor for meteorits.
+	 * @param Name The name of this game-object.
+	 */
 	public Meteorit(String Name) {
 		super(Name);
 		Random r = new Random(System.nanoTime());
@@ -23,6 +27,10 @@ public class Meteorit extends GameObject {
 		this.addComponent(new RectangleCollider(this));
 	}
 
+	/**
+	 * Manages collisions with the player.
+	 * @param collidingObject The object this collides with
+	 */
 	public void OnCollision(GameObject collidingObject) {
 		if (collidingObject.getName() == "MainPlayer") {
 			Player collidingPlayer = (Player) collidingObject;
@@ -31,6 +39,10 @@ public class Meteorit extends GameObject {
 		}
 	}
 
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
 	public void Update() {
 		super.Update();
 		this.setPosition(

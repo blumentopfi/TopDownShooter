@@ -9,14 +9,27 @@ import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 
+/**
+ * Player version of a missile.
+ */
 public class MisslePlayer extends Missle {
-		GameManager manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
+	GameManager manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
+
+	/**
+	 * Constructor for the missile.
+ 	 * @param damage The damage of the missile.
+	 * @param movement The movement-vector of the missile.
+	 */
 	public MisslePlayer(int damage,Point2D.Float movement ){
 		super(damage,movement);
 		this.movement = movement ; 
 		this.addComponent(new Sprite("Assets/ProjectileSprite/Bullet.png",this));
 	}
-	
+
+	/**
+	 * Manages collision with enemies.
+	 * @param collidingObject The object this collides with
+	 */
 	public void OnCollision(GameObject collidingObject) {
 		if (collidingObject.getName() == "Enemy"){
 		Enemy collidingEnemy = (Enemy)collidingObject ; 
@@ -34,6 +47,11 @@ public class MisslePlayer extends Missle {
 			this.Destroy();
 		}
 	}
+
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
 	public void Update(){
 		super.Update();
 	}

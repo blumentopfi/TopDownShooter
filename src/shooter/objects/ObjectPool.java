@@ -5,11 +5,15 @@ import java.util.List;
 
 import framework.math.Pair;
 
+/**
+ * Object Pool for game-objects to increase performance of the game.
+ */
 public class ObjectPool {
 	 private int Size = 60 ; 
 	 private List<Pair<Boolean,Explosion>> m_Explosions = new ArrayList<Pair<Boolean,Explosion>>() ; 
 	 private List<Boolean> m_readyStates = new ArrayList<Boolean>() ; 
-	
+
+
 	 public Explosion getExplosion(){
 		for (int i = 0 ; i < m_Explosions.size();i++ ){
 			if (m_Explosions.get(i).getFirst()){

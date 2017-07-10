@@ -47,14 +47,23 @@ public class GameManager extends GameObject {
 	int j = 6 ; 
 	JPanel[][] panelHolder = new JPanel[i][j] ; 
 	public ObjectPool ExplosionsSciFi = new ObjectPool() ; 
-	public ObjectPool ExplosionsPlane = new ObjectPool() ; 
-	
+	public ObjectPool ExplosionsPlane = new ObjectPool() ;
+
+	/**
+	 * Returns the player of the game.
+	 * @return The player.
+	 */
 	public Player getPlayer(){
 		return this.main_player ;
 	}
 
+	//Maximum number of enemies that are alive at the same time.
 	public static int MAX_ENEMY_NUMBER = 5;
 
+	/**
+	 * Constructor for GameManager
+	 * @param Name The name of this game-object.
+	 */
 	public GameManager(String Name){
 		super(Name) ;
 		SceneManager.getInstance().getMainCamera().OverrideLayout(new GridLayout(i,j,0,0));
@@ -95,11 +104,20 @@ public class GameManager extends GameObject {
 		gameView = SceneManager.getInstance().getMainCamera().getGameView() ;
 		initPause() ; 
 	}
-	
+
+	/**
+	 * Add a component to the main Panel.
+	 * @param x Coordinate X.
+	 * @param y Coordinate Y.
+	 * @param c The component to add to the panel.
+	 */
 	private void AddToPanel(int x, int y,JComponent c){
 		this.panelHolder[x][y].add(c);
 	}
-	
+
+	/**
+	 * Initiate the pause of the complete game.
+	 */
 	public void initPause(){
 		this.PauseLabel1.setForeground(Color.CYAN);
 		this.PauseLabel1.setText("PAU");
@@ -112,13 +130,17 @@ public class GameManager extends GameObject {
 		Pause() ; 
 	
 	}
-	
+
+	/**
+	 * Initiate the start of a new Wave.
+	 */
 	public void StartWaves(){
 		waves = true ;
 	}
 
-	
-	
+	/**
+	 * Pause the complete game.
+	 */
 	public void Pause(){
 		if (PauseLabel1.isVisible()){
 			InputManager.UnPause();
@@ -129,8 +151,12 @@ public class GameManager extends GameObject {
 		PauseLabel2.setVisible(!PauseLabel2.isVisible());
 		
 	}
-	
-	
+
+
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
 	public void Update(){
 		super.Update();
 		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;		
@@ -151,22 +177,37 @@ public class GameManager extends GameObject {
 
 		}
 	}
-	
+
+	/**
+	 * Dislay the health of the player and of bosses as bars.
+	 */
 	public void drawHealth(){
 		if (main_player != null) m_healthbar.setValue(this.main_player.getHealth()) ; 
 		if (m_boss != null) m_bossbar.setValue(this.m_boss.getHealth());
 	}
 
+	/**
+	 * Returns the current score of the player.
+	 * @return The current score.
+	 */
 	public int getScore(){
 		return Score ;
 	}
 
+	/**
+	 * Add points to the score of the player and update the score-label.
+	 * @param points The points to add to the score.
+	 */
 	public void AddScore(int points){
 		Score += points ; 
 		ScoreLabel.setText("Score: " + Score);
 		
 	}
-	
+
+	/**
+	 * Generate Enemies and position them at random coordinates above the viewport.
+	 * @param gos The whole list of game-objects.
+	 */
 	public void setupEnemies(List<GameObject> gos) {
 		int enemyCounter = 0;
 		for (int i = 0 ; i< gos.size() ; i++) {
@@ -201,10 +242,16 @@ public class GameManager extends GameObject {
 		}
 	}
 
+	/**
+	 * Increase the kill-counter of the player by one.
+	 */
 	public void addKilledEnemy() {
 		killedEnemies++;
 	}
 
+	/**
+	 * The player killed the current boss.
+	 */
 	public void killedBoss() {
 		bossKilled = true;
 		boss = false;
