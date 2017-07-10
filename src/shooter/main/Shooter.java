@@ -5,7 +5,6 @@ import shooter.scenes.MenuScene;
 /**
  * Main Class for the shooter
  * @author Fin
- *
  */
 public class Shooter {
 
