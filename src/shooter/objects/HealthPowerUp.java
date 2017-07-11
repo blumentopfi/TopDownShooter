@@ -32,7 +32,6 @@ public class HealthPowerUp extends PowerUp {
 	@Override
 	void PowerUpUse(Player Player) {
 		Player.setHealth(Player.getHealth()+healthstrength);
-		System.out.println(Player.getHealth());
 		this.Destroy();
 
 	}

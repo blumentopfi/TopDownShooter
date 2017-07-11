@@ -182,7 +182,6 @@ public class Player extends GameObject {
 	 */
 	public void OnCollision(GameObject collidingObject) {
 		if (collidingObject.getName() == "Enemy"){
-		System.out.println("Destroyed by Player");
 		collidingObject.Destroy(); 
 		}
 	}

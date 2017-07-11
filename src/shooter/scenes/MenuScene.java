@@ -186,8 +186,6 @@ public class MenuScene extends Scene {
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ; 
 		BackgroundImage.setBounds(0, 0, main_Camera.getGameView().getWidth(), main_Camera.getGameView().getHeight());
 		main_Camera.AddGUIElement(BackgroundImage);		
-		
-		main_Camera.AddString(new UIString(30,30,"TESTING",Color.YELLOW));
 		MainMenu() ; 
 	}
 	

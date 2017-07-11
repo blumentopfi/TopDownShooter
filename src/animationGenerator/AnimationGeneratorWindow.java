@@ -57,7 +57,6 @@ public class AnimationGeneratorWindow extends JFrame {
 			return ; 
 		}
 		justClickedButton.nextStates.put("a<10", ToConnect) ; 
-		System.out.println(justClickedButton.nextStates.entrySet());
 		justClickedButton.setBackground(new JButton().getBackground());
 		GraphPanel.repaint();
 		justClickedButton = null ; 

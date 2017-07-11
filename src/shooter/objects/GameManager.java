@@ -41,6 +41,7 @@ public class GameManager extends GameObject {
 	int Score = 0 ;
 	int killedEnemies = 0;
 	int Wave = 1;
+	int num_threads = 0 ; 
 	private boolean waves;
 	Boss m_boss ; 
 	int i = 6 ; 
@@ -159,12 +160,16 @@ public class GameManager extends GameObject {
 	 */
 	public void Update(){
 		super.Update();
+		if (Thread.activeCount() > this.num_threads){
+			this.num_threads = Thread.activeCount() ; 
+			System.out.print("Thread: ");
+			System.out.println(this.num_threads);
+		}
 		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;		
 		drawHealth() ; 
 		if (killedEnemies >= (Wave * 10)) {
 			if (boss != null){
 			if (!boss) {
-				System.out.println("Killed Enemies: " + killedEnemies);
 				System.out.println("Boss created");
 				m_boss = new Boss("Assets/PlaneSprites/Enemy B-17.png", "Boss", (3000 * 2), 5, -3);
 				boss = true;
@@ -217,7 +222,6 @@ public class GameManager extends GameObject {
 			}
 		}
 		if (enemyCounter < MAX_ENEMY_NUMBER && !boss) {
-			System.out.println(MAX_ENEMY_NUMBER);
 			Random random = new Random(System.nanoTime());
 
 			double a = Wave;

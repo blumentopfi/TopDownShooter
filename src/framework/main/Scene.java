@@ -23,7 +23,6 @@ abstract public class Scene {
 	 */
 	public void finishScene(){
 		main_Camera.getRenderer().interrupt();
-		main_Camera.interrupt(); 
 		main_Camera = null ; 
 	}
 	public boolean isFinished(){
