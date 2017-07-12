@@ -44,7 +44,7 @@ public class ShooterTest {
 		Thread.sleep(100);
 		GameManager m = new GameManager("Manager") ; 
 		Player p = m.getPlayer() ; 
-		Enemy enemy = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
+		Enemy enemy = new SimpleEnemy("/Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 5, 0);
 		enemy.lastMove = 2  ; 
 		p.setPosition(new Point2D.Float(5, 7));
 		p.setDamage(50000);
@@ -71,7 +71,7 @@ public class ShooterTest {
 	public void testSetter(){
 		try{
 		Thread.sleep(100);
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
+		Player p = new Player("/Assets/PlaneSprites/1.png","MainPlayer") ;
 		Point2D.Float point = new Point2D.Float(8, 8) ;
 		Thread.sleep(1000) ;
 		p.setPosition(point);
@@ -121,7 +121,7 @@ public class ShooterTest {
 	}
 	@Test  
 	public void testKeyInput() throws InterruptedException{
-		Player p = new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
+		Player p = new Player("/Assets/PlaneSprites/1.png","MainPlayer") ;
 		try {
 			Robot robot = new Robot() ;
 			robot.keyPress(KeyEvent.VK_SPACE); //Shooting
@@ -153,7 +153,7 @@ public class ShooterTest {
 	public void testEnemies() throws InterruptedException{
 
 		GameManager m = new GameManager("Manager") ; 
-		Enemy e = new SimpleEnemy("Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 9, 0);
+		Enemy e = new SimpleEnemy("/Assets/PlaneSprites/Enemy Bipolar.png", "Enemy", 9, 0);
 		Thread.sleep(500);
 		Point2D.Float point = new Point2D.Float(e.getPosition().x, e.getPosition().y) ;
 		Thread.sleep(100);

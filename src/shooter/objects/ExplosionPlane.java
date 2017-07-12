@@ -38,7 +38,7 @@ public  class ExplosionPlane extends Explosion {
 			for (int i = 0 ; i < 32 ; i++) 
 				myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/ProjectileSprite/Explosion/expl_06_" + i + ".png")));
 			 try {
-					Thread.sleep(40);
+					Thread.sleep(80);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

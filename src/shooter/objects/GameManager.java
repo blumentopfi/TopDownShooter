@@ -167,7 +167,7 @@ public class GameManager extends GameObject {
 		}
 		if (waves) setupEnemies(SceneManager.getInstance().GetAllGameObjectsInScene()) ;		
 		drawHealth() ; 
-		if (killedEnemies >= (Wave * 10)) {
+		if (killedEnemies >= (Wave * 10) && waves) {
 			if (boss != null){
 			if (!boss) {
 				System.out.println("Boss created");
