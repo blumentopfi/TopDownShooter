@@ -22,7 +22,7 @@ public class MissleEnemy extends Missle {
 		super(damage,movement);
 		Player main_Player = (Player)SceneManager.getInstance().getGameObjectByName("MainPlayer") ; 
 		
-		this.addComponent(new Sprite("Assets/ProjectileSprite/E_Bullet.png",this));
+		this.addComponent(new Sprite("/Assets/ProjectileSprite/E_Bullet.png",this));
 	}
 
 	/**

@@ -28,11 +28,12 @@ public  class ExplosionSciFi extends Explosion {
 	public ExplosionSciFi(String Name){
 		super(Name) ; 
 		this.setActive(false);
-		this.addComponent(new Sprite("Assets/ProjectileSprite/Explosion/1_0.png",this));
+		this.addComponent(new Sprite("/Assets/ProjectileSprite/Explosion/1_0.png",this));
 		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
 		try {
 			for (int i = 0 ; i < 17 ; i++) 
-				myAnimation.add(ImageIO.read(new File("Assets/ProjectileSprite/Explosion/1_" + i + ".png")));
+				myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/ProjectileSprite/Explosion/1_" + i + ".png")));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    

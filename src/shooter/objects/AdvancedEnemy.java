@@ -30,9 +30,9 @@ public class AdvancedEnemy extends Enemy {
         setValue(40);
         List<BufferedImage> myAnimation = new ArrayList<BufferedImage>() ;
         try {
-            myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/Advanced/1.png")));
-            myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/Advanced/2.png")));
-            myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/Advanced/3.png")));
+            myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/Advanced/1.png")));
+            myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/Advanced/2.png")));
+            myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/Advanced/3.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }

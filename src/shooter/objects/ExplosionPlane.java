@@ -32,11 +32,12 @@ public  class ExplosionPlane extends Explosion {
 	public ExplosionPlane(String Name){
 		super(Name) ; 
 		this.setActive(false);
-		this.addComponent(new Sprite("Assets/ProjectileSprite/Explosion/expl_06_0.png",this));
+		this.addComponent(new Sprite("/Assets/ProjectileSprite/Explosion/expl_06_0.png",this));
 		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
 		try {
 			for (int i = 0 ; i < 32 ; i++) 
-				myAnimation.add(ImageIO.read(new File("Assets/ProjectileSprite/Explosion/expl_06_" + i + ".png")));
+				myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/ProjectileSprite/Explosion/expl_06_" + i + ".png")));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    
@@ -45,7 +46,7 @@ public  class ExplosionPlane extends Explosion {
 		this.addComponent(myAnimator);
 		this.addComponent(a = new Audio());
 		try {
-			a.AddSound("BOOOOOM", "Assets/Sound/Explosion+1.wav");
+			a.AddSound("BOOOOOM", "/Assets/Sound/Explosion+1.wav");
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			e.printStackTrace();
 		}

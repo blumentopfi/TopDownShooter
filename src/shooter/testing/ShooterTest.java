@@ -41,7 +41,6 @@ public class ShooterTest {
 	    }
 	@Test
 	public void testShotAndKill() throws InterruptedException{
-		//ExplosionPool.init(); 
 		Thread.sleep(100);
 		GameManager m = new GameManager("Manager") ; 
 		Player p = m.getPlayer() ; 

@@ -76,11 +76,11 @@ public class Player extends GameObject {
 		manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
 		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
 		try {
-		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/1.png")));
-		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/2.png")));
-		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/3.png")));
-		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/4.png")));
-		myAnimation.add(ImageIO.read(new File("Assets/PlaneSprites/5.png")));
+		myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/1.png")));		
+		myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/2.png")));
+		myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/3.png")));
+		myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/4.png")));
+		myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/5.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    
@@ -95,10 +95,10 @@ public class Player extends GameObject {
 		this.UpperBoundsX = SceneManager.getInstance().getMainCamera().getGameView().getWidth() ; 
 		a = new Audio() ;
 		try {
-			a.AddSound("Pew", "Assets/Sound/laser1.wav");
-			a.AddSound("Pew1", "Assets/Sound/laser1.wav");
-			a.AddSound("Pew2", "Assets/Sound/laser1.wav");
-			a.AddSound("Pew3", "Assets/Sound/laser1.wav");
+			a.AddSound("Pew", "/Assets/Sound/laser1.wav");
+			a.AddSound("Pew1", "/Assets/Sound/laser1.wav");
+			a.AddSound("Pew2", "/Assets/Sound/laser1.wav");
+			a.AddSound("Pew3", "/Assets/Sound/laser1.wav");
 			
 		} catch (UnsupportedAudioFileException e) {
 			// TODO Auto-generated catch block

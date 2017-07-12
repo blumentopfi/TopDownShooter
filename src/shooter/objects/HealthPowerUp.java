@@ -20,7 +20,7 @@ public class HealthPowerUp extends PowerUp {
 		super("HealthPowerUp") ; 
 		this.healthstrength = healthstrength ; 
 		this.setPosition(SpawnPoint);
-		this.addComponent(new Sprite("Assets/PowerUps/Health.png",this));
+		this.addComponent(new Sprite("/Assets/PowerUps/Health.png",this));
         this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
         this.setDimension(new Dimension((int)this.getWidth()/3,(int)this.getHeight()/3));
 	}

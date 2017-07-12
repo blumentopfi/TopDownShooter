@@ -21,7 +21,7 @@ public class Meteorit extends GameObject {
 		super(Name);
 		Random r = new Random(System.nanoTime());
 		int OurInt = r.nextInt(4) + 1;
-		this.addComponent(new Sprite("Assets/ProjectileSprite/a" + String.valueOf(OurInt) + ".png", this));
+		this.addComponent(new Sprite("/Assets/ProjectileSprite/a" + String.valueOf(OurInt) + ".png", this));
 		this.setDimension(
 				new Dimension(this.getTransform().getSize().width / 6, this.getTransform().getSize().height / 6));
 		this.addComponent(new RectangleCollider(this));

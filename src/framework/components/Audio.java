@@ -34,7 +34,8 @@ public class Audio extends Component {
 	 * @throws LineUnavailableException
 	 */
 	public void AddSound(String Name, String PathToSound) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-		AudioInputStream audio =  AudioSystem.getAudioInputStream(new File(PathToSound).getAbsoluteFile());
+		AudioInputStream audio =  AudioSystem.getAudioInputStream(this.getClass().getResource(PathToSound));
+		
 		Clip c = AudioSystem.getClip() ; 
 		c.open(audio);
 		Sounds.put(Name, c) ; 

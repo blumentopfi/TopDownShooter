@@ -24,7 +24,7 @@ public class DamagePowerUp extends PowerUp {
 		super("DamagePowerUp") ; 
 		this.damageUp = damageUp ; 
 		this.setPosition(SpawnPoint);
-		this.addComponent(new Sprite("Assets/PowerUps/Damage.png",this));
+		this.addComponent(new Sprite("/Assets/PowerUps/Damage.png",this));
         this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));
         this.setDimension(new Dimension((int)this.getWidth()/3,(int)this.getHeight()/3));
 	}

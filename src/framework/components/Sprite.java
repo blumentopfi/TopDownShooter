@@ -53,7 +53,7 @@ public class Sprite extends Component {
 																				// Graphic
 																				// cards
 																				// supports
-			my_sprite_image = ImageIO.read(new File(PathToSprite));
+			my_sprite_image = ImageIO.read(this.getClass().getResource(PathToSprite));
 			BufferedImage tmp = config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
 					Transparency.TRANSLUCENT);
 			tmp.getGraphics().drawImage(my_sprite_image, 0, 0, null);
@@ -76,10 +76,10 @@ public class Sprite extends Component {
 		// We convert the Sprite to the best format for the graphics card
 		
 		my_sprite_image = image;
-		BufferedImage tmp = SceneManager.config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
-				Transparency.BITMASK);
-		tmp.getGraphics().drawImage(my_sprite_image, 0, 0, null);
-		my_sprite_image = tmp;
+		//BufferedImage tmp = SceneManager.config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
+		//		Transparency.BITMASK);
+		//tmp.getGraphics().drawImage(my_sprite_image, 0, 0, null);
+		//my_sprite_image = tmp;
 
 		// Setting the size of the sprite to the size of gameObject
 		this.resize(my_object.getTransform().getSize());

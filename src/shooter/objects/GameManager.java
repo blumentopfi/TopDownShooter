@@ -81,7 +81,7 @@ public class GameManager extends GameObject {
 		new Thread(() -> {
 			ExplosionsPlane.init(false);  
 		}).start();
-		main_player = 	new Player("Assets/PlaneSprites/1.png","MainPlayer") ;
+		main_player = 	new Player("/Assets/PlaneSprites/1.png","MainPlayer") ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
 		ScoreLabel.setFont(new Font("Verdana", Font.PLAIN, 25));
 		ScoreLabel.setText(ScoreLabel.getText() + Score);
@@ -171,7 +171,7 @@ public class GameManager extends GameObject {
 			if (boss != null){
 			if (!boss) {
 				System.out.println("Boss created");
-				m_boss = new Boss("Assets/PlaneSprites/Enemy B-17.png", "Boss", (3000 * 2), 5, -3);
+				m_boss = new Boss("/Assets/PlaneSprites/Enemy B-17.png", "Boss", (3000 * 2), 5, -3);
 				boss = true;
 				m_bossbar.setMaximum(m_boss.getHealth());
 				m_bossbar.setVisible(true);
@@ -230,14 +230,14 @@ public class GameManager extends GameObject {
 			if (chance <= check) {
 				float pos_X = random.nextInt(9 - 1 + 1) + 1;
 				float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
-				new SimpleEnemy("Assets/PlaneSprites/Biploar_Y.png", "Enemy", pos_X, pos_Y);
+				new SimpleEnemy("/Assets/PlaneSprites/Biploar_Y.png", "Enemy", pos_X, pos_Y);
 				Meteorit m = new Meteorit("Meteo");
 				m.setPosition(new Point2D.Float(pos_X, pos_Y));
 			}
 			if (chance > check) {
 				float pos_X = random.nextInt(9 - 1 + 1) + 1;
 				float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
-				new AdvancedEnemy("Assets/PlaneSprites/Advanced/JU87B2.png", "Enemy", pos_X, pos_Y);
+				new AdvancedEnemy("/Assets/PlaneSprites/Advanced/JU87B2.png", "Enemy", pos_X, pos_Y);
 				Meteorit m = new Meteorit("Meteo");
 				m.setPosition(new Point2D.Float(pos_X, pos_Y));
 			}
