@@ -37,20 +37,19 @@ public class GameOverScene extends Scene {
 		main_Camera = new Camera(1000,1000,new Rectangle2D.Float(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
 		main_Camera.OverrideLayout(null);
-
-		ImageIcon icon = new ImageIcon(new ImageIcon("Assets/Menu/RestartButton.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
+		ImageIcon icon = new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Menu/BackButton.png")).getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
 		StartButton = new JButton(icon) ; 
-		int x = main_Camera.getGameWindow().getWidth()/2 - 300 ;
-		int y =  3 * main_Camera.getGameWindow().getHeight()/8 - 100  ; 
-		StartButton.setBounds(x, y, 600, 100);
+		int x = 0 ;
+		int y =  0  ; 
+		StartButton.setBounds(x, y, 100, 100);
 		StartButton.addActionListener(e -> SceneManager.getInstance().SetScene(new ShooterMainScene()));
 		StartButton.setOpaque(false);
 		StartButton.setContentAreaFilled(false);
 		StartButton.setBorderPainted(false);
 		main_Camera.AddGUIElement(StartButton);
 		
-		
-		ImageIcon icon2 = new ImageIcon(new ImageIcon("Assets/Menu/exit_buttons.png").getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
+
+		ImageIcon icon2 = new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Menu/exit_buttons.png")).getImage().getScaledInstance(600, 100, Image.SCALE_DEFAULT)) ;
 		QuitButton = new JButton(icon2) ; 
 		x = main_Camera.getGameWindow().getWidth()/2 - 300 ;
 		y =  5 * main_Camera.getGameWindow().getHeight()/8 - 100  ; 
@@ -61,12 +60,12 @@ public class GameOverScene extends Scene {
 		QuitButton.setBorderPainted(false);
 		main_Camera.AddGUIElement(QuitButton);
 		showHighScore();
-		ImageIcon imageGO = new ImageIcon(new ImageIcon("Assets/Splashscreens/Game_Over_Screen.jpg").getImage());
+		ImageIcon imageGO = new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Splashscreens/Game_Over_Screen.jpg")).getImage());
 		BackgroundImageGO = new JLabel("",imageGO,JLabel.CENTER) ;
 		BackgroundImageGO.setBounds(0, 0, main_Camera.getGameWindow().getWidth(), 100);
 		main_Camera.AddGUIElement(BackgroundImageGO);
-
-		ImageIcon image = new ImageIcon(new ImageIcon("Assets/Splashscreens/background_black.png").getImage().getScaledInstance( main_Camera.getGameWindow().getWidth(), main_Camera.getGameWindow().getHeight()
+	
+		ImageIcon image = new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Splashscreens/background_black.png")).getImage().getScaledInstance( main_Camera.getGameWindow().getWidth(), main_Camera.getGameWindow().getHeight()
 				, Image.SCALE_DEFAULT)) ;
 		BackgroundImage = new JLabel("",image,JLabel.CENTER) ;
 		BackgroundImage.setBounds(0, 0, main_Camera.getGameWindow().getWidth(), main_Camera.getGameWindow().getHeight());

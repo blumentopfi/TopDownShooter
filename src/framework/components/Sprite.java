@@ -54,10 +54,10 @@ public class Sprite extends Component {
 																				// cards
 																				// supports
 			my_sprite_image = ImageIO.read(this.getClass().getResource(PathToSprite));
-			BufferedImage tmp = config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
-					Transparency.TRANSLUCENT);
-			tmp.getGraphics().drawImage(my_sprite_image, 0, 0, null);
-			my_sprite_image = tmp;
+			//BufferedImage tmp = config.createCompatibleImage(my_sprite_image.getWidth(), my_sprite_image.getHeight(),
+			//		Transparency.TRANSLUCENT);
+			//tmp.getGraphics().drawImage(my_sprite_image, 0, 0, null);
+			//my_sprite_image = tmp;
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block,

@@ -33,6 +33,12 @@ public  class ExplosionSciFi extends Explosion {
 		try {
 			for (int i = 0 ; i < 17 ; i++) 
 				myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/ProjectileSprite/Explosion/1_" + i + ".png")));
+			    try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
