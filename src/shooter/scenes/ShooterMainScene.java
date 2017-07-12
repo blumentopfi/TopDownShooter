@@ -24,8 +24,6 @@ public class ShooterMainScene extends Scene {
 		new Background() ; 
 		new Background(true) ; 
 		long time = System.nanoTime() ; 
-		
-
 		System.out.println(System.nanoTime() - time) ;
 		gameManager = new GameManager("Manager") ;
 		gameManager.StartWaves(); 
