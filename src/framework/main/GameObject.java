@@ -175,7 +175,8 @@ public abstract class GameObject {
 	 * Super update updates all the components
 	 */
 	public void Update(){
-		for (Component c : m_Components) {
+		for (int i = 0 ; i <  m_Components.size() ; i++) {
+			Component c = m_Components.get(i) ;
 			c.ComponentUpdate();
 		}
 	}

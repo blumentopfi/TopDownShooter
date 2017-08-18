@@ -186,7 +186,8 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 		// Get all the Objects in our Scene and Update them
 		List<GameObject> gameObjectsInScene = SceneManager.getInstance().GetAllGameObjectsInScene();
 		if (!paused){
-			for (GameObject Object : gameObjectsInScene) {
+			for (int i = 0 ; i < gameObjectsInScene.size() ; i++){
+				GameObject Object = gameObjectsInScene.get((i));
 				if (Object.isActive()) Object.Update();
 			}
 		}
