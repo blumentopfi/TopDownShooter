@@ -1,13 +1,11 @@
 package shooter.objects;
 
-import java.awt.Dimension;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import framework.components.Collider;
 import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
+
+import java.awt.*;
+import java.awt.geom.Point2D;
 /**
  * Scrolling looping Background
  * @author Fin
@@ -26,7 +24,7 @@ public class Background extends GameObject {
     }
 	/**
 	 * If it is the second init at other default point
-	 * @param test
+	 * @param test Set if test.
 	 */
 	public Background(boolean test) {
         super("Background");
@@ -36,7 +34,7 @@ public class Background extends GameObject {
     }
 	/**
 	 * Init at user Point
-	 * @param x
+	 * @param x The Point to set the background to.
 	 */
 	public Background(Point2D.Float x) {
 		super("Background");

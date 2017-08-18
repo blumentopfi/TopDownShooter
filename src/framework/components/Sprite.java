@@ -1,24 +1,13 @@
 package framework.components;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.Transparency;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import framework.main.GameObject;
 import framework.main.SceneManager;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * Class for our Sprite Component which holds the Image Infos
@@ -27,8 +16,8 @@ import framework.main.SceneManager;
  *
  */
 public class Sprite extends Component {
-	BufferedImage my_sprite_image; // image of the sprite ;
-	GameObject my_object;// GameObject the sprite is assigned to ;
+	private BufferedImage my_sprite_image; // image of the sprite ;
+	private GameObject my_object;// GameObject the sprite is assigned to ;
 	public int rotation = 0  ; 
 	/**
 	 * Init the Sprite with a path to an image
@@ -136,7 +125,7 @@ public class Sprite extends Component {
 	/**
 	 * If the size of the gameObject changes we have to change our sprite size
 	 * 
-	 * @param d
+	 * @param d the Dimensions to resize to.
 	 */
 	public void resize(Dimension d) {
 		my_sprite_image = getScaledImage(my_sprite_image, (int) d.getWidth(), (int) d.getHeight());

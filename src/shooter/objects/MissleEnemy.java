@@ -1,12 +1,10 @@
 package shooter.objects;
 
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import framework.components.Collider;
 import framework.components.Sprite;
 import framework.main.GameObject;
-import framework.main.SceneManager;
+
+import java.awt.geom.Point2D;
+import java.util.Objects;
 
 /**
  * Enemy version of a missile.
@@ -18,10 +16,8 @@ public class MissleEnemy extends Missle {
 	 * @param damage The damage of the missile.
 	 * @param movement The movement-vector of the missile.
 	 */
-	public MissleEnemy(int damage,Point2D.Float movement ){
+	MissleEnemy(int damage, Point2D.Float movement){
 		super(damage,movement);
-		Player main_Player = (Player)SceneManager.getInstance().getGameObjectByName("MainPlayer") ; 
-		
 		this.addComponent(new Sprite("/Assets/ProjectileSprite/E_Bullet.png",this));
 	}
 
@@ -30,7 +26,7 @@ public class MissleEnemy extends Missle {
 	 * @param collidingObject The object this collides with
 	 */
 	public void OnCollision(GameObject collidingObject) {
-		if (collidingObject.getName() == "MainPlayer"){
+		if (Objects.equals(collidingObject.getName(), "MainPlayer")){
 		Player collidingPlayer = (Player)collidingObject ; 
 		collidingPlayer.addDamage(damage);
 		this.Destroy();

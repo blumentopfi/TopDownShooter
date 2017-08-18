@@ -24,7 +24,7 @@ public class QuadTree {
 	  */
 	  public QuadTree(int pLevel, Rectangle2D.Float pBounds) {
 	   level = pLevel;
-	   objects = new ArrayList<GameObject>();
+	   objects = new ArrayList<>();
 	   bounds = pBounds;
 	   nodes = new QuadTree[4];
 	  }

@@ -1,9 +1,11 @@
 package shooter.scenes;
 
+import framework.main.Scene;
+import framework.main.SceneManager;
+import framework.rendering.Camera;
+
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,25 +15,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
-import framework.input.InputManager;
-import framework.main.Scene;
-import framework.main.SceneManager;
-import framework.rendering.Camera;
-import shooter.objects.GameManager;
-import shooter.objects.HealthPowerUp;
-import shooter.objects.Player;
-
 public class GameOverScene extends Scene {
-	JButton StartButton ; 
-	JButton QuitButton ; 
-	JLabel BackgroundImageGO ;
-	JLabel BackgroundImage ;
-	JLabel Titel ;
-	JLabel Final_Score;
+	private JButton StartButton ;
+	private JButton QuitButton ;
+	private JLabel BackgroundImageGO ;
+	private JLabel BackgroundImage ;
+
 	@Override
 	public void init() {
 		main_Camera = new Camera(1000,1000,new Rectangle2D.Float(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
@@ -73,15 +62,15 @@ public class GameOverScene extends Scene {
 
 	}
 
-	public void showHighScore() {
-		List<String> highscores = new ArrayList<String>();
+	private void showHighScore() {
+		List<String> highscores = new ArrayList<>();
 		try (Stream<String> stream = Files.lines(Paths.get("highscore.txt"))) {
 			stream.forEach(highscores::add);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		List<Long> highscores_Long = new ArrayList<Long>();
+		List<Long> highscores_Long = new ArrayList<>();
 		for (String s : highscores) {
 			highscores_Long.add(Long.parseLong(s));
 		}

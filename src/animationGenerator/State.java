@@ -12,12 +12,12 @@ import javax.swing.JButton;
 
 
 
-public class State extends JButton {
+class State extends JButton {
 	
-		int draggedAtX ; 
-		int draggedAtY ; 
-		Map<String,State> nextStates = new HashMap<String,State>() ; 
-		public State(){
+		private int draggedAtX ;
+		private int draggedAtY ;
+		Map<String,State> nextStates = new HashMap<>() ;
+		State(){
 			super() ; 
 			addMouseListener(new MouseAdapter(){
 	            public void mousePressed(MouseEvent e){
@@ -33,7 +33,7 @@ public class State extends JButton {
 	            }
 	        });
 		}
-		public void drawArrows(Graphics g){
+		void drawArrows(Graphics g){
 			for (State s : nextStates.values()){
 				System.out.println("Drawing Arrow");
 				g.setColor(Color.BLACK);

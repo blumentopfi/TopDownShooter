@@ -1,17 +1,6 @@
 package shooter.objects;
 
-import java.awt.Dimension;
-import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
 import framework.components.Animator;
-import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 /**
@@ -28,7 +17,7 @@ Explosion extends GameObject {
 	 * Constructor for explosion.
 	 * @param Name Name of the game-object.
 	 */
-	public Explosion(String Name){
+	Explosion(String Name){
 		super(Name) ; 
 	    //get the manager
 		this.manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;

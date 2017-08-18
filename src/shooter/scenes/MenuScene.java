@@ -1,45 +1,31 @@
 package shooter.scenes;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
-import framework.components.UIString;
-import framework.input.InputManager;
 import framework.main.Scene;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
-import shooter.objects.GameManager;
-import shooter.objects.HealthPowerUp;
-import shooter.objects.Player;
 import shooter.options.Options;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.Rectangle2D;
+
 public class MenuScene extends Scene {
-	JButton StartButton ; 
-	JButton QuitButton ; 
-	JButton OptionButton ; 
-	JLabel BackgroundImage ; 
-	JLabel Titel ; 	
-	JButton BackButton ; 
-	JButton MutedButton ; 
-	void MainMenu(){
+	private JButton StartButton ;
+	private JButton QuitButton ;
+	private JButton OptionButton ;
+	private JLabel BackgroundImage ;
+	private JButton BackButton ;
+	private JButton MutedButton ;
+	private void MainMenu(){
 		StartButton.setVisible(true);
 		QuitButton.setVisible(true);
 		OptionButton.setVisible(true);
 		BackButton.setVisible(false);
 		MutedButton.setVisible(false);
 	}
-	void OptionMenu(){
+	private void OptionMenu(){
 		StartButton.setVisible(false);
 		QuitButton.setVisible(false);
 		OptionButton.setVisible(false);
@@ -56,14 +42,9 @@ public class MenuScene extends Scene {
 		ImageIcon icon = new ImageIcon(new ImageIcon(	this.getClass().getResource("/Assets/Menu/play_buttons.png")).getImage()) ;
 		StartButton = new JButton(icon) ; 
 		int x = main_Camera.getGameWindow().getWidth()/2 - icon.getIconWidth()/2 ;
-		int y =  1 * main_Camera.getGameWindow().getHeight()/8 - 100  ; 
+		int y = main_Camera.getGameWindow().getHeight() /8 - 100  ;
 		StartButton.setBounds(x, y, icon.getIconWidth(), icon.getIconHeight());
-		StartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                framework.main.SceneManager.getInstance().SetScene(new ShooterMainScene());
-            }
-        });
+		StartButton.addActionListener(e -> SceneManager.getInstance().SetScene(new ShooterMainScene()));
 		StartButton.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
 		        StartButton.setIcon(new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Menu/play_buttons_pressed.png")).getImage()));
@@ -89,12 +70,7 @@ public class MenuScene extends Scene {
 		QuitButton.setOpaque(false);
 		QuitButton.setContentAreaFilled(false);
 		QuitButton.setBorderPainted(false);
-		QuitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+		QuitButton.addActionListener(e -> System.exit(0));
 		QuitButton.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
 		        QuitButton.setIcon(new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Menu/exit_buttons_pressed.png")).getImage()));
@@ -115,12 +91,7 @@ public class MenuScene extends Scene {
 		OptionButton.setOpaque(false);
 		OptionButton.setContentAreaFilled(false);
 		OptionButton.setBorderPainted(false);
-		OptionButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OptionMenu() ; 
-            }
-        });
+		OptionButton.addActionListener(e -> OptionMenu());
 		
 		OptionButton.addMouseListener(new java.awt.event.MouseAdapter() {
 		    public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -142,12 +113,7 @@ public class MenuScene extends Scene {
 		BackButton.setOpaque(false);
 		BackButton.setContentAreaFilled(false);
 		BackButton.setBorderPainted(false);
-		BackButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainMenu() ; 
-            }
-        });
+		BackButton.addActionListener(e -> MainMenu());
 		main_Camera.AddGUIElement(BackButton);
 
 		MutedButton = new JButton(icon2) ; 

@@ -15,22 +15,22 @@ import framework.rendering.Time;
  */
 public abstract class Enemy extends GameObject {
 
-    public float speed = 1f;
-    public int health = 100;
-    public int value;
+    private float speed = 1f;
+    private int health = 100;
+    private int value;
 
-    long FireRate = 500  ;
-    long NextFire = 0  ;
+    private long FireRate = 500  ;
+    private long NextFire = 0  ;
 
-    public static int MOVE_DISTANCE = 100;
-    public boolean isRotated = false;
-    public int moveCounter = 0;
-    public int tempMove = 4;
+    private static int MOVE_DISTANCE = 100;
+    private boolean isRotated = false;
+    private int moveCounter = 0;
+    private int tempMove = 4;
     static Random random = new Random() ;
     // 0 = left, 1 = right, 2 = straight, 3 = initial.
     public int lastMove = 3;
 
-    GameManager manager ;
+    private GameManager manager ;
 
     /**
      * Constructor of the Base-Class "Enemy"
@@ -52,7 +52,7 @@ public abstract class Enemy extends GameObject {
      * Returns the Value (score) of the Enemy.
      * @return The score of the Enemy.
      */
-    public int getValue(){
+    private int getValue(){
     	return value ; 
     }
 
@@ -60,7 +60,7 @@ public abstract class Enemy extends GameObject {
      * Set the value of the Enemy.
      * @param newValue The score value to set to.
      */
-    public void setValue(int newValue) {
+    void setValue(int newValue) {
         this.value = newValue;
     }
 
@@ -88,7 +88,7 @@ public abstract class Enemy extends GameObject {
      * Generates random movement.
      * Left, right or stationary and does not fly out of the viewport.
      */
-    public void move() {
+    private void move() {
         if(lastMove == 3) {
             lastMove = random.nextInt(3);
             if(lastMove == 0) {
@@ -163,7 +163,7 @@ public abstract class Enemy extends GameObject {
      * Deduct damage from the enemies current health.
      * @param damage The damage to deduct.
      */
-    public void addDamage(int damage){
+    void addDamage(int damage){
     	health -= damage ; 
     }
 
@@ -214,7 +214,7 @@ public abstract class Enemy extends GameObject {
      * Get the current health of the enemy.
      * @return The current health.
      */
-    public int getHealth() {
+    private int getHealth() {
         return health;
     }
 
@@ -222,7 +222,7 @@ public abstract class Enemy extends GameObject {
      * Set the health of the enemy.
      * @param health The health to set to.
      */
-    public void setHealth(int health) {
+    void setHealth(int health) {
         this.health = health;
     }
 }

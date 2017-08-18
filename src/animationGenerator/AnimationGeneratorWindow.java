@@ -5,37 +5,34 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class AnimationGeneratorWindow extends JFrame {
-	int height ; 
-	int width ; 
-	JPanel ControlPanel = new JPanel() ; 
-	GraphPanel GraphPanel = new GraphPanel() ; 
-	JButton NewStateButton = new JButton("New State") ; 
-	List<State> m_states = new ArrayList<State>() ; 
-	State justClickedButton ; 
-	public AnimationGeneratorWindow(String window_Name){
+class AnimationGeneratorWindow extends JFrame {
+	private GraphPanel GraphPanel = new GraphPanel() ;
+	private JButton NewStateButton = new JButton("New State") ;
+	private List<State> m_states = new ArrayList<>() ;
+	private State justClickedButton ;
+	AnimationGeneratorWindow(String window_Name){
 		
 		super(window_Name) ; 
 		this.setVisible(true);
 		this.setBounds(0, 0, 1000, 1000); 
-		this.setLayout(new BorderLayout());	
-		this.add(ControlPanel,BorderLayout.NORTH) ; 
+		this.setLayout(new BorderLayout());
+		JPanel controlPanel = new JPanel();
+		this.add(controlPanel,BorderLayout.NORTH) ;
 		this.add(GraphPanel, BorderLayout.CENTER);
-		ControlPanel.setBackground(Color.BLACK);
-		ControlPanel.setLayout(new FlowLayout());
-		ControlPanel.add(NewStateButton) ; 
+		controlPanel.setBackground(Color.BLACK);
+		controlPanel.setLayout(new FlowLayout());
+		controlPanel.add(NewStateButton) ;
 		GraphPanel.setLayout(null);
-		initiliazeActions() ; 
+		initializeActions() ;
 	}
 	
-	private void initiliazeActions(){
+	private void initializeActions(){
 		NewStateButton.addActionListener(e -> this.SpawnNewState());
 	}
 	private void SpawnNewState(){

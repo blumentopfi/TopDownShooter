@@ -5,14 +5,13 @@ package framework.rendering;
  *
  */
 public class FPSCounter extends Thread{
-    private long lastTime;
     private double fps; //could be int or long for integer values
     private int Counter ; 
     private double checkfps ; 
 
     public void run(){
         while (true){//lazy me, add a condition for an finishable thread
-            lastTime = System.nanoTime();
+            long lastTime = System.nanoTime();
             try{
                 Thread.sleep(1000); // longer than one frame
             }

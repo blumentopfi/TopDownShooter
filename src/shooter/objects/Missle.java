@@ -1,15 +1,12 @@
 package shooter.objects;
 
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import framework.components.Collider;
-import framework.components.OvalCollider;
 import framework.components.RectangleCollider;
-import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Time;
+
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Base-Class for missiles.
@@ -24,7 +21,7 @@ public class Missle extends GameObject {
 	 * @param damage The damage of the missile.
 	 * @param movement The movement-vector of the missile.
 	 */
-	public Missle(int damage,Point2D.Float movement ){
+	Missle(int damage, Point2D.Float movement){
 		super("Missle") ;
 		this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,0.3f,0.3f),this));
 		this.damage = damage ; 

@@ -1,26 +1,19 @@
 package framework.components;
-import java.io.File;
+import shooter.options.Options;
 
+import javax.sound.sampled.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import shooter.options.Options;
 /**
  * The component used for audio output of an object.
  * @author Fin
  * @version 1.0
  */
 public class Audio extends Component {
-	Map<String,Clip> Sounds = new HashMap<String,Clip>() ; //Sounds we hold
+	private Map<String,Clip> Sounds = new HashMap<>() ; //Sounds we hold
 	/**
-	 * Just inializes it
+	 * Just initializes it
 	 */
 	public Audio(){
 		super() ; 
@@ -29,9 +22,9 @@ public class Audio extends Component {
 	 * Adds the desired Sound with a Path To a File and a Name so we can call it later
 	 * @param Name Name of the sound
 	 * @param PathToSound Path to the sound file
-	 * @throws UnsupportedAudioFileException
-	 * @throws IOException
-	 * @throws LineUnavailableException
+	 * @throws UnsupportedAudioFileException Wrong File-Format.
+	 * @throws IOException	File not found.
+	 * @throws LineUnavailableException Line Unavailable.
 	 */
 	public void AddSound(String Name, String PathToSound) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		AudioInputStream audio =  AudioSystem.getAudioInputStream(this.getClass().getResource(PathToSound));
@@ -45,7 +38,7 @@ public class Audio extends Component {
 	 * returns true if all goes well, 
 	 * returns false if the Sound is already playing
 	 * @param name Name of the Sound you want to play
-	 * @return
+	 * @return True if sound played.
 	 */
 	public boolean PlaySound(String name){
 		if (!Options.getMuted()){

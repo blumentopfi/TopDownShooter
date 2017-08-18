@@ -7,8 +7,8 @@ package framework.math;
  * @param <Z>
  */
 public class Pair<T,Z> {
-		T FirstComponent ; 
-		Z SecondComponent ; 
+		private T FirstComponent ;
+		private Z SecondComponent ;
 		public Pair(T e, Z i){
 			this.FirstComponent = e ; 
 			this.SecondComponent = i ; 

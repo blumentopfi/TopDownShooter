@@ -1,19 +1,12 @@
 package shooter.scenes;
 
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import framework.input.InputManager;
 import framework.main.Scene;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
 import shooter.objects.Background;
-import shooter.objects.ObjectPool;
 import shooter.objects.GameManager;
-import shooter.objects.HealthPowerUp;
-import shooter.objects.Player;
+
+import java.awt.geom.Rectangle2D;
 
 public class ShooterMainScene extends Scene {
 	private GameManager gameManager ; 

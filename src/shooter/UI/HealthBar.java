@@ -1,18 +1,9 @@
 package shooter.UI ;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.LinearGradientPaint;
-import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
-
-import javax.swing.JComponent;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicProgressBarUI;
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public class HealthBar extends BasicProgressBarUI {
 
@@ -27,15 +18,13 @@ public class HealthBar extends BasicProgressBarUI {
     }
     
     private Color LerpColor(Color start, Color end, double percentage){
-    	Color x = start ; 
-    	Color y = end ; 
-    	float blending = (float)percentage; 
+        float blending = (float)percentage;
 
     	float inverse_blending = 1 - blending;
 
-    	float red =   x.getRed()   * blending   +   y.getRed()   * inverse_blending;
-    	float green = x.getGreen() * blending   +   y.getGreen() * inverse_blending;
-    	float blue =  x.getBlue()  * blending   +   y.getBlue()  * inverse_blending;
+    	float red =   start.getRed()   * blending   +   end.getRed()   * inverse_blending;
+    	float green = start.getGreen() * blending   +   end.getGreen() * inverse_blending;
+    	float blue =  start.getBlue()  * blending   +   end.getBlue()  * inverse_blending;
     	
     	red = framework.math.MyMath.Clamp(255, 0, red);
     	green = framework.math.MyMath.Clamp(255, 0, green);
@@ -44,8 +33,7 @@ public class HealthBar extends BasicProgressBarUI {
     	
     	//note that if i pass float values they have to be in the range of 0.0-1.0 
     	//and not in 0-255 like the ones i get returned by the getters.
-    	Color blended = new Color (red / 255, green / 255, blue / 255);
-    	return blended ; 
+        return new Color (red / 255, green / 255, blue / 255);
     }
     
     @Override
@@ -57,8 +45,7 @@ public class HealthBar extends BasicProgressBarUI {
         g2d.setColor(Color.GREEN);
         g2d.setBackground(Color.GREEN);
         int width = progressBar.getWidth();
-        int height = progressBar.getHeight();
-        int iInnerHeight = height ;
+        int iInnerHeight = progressBar.getHeight();
         int iInnerWidth = width ;
         double dProgress = progressBar.getPercentComplete();
         if (dProgress < 0) {
@@ -77,13 +64,13 @@ public class HealthBar extends BasicProgressBarUI {
         
         if (dProgress > 0.5){
         	float OldRange = (1f - 0.5f) ;  
-        	float NewRange = (1 - 0) ;  
+        	float NewRange = (1) ;
         	float NewValue = (float) (((dProgress - 0.5f) * NewRange) / OldRange) ;
         	g2d.setColor(LerpColor(Color.green,Color.yellow,NewValue));
         }
         if (dProgress <= 0.5){
         	float OldRange = (0.5f - 0f) ;  
-        	float NewRange = (1 - 0) ;  
+        	float NewRange = (1) ;
         	float NewValue = (float) (((dProgress - 0f) * NewRange) / OldRange) ;
         	g2d.setColor(LerpColor(Color.yellow,Color.red,NewValue));
         }

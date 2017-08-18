@@ -1,7 +1,7 @@
 package shooter.options;
 
 public class Options {
-static boolean Muted = true ;
+private static boolean Muted = true ;
 static public void ToggleAudio(){
 	Muted = !Muted ; 
 }

@@ -1,20 +1,18 @@
 package shooter.objects;
 
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import framework.components.Collider;
 import framework.components.RectangleCollider;
 import framework.components.Sprite;
 
-public class UpgradePowerUp extends PowerUp {
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+class UpgradePowerUp extends PowerUp {
 	/**
 	 * Constructor for the PowerUp "Upgrade".
 	 * @param SpawnPoint The position where the PowerUp is created.
 	 */
-	public UpgradePowerUp(Point2D.Float SpawnPoint){
+	UpgradePowerUp(Point2D.Float SpawnPoint){
 		super("UpgradePowerUp") ;  
 		this.setPosition(SpawnPoint);
 		this.addComponent(new Sprite("/Assets/PowerUps/Star.png",this));

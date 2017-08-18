@@ -1,26 +1,24 @@
 package shooter.objects;
 
-import java.awt.Dimension;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import framework.components.Collider;
 import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
+
+import java.awt.geom.Point2D;
+import java.util.Objects;
 
 /**
  * Player version of a missile.
  */
 public class MisslePlayer extends Missle {
-	GameManager manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
+	private GameManager manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
 
 	/**
 	 * Constructor for the missile.
  	 * @param damage The damage of the missile.
 	 * @param movement The movement-vector of the missile.
 	 */
-	public MisslePlayer(int damage,Point2D.Float movement ){
+	MisslePlayer(int damage, Point2D.Float movement){
 		super(damage,movement);
 		this.movement = movement ; 
 		this.addComponent(new Sprite("/Assets/ProjectileSprite/Bullet.png",this));
@@ -31,7 +29,7 @@ public class MisslePlayer extends Missle {
 	 * @param collidingObject The object this collides with
 	 */
 	public void OnCollision(GameObject collidingObject) {
-		if (collidingObject.getName() == "Enemy"){
+		if (Objects.equals(collidingObject.getName(), "Enemy")){
 		Enemy collidingEnemy = (Enemy)collidingObject ; 
 		collidingEnemy.addDamage(damage);
 		Explosion e = manager.ExplosionsSciFi.getExplosion() ; 
@@ -39,7 +37,7 @@ public class MisslePlayer extends Missle {
 		
 		this.Destroy();
 		}
-		if (collidingObject.getName() == "Boss"){
+		if (Objects.equals(collidingObject.getName(), "Boss")){
 			Boss collidingEnemy = (Boss)collidingObject ;
 			collidingEnemy.addDamage(damage);
 			Explosion e = manager.ExplosionsSciFi.getExplosion() ; 

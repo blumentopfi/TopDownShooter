@@ -1,15 +1,12 @@
 package framework.components;
 
-import java.awt.Dimension;
-import java.awt.Shape;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Float;
-
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
+
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 /**
  * Oval Collider component, used for collision
  * @author Fin

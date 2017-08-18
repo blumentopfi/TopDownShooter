@@ -2,6 +2,7 @@ package shooter.objects;
 
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
+import java.util.Objects;
 import java.util.Random;
 
 import framework.components.RectangleCollider;
@@ -10,14 +11,14 @@ import framework.main.GameObject;
 import framework.rendering.Time;
 
 public class Meteorit extends GameObject {
-	int damage = 200;
-	public float speed = 3f;
+	private int damage = 200;
+	private float speed = 3f;
 
 	/**
 	 * Constructor for meteorits.
 	 * @param Name The name of this game-object.
 	 */
-	public Meteorit(String Name) {
+	Meteorit(String Name) {
 		super(Name);
 		Random r = new Random(System.nanoTime());
 		int OurInt = r.nextInt(4) + 1;
@@ -32,7 +33,7 @@ public class Meteorit extends GameObject {
 	 * @param collidingObject The object this collides with
 	 */
 	public void OnCollision(GameObject collidingObject) {
-		if (collidingObject.getName() == "MainPlayer") {
+		if (Objects.equals(collidingObject.getName(), "MainPlayer")) {
 			Player collidingPlayer = (Player) collidingObject;
 			collidingPlayer.addDamage(damage);
 			this.Destroy();

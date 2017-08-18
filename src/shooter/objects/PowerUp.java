@@ -1,6 +1,7 @@
 package shooter.objects;
 
 import java.awt.geom.Point2D;
+import java.util.Objects;
 
 import framework.main.GameObject;
 
@@ -9,9 +10,9 @@ public abstract class PowerUp extends GameObject {
 
 	/**
 	 * Constructor for the PowerUp base-class.
-	 * @param Name
+	 * @param Name Name of the PowerUp.
 	 */
-	public PowerUp(String Name){
+	PowerUp(String Name){
 		super(Name) ; 
 	}
 
@@ -29,7 +30,7 @@ public abstract class PowerUp extends GameObject {
 	 * @param collidingObject The object this collides with
 	 */
 	public void OnCollision(GameObject collidingObject) {
-		if (collidingObject.getName() == "MainPlayer"){
+		if (Objects.equals(collidingObject.getName(), "MainPlayer")){
 		PowerUpUse((Player)collidingObject) ; 
 		}
 	}

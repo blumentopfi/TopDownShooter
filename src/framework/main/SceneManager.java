@@ -1,37 +1,23 @@
 package framework.main; 
-import java.awt.Dimension;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.geom.Point2D;
+import framework.input.InputManager;
+import framework.rendering.Camera;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import framework.input.InputManager;
-import framework.main.GameObject;
-import framework.rendering.Camera;
-import shooter.objects.*;
-import shooter.scenes.MenuScene;
-import shooter.scenes.ShooterMainScene; 
 /**
  * The Manager that holds all the Information about the Scenes and the Objects in the scene. 
  * @author Fin
  *
  */
 public class SceneManager {
-	static Camera main_Camera ; 
-	static Scene m_Scene ; 
-	static JFrame game_Window ; 
-	static InputManager input_manager ; 
+	private static Camera main_Camera ;
+	private static Scene m_Scene ;
+	private static JFrame game_Window ;
+	private static InputManager input_manager ;
 	static public GraphicsConfiguration config ; 
 	private static List<GameObject> m_GameObjectsInScene ;
 	private static List<GameObject> m_GameObjectsToDelete;
@@ -49,9 +35,9 @@ public class SceneManager {
 		return m_GameObjectsToDelete;
 	}
 	public GameObject getGameObjectbyId(long id){
-		for (int i = 0 ; i < this.m_GameObjectsInScene.size() ; i++){
-			if (id == this.m_GameObjectsInScene.get(i).getId()){
-				return this.m_GameObjectsInScene.get(i) ; 
+		for (GameObject aM_GameObjectsInScene : m_GameObjectsInScene) {
+			if (id == aM_GameObjectsInScene.getId()) {
+				return aM_GameObjectsInScene;
 			}
 		}
 		return null ; 
@@ -59,7 +45,7 @@ public class SceneManager {
 
 	/**
 	 * Switch to another Scene
-	 * @param toSet
+	 * @param toSet The Scene to set.
 	 */
 	public void SetScene(Scene toSet){
 		if (m_Scene != null){ //If we already have a scene we have to destroy it first
@@ -93,23 +79,16 @@ public class SceneManager {
 		return main_Camera.getGameView().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW) ; 
 	}
 	
-	/**
-	 * Print the names of all GameOBjects to the console
-	 */
-	public void PrintAllGameObjectsByName(){
-		for (GameObject g: m_GameObjectsInScene){
-			System.out.println(g.getName());
-		}
-	}
+
 	/**
 	 * Return the gameObject when you know the name of it
 	 * @param Name Name of gameOBject to find
 	 * @return gameObject
 	 */
 	public GameObject getGameObjectByName(String Name){
-		for (int i = 0 ; i < m_GameObjectsInScene.size() ; i++){
-			if (m_GameObjectsInScene.get(i).getName() == Name){
-				return m_GameObjectsInScene.get(i) ; 
+		for (GameObject aM_GameObjectsInScene : m_GameObjectsInScene) {
+			if (Objects.equals(aM_GameObjectsInScene.getName(), Name)) {
+				return aM_GameObjectsInScene;
 			}
 		}
 		return null ; 
@@ -117,9 +96,10 @@ public class SceneManager {
 	
 	private static SceneManager instance ; 
 	private SceneManager() {
-		m_GameObjectsInScene = new ArrayList<GameObject>() ;
-		m_GameObjectsToDelete = new ArrayList<GameObject>() ; 
-	} ; 
+		m_GameObjectsInScene = new ArrayList<>() ;
+		m_GameObjectsToDelete = new ArrayList<>() ;
+	}
+
 	public static SceneManager getInstance() {
 		if (SceneManager.instance == null){
 			SceneManager.instance = new SceneManager () ;
@@ -130,7 +110,7 @@ public class SceneManager {
 	 * Add a GameObject to the scene
 	 * @param toAdd Object we want to add
 	 */
-	public void AddGameObjectToScene(GameObject toAdd){
+	void AddGameObjectToScene(GameObject toAdd){
 		m_GameObjectsInScene.add(toAdd) ; 
 	}
 	/**

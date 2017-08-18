@@ -1,39 +1,35 @@
 package shooter.objects;
 
-import java.awt.Dimension;
-import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import framework.components.Animator;
+import framework.components.Audio;
+import framework.components.Sprite;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import framework.components.Animator;
-import framework.components.Audio;
-import framework.components.Sprite;
-import framework.main.GameObject;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Stylish Explosion for enemy Planes
  * @author Fin
  *
  */
 public  class ExplosionPlane extends Explosion {
-	Animator myAnimator ; 
+	private Animator myAnimator ;
 	Audio a ;
 
 	/**
 	 * Constructor for explosions for planes.
 	 * @param Name The name of this game-object.
 	 */
-	public ExplosionPlane(String Name){
+	ExplosionPlane(String Name){
 		super(Name) ; 
 		this.setActive(false);
 		this.addComponent(new Sprite("/Assets/ProjectileSprite/Explosion/expl_06_0.png",this));
-		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
+		List<BufferedImage>myAnimation = new ArrayList<>() ;
 		try {
 			for (int i = 0 ; i < 32 ; i++) 
 				myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/ProjectileSprite/Explosion/expl_06_" + i + ".png")));
@@ -74,7 +70,7 @@ public  class ExplosionPlane extends Explosion {
 	/**
 	 * Play the sound of the explosion
 	 */
-	public void Boom(){
+	void Boom(){
 		a.PlaySound("BOOOOOM"); //BOOOOOOOOM
 	}
 }

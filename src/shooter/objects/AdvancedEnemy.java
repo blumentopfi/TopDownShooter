@@ -6,7 +6,6 @@ import framework.main.GameObject;
 import javax.imageio.ImageIO;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,11 @@ public class AdvancedEnemy extends Enemy {
      * @param posX Starting-coordinate X.
      * @param posY Starting-coordinate Y.
      */
-    public AdvancedEnemy(String PathToSprite, String Name, float posX, float posY) {
+    AdvancedEnemy(String PathToSprite, String Name, float posX, float posY) {
         super(PathToSprite, Name, posX, posY);
         setHealth(200);
         setValue(40);
-        List<BufferedImage> myAnimation = new ArrayList<BufferedImage>() ;
+        List<BufferedImage> myAnimation = new ArrayList<>() ;
         try {
             myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/Advanced/1.png")));
             myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/Advanced/2.png")));

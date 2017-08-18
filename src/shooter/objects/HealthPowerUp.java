@@ -1,12 +1,11 @@
 package shooter.objects;
 
-import java.awt.Dimension;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import framework.components.Collider;
 import framework.components.RectangleCollider;
 import framework.components.Sprite;
+
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 public class HealthPowerUp extends PowerUp {
 	private int healthstrength ;
@@ -16,7 +15,7 @@ public class HealthPowerUp extends PowerUp {
 	 * @param SpawnPoint The position where the PowerUp is created.
 	 * @param healthstrength The increase of health of the player.
 	 */
-	public HealthPowerUp(Point2D.Float SpawnPoint, int healthstrength){
+	HealthPowerUp(Point2D.Float SpawnPoint, int healthstrength){
 		super("HealthPowerUp") ; 
 		this.healthstrength = healthstrength ; 
 		this.setPosition(SpawnPoint);

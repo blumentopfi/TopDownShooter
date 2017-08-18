@@ -1,54 +1,38 @@
 package shooter.objects;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
-import java.awt.geom.Point2D;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Random;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-
 import framework.input.InputManager;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import shooter.UI.HealthBar;
 
-import static shooter.objects.Enemy.random;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.util.List;
+import java.util.Random;
 
 public class GameManager extends GameObject {
-	JLabel ScoreLabel ;
-	JLabel FPSLabel ;
+	private JLabel ScoreLabel ;
 
-	JProgressBar m_healthbar = new JProgressBar() ;
-	JProgressBar m_bossbar = new JProgressBar() ;
-	JLabel Stats ;
-	JLabel BossLabel ; 
-	Boolean boss = false;
-	Boolean bossKilled = false;
-	Player main_player  ;
-	JButton PlayButton = new JButton() ; 
-	JLabel PauseLabel1 = new JLabel() ; 
-	JLabel PauseLabel2 = new JLabel() ; 
-	JPanel gameView ; 
-	int Score = 0 ;
-	int killedEnemies = 0;
+	private JProgressBar m_healthbar = new JProgressBar() ;
+	private JProgressBar m_bossbar = new JProgressBar() ;
+	private JLabel BossLabel ;
+	private Boolean boss = false;
+	private Player main_player  ;
+	private JLabel PauseLabel1 = new JLabel() ;
+	private JLabel PauseLabel2 = new JLabel() ;
+	private JPanel gameView ;
+	private int Score = 0 ;
+	private int killedEnemies = 0;
 	int Wave = 1;
-	int num_threads = 0 ; 
+	private int num_threads = 0 ;
 	private boolean waves;
-	Boss m_boss ; 
-	int i = 6 ; 
-	int j = 6 ; 
-	JPanel[][] panelHolder = new JPanel[i][j] ; 
-	public ObjectPool ExplosionsSciFi = new ObjectPool() ; 
-	public ObjectPool ExplosionsPlane = new ObjectPool() ;
+	private Boss m_boss ;
+	private int i = 6 ;
+	private int j = 6 ;
+	private JPanel[][] panelHolder = new JPanel[i][j] ;
+	ObjectPool ExplosionsSciFi = new ObjectPool() ;
+	ObjectPool ExplosionsPlane = new ObjectPool() ;
 
 	/**
 	 * Returns the player of the game.
@@ -59,7 +43,7 @@ public class GameManager extends GameObject {
 	}
 
 	//Maximum number of enemies that are alive at the same time.
-	public static int MAX_ENEMY_NUMBER = 5;
+	private static int MAX_ENEMY_NUMBER = 5;
 
 	/**
 	 * Constructor for GameManager
@@ -75,12 +59,8 @@ public class GameManager extends GameObject {
 			      SceneManager.getInstance().getMainCamera().AddGUIElement(panelHolder[m][n]);
 			   }
 			}
-		new Thread(() -> {
-			ExplosionsSciFi.init(true);  
-		}).start();
-		new Thread(() -> {
-			ExplosionsPlane.init(false);  
-		}).start();
+		new Thread(() -> ExplosionsSciFi.init(true)).start();
+		new Thread(() -> ExplosionsPlane.init(false)).start();
 		main_player = 	new Player("/Assets/PlaneSprites/1.png","MainPlayer") ;
 		ScoreLabel = new JLabel("Score: ",JLabel.LEFT);
 		ScoreLabel.setFont(new Font("Verdana", Font.PLAIN, 25));
@@ -90,14 +70,14 @@ public class GameManager extends GameObject {
 		BossLabel.setText("BOSS:");
 		m_healthbar.setUI(new HealthBar());
 		m_bossbar.setUI(new HealthBar());
-		Stats = new JLabel() ; 
+		JLabel stats = new JLabel();
 		AddToPanel(0,5,ScoreLabel);
-		AddToPanel(0,0,Stats) ;
+		AddToPanel(0,0, stats) ;
 		AddToPanel(0,1,m_healthbar) ;
 		AddToPanel(0,3,BossLabel);
 		AddToPanel(0,4,m_bossbar) ;
-		Stats.setFont(new Font("Verdana", Font.PLAIN, 25));
-		Stats.setText("HP:");
+		stats.setFont(new Font("Verdana", Font.PLAIN, 25));
+		stats.setText("HP:");
 		m_healthbar.setMaximum(main_player.getHealth());
 		m_healthbar.setValue(main_player.getHealth());
 		m_bossbar.setVisible(false);
@@ -119,7 +99,7 @@ public class GameManager extends GameObject {
 	/**
 	 * Initiate the pause of the complete game.
 	 */
-	public void initPause(){
+	private void initPause(){
 		this.PauseLabel1.setForeground(Color.CYAN);
 		this.PauseLabel1.setText("PAU");
 		PauseLabel1.setFont(new Font("Verdana", Font.PLAIN, 79));
@@ -142,7 +122,7 @@ public class GameManager extends GameObject {
 	/**
 	 * Pause the complete game.
 	 */
-	public void Pause(){
+	void Pause(){
 		if (PauseLabel1.isVisible()){
 			InputManager.UnPause();
 		}else{
@@ -186,7 +166,7 @@ public class GameManager extends GameObject {
 	/**
 	 * Dislay the health of the player and of bosses as bars.
 	 */
-	public void drawHealth(){
+	private void drawHealth(){
 		if (main_player != null) m_healthbar.setValue(this.main_player.getHealth()) ; 
 		if (m_boss != null) m_bossbar.setValue(this.m_boss.getHealth());
 	}
@@ -203,7 +183,7 @@ public class GameManager extends GameObject {
 	 * Add points to the score of the player and update the score-label.
 	 * @param points The points to add to the score.
 	 */
-	public void AddScore(int points){
+	void AddScore(int points){
 		Score += points ; 
 		ScoreLabel.setText("Score: " + Score);
 		
@@ -213,10 +193,9 @@ public class GameManager extends GameObject {
 	 * Generate Enemies and position them at random coordinates above the viewport.
 	 * @param gos The whole list of game-objects.
 	 */
-	public void setupEnemies(List<GameObject> gos) {
+	private void setupEnemies(List<GameObject> gos) {
 		int enemyCounter = 0;
-		for (int i = 0 ; i< gos.size() ; i++) {
-			GameObject enemies = gos.get(i) ;
+		for (GameObject enemies : gos) {
 			if (enemies.getName().equals("Enemy")) {
 				enemyCounter++;
 			}
@@ -249,15 +228,14 @@ public class GameManager extends GameObject {
 	/**
 	 * Increase the kill-counter of the player by one.
 	 */
-	public void addKilledEnemy() {
+	void addKilledEnemy() {
 		killedEnemies++;
 	}
 
 	/**
 	 * The player killed the current boss.
 	 */
-	public void killedBoss() {
-		bossKilled = true;
+	void killedBoss() {
 		boss = false;
 		Wave++;
 		killedEnemies = 0;

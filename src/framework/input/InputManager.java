@@ -1,30 +1,16 @@
 package framework.input;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.List;
-
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JFrame;
-import javax.swing.Timer;
-
-import framework.components.*;
+import framework.components.Collider;
 import framework.geometry.QuadTree;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manager for our game Ticks and our Input
@@ -34,11 +20,10 @@ import framework.rendering.Camera;
  */
 public class InputManager implements ActionListener {
 	private static final int DELAY = 10; // Tick every 10 milliseconds
-	Camera camera; // our Camera
-	JFrame window; // our gameWindow
-	KeyListener keylistener; // our Listener for the input
-	Timer timer; // Tick timer
-	static boolean paused = false ; 
+	private Camera camera; // our Camera
+	private JFrame window; // our gameWindow
+	private KeyListener keylistener; // our Listener for the input
+	private static boolean paused = false ;
 	public static void Pause(){
 		paused = true ; 
 	}
@@ -55,7 +40,7 @@ public class InputManager implements ActionListener {
 		camera = SceneManager.getInstance().getMainCamera();
 		MouseInput a = new MouseInput();
 		window.addMouseListener(a);
-		timer = new Timer(DELAY, this);
+		Timer timer = new Timer(DELAY, this);
 		timer.start();
 
 	}
@@ -72,11 +57,11 @@ public class InputManager implements ActionListener {
 	 *
 	 */
 	class MouseInput implements MouseListener {
-		List<GameObject> gameObjectsinScene;
+		List<GameObject> gameObjectsInScene;
 
-		public MouseInput() {
+		MouseInput() {
 			super();
-			gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene();
+			gameObjectsInScene = SceneManager.getInstance().GetAllGameObjectsInScene();
 		}
 
 		@Override
@@ -101,8 +86,7 @@ public class InputManager implements ActionListener {
 		 */
 		@Override
 		public void mousePressed(MouseEvent arg0) {
-			for (int i = 0; i < gameObjectsinScene.size(); i++) {
-				GameObject Object = gameObjectsinScene.get(i);
+			for (GameObject Object : gameObjectsInScene) {
 				Object.MousePressed(arg0);
 			}
 
@@ -112,20 +96,22 @@ public class InputManager implements ActionListener {
 		 */
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
-			for (int i = 0; i < gameObjectsinScene.size(); i++) {
-				GameObject Object = gameObjectsinScene.get(i);
+			for (GameObject Object : gameObjectsInScene) {
 				Object.MouseReleased(arg0);
 			}
 
 		}
 
 	}
+
+/*
 /**
  * Not using that yet
- * @param shapeA
- * @param shapeB
- * @return
+ * @param shapeA The original Shape.
+ * @param shapeB The Shape to test for intersection.
+ * @return True if intersected.
  */
+/*
 private static boolean testIntersection(Shape shapeA, Shape shapeB) {
    if (shapeA instanceof Rectangle2D.Float){
 	   if (shapeB instanceof Ellipse2D.Float){
@@ -148,38 +134,37 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 		   return true ;
 	   }
    }
-   
+
    
    return false ;
 }
+*/
 	/**
 	 * Function to detect Collisions via a Quad Tree
 	 *
  	 * @see <a href="Wikipedia Quad Tree">https://de.wikipedia.org/wiki/Quadtree</a>
-	 * @param gameObjectsinScene
+	 * @param gameObjectsInScene The list of elements to test collision.
 	 */
-	private void CheckCollisions(List<GameObject> gameObjectsinScene){
+	private void CheckCollisions(List<GameObject> gameObjectsInScene){
 		//New Collision Detection using a Quad Tree
 		QuadTree quad = new QuadTree(0, camera.getViewRect());
 		quad.clear();
-		for (int i = 0; i < gameObjectsinScene.size(); i++) {
-			if (gameObjectsinScene.get(i).getCollider() != null) {
-				quad.insert(gameObjectsinScene.get(i));
+		for (GameObject aGameObjectsInScene : gameObjectsInScene) {
+			if (aGameObjectsInScene.getCollider() != null) {
+				quad.insert(aGameObjectsInScene);
 			}
 		}
-		List<GameObject> returnedObjects = new ArrayList<GameObject>();
-		for (int i = 0; i < gameObjectsinScene.size(); i++) { //iterate through objects
-			GameObject objectA = gameObjectsinScene.get(i);
-			Collider colliderToCheckA = objectA.getCollider() ; 
+		List<GameObject> returnedObjects = new ArrayList<>();
+		for (GameObject objectA : gameObjectsInScene) { //iterate through objects
+			Collider colliderToCheckA = objectA.getCollider();
 			if (colliderToCheckA != null) {
 				returnedObjects.clear();
 				Shape ShapeA = colliderToCheckA.getCollidingShape();
-				quad.retrieve(returnedObjects, gameObjectsinScene.get(i)); //get Objects in the same node in tree
-				for (int j = 0; j < returnedObjects.size(); j++) {
-					GameObject objectB = returnedObjects.get(j);			
+				quad.retrieve(returnedObjects, objectA); //get Objects in the same node in tree
+				for (GameObject objectB : returnedObjects) {
 					if (objectB != objectA) {
 						Collider colliderToCheckB;
-						colliderToCheckB = objectB.getCollider() ; 
+						colliderToCheckB = objectB.getCollider();
 						if (colliderToCheckB != null) {
 							Shape ShapeB = colliderToCheckB.getCollidingShape();
 							if (ShapeA.intersects(ShapeB.getBounds2D())) { //check Collisions between
@@ -199,15 +184,14 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		// Get all the Objects in our Scene and Update them
-		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene();
+		List<GameObject> gameObjectsInScene = SceneManager.getInstance().GetAllGameObjectsInScene();
 		if (!paused){
-		for (int i = 0; i < gameObjectsinScene.size(); i++) {
-			GameObject Object = gameObjectsinScene.get(i);
-			if (Object.isActive()) Object.Update();
-		}
+			for (GameObject Object : gameObjectsInScene) {
+				if (Object.isActive()) Object.Update();
+			}
 		}
 		
-		CheckCollisions(gameObjectsinScene) ; 
+		CheckCollisions(gameObjectsInScene) ;
 		// If there are destroyed gameObject remove them
 		SceneManager.getInstance().GetAllGameObjectsInScene()
 				.removeAll(SceneManager.getInstance().getGameObjectToDelete());

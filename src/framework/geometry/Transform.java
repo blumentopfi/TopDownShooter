@@ -1,10 +1,7 @@
 package framework.geometry;
 
-import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.geom.Point2D;
-
-import framework.input.InputManager;
 
 /**
  * Class which holds all the informations regarding position, rotation and dimension

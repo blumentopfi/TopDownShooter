@@ -1,18 +1,17 @@
 package shooter.objects;
 
-import java.awt.Dimension;
-import java.awt.Point;
+import framework.components.RectangleCollider;
+import framework.components.Sprite;
+
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-
-import framework.components.*;
-import framework.components.Sprite;
 /**
  * Damage Power Up if collected ups the damage of the player
  * @author Fin
  *
  */
-public class DamagePowerUp extends PowerUp {
+class DamagePowerUp extends PowerUp {
 	private int damageUp ;
 
 	/**
@@ -20,7 +19,7 @@ public class DamagePowerUp extends PowerUp {
 	 * @param SpawnPoint The Position where the PowerUp is created.
 	 * @param damageUp The increase of damage the player puts out.
 	 */
-	public DamagePowerUp(Point2D.Float SpawnPoint, int damageUp){
+	DamagePowerUp(Point2D.Float SpawnPoint, int damageUp){
 		super("DamagePowerUp") ; 
 		this.damageUp = damageUp ; 
 		this.setPosition(SpawnPoint);

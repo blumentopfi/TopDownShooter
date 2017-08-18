@@ -4,45 +4,22 @@ package framework.rendering;
  * @author Fin
  * 
  */
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.LayoutManager;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.Toolkit;
-import java.awt.Transparency;
+import framework.main.GameObject;
+import framework.main.SceneManager;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import framework.components.UIString;
-import framework.main.GameObject;
-import framework.main.SceneManager;
-import framework.rendering.RenderThread;
 public class Camera  {
-	protected Rectangle2D.Float ViewRect ; //World Space
-	protected JFrame  m_GameWindow ;  //Game Window
-	protected GameView m_GameView ;  //Panel where the game renders
-	public FPSCounter m_fpscounter ; //Counter for the FPS
+
+	private Rectangle2D.Float ViewRect ; //World Space
+	private JFrame  m_GameWindow ;  //Game Window
+	private GameView m_GameView ;  //Panel where the game renders
+	FPSCounter m_fpscounter ; //Counter for the FPS
 	/**
 	 * Constructor for the camera class
 	 * @param height height of the game window
@@ -50,7 +27,7 @@ public class Camera  {
 	 * @param ViewRect Rect for world space
 	 * @param gameWindow reference to our game Window
 	 */
-	public Camera(int height , int width,Rectangle2D.Float ViewRect, JFrame gameWindow){
+	public Camera(int height, int width, Rectangle2D.Float ViewRect, JFrame gameWindow){
 		m_GameView = new GameView() ; 
 		this.ViewRect = ViewRect ;
 		m_GameWindow = gameWindow ;  
@@ -188,10 +165,11 @@ public class Camera  {
 		WorldPoint.x = (float) (ScreenPoint.x / (m_GameWindow.getHeight() / ViewRect.getHeight())) ;
 		return WorldPoint ;
 	}
+
 	/**
 	 * Convert ScreenPoint to WorldPoint
-	 * @param ScreenPoint
-	 * @return WorldPoint
+	 * @param ScreenPointNonFloat The point on the screen.
+	 * @return The point in the world.
 	 */
 	public Point2D.Float ScreenCoordToWorldCoord (Point ScreenPointNonFloat){
 		Point2D.Float ScreenPoint = new Point2D.Float(ScreenPointNonFloat.x, ScreenPointNonFloat.y) ; 

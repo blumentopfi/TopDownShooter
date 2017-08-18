@@ -1,39 +1,32 @@
 package shooter.testing;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Camera;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import shooter.objects.Enemy;
-import shooter.objects.ObjectPool;
 import shooter.objects.GameManager;
 import shooter.objects.Player;
 import shooter.objects.SimpleEnemy;
-import shooter.scenes.MenuScene;
 import shooter.scenes.TestScene;
-import java.awt.Robot;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
-
-import static org.junit.Assert.*;
-
-import java.awt.AWTException;
-import java.awt.Dimension;
 import java.awt.geom.Point2D;
-import java.lang.annotation.Repeatable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class ShooterTest {
-	TestScene test ; 
+	private TestScene test ;
 	public ShooterTest() {
 		SceneManager.getInstance();
-		SceneManager.init(test = new TestScene()); 
+		SceneManager.init(test = new TestScene());
 	}
 	@Parameterized.Parameters
 	    public static List<Object[]> data() {
@@ -115,7 +108,7 @@ public class ShooterTest {
 		}
 		int Counter = 0 ; 
 		for (GameObject g : SceneManager.getInstance().GetAllGameObjectsInScene()){
-			if (g.getName() == "Enemy") Counter++ ; 
+			if (Objects.equals(g.getName(), "Enemy")) Counter++ ;
 		}
 		assertEquals(5,Counter) ;	
 	}

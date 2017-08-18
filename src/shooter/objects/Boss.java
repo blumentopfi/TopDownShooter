@@ -1,21 +1,14 @@
 package shooter.objects;
 
-import framework.components.Collider;
 import framework.components.OvalCollider;
-import framework.components.RectangleCollider;
 import framework.components.Sprite;
 import framework.main.GameObject;
 import framework.main.SceneManager;
 import framework.rendering.Time;
-import shooter.UI.HealthBar;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Random;
-
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
 
 import static shooter.objects.Enemy.random;
 
@@ -26,18 +19,18 @@ import static shooter.objects.Enemy.random;
  */
 public class Boss extends GameObject {
 
-    public float speed = 1.5f;
-    public int health = 3000;
+    private float speed = 1.5f;
+    private int health = 3000;
 
-    public static int MOVE_DISTANCE = 100;
-    public int value = 20 ;
-    public int moveCounter = 0;
-    public int lastMove = 2;
+    private static int MOVE_DISTANCE = 100;
+    private int value = 20 ;
+    private int moveCounter = 0;
+    private int lastMove = 2;
 
-    long FireRate = 200  ;
-    long NextFire = 0  ;
+    private long FireRate = 200  ;
+    private long NextFire = 0  ;
 
-    GameManager manager ;
+    private GameManager manager ;
 
     /**
      * Constructor for Boss.
@@ -47,7 +40,7 @@ public class Boss extends GameObject {
      * @param posX Starting-coordinate X.
      * @param posY Starting-coordinate Y.
      */
-    public Boss(String PathToSprite, String Name, int new_health, float posX, float posY) {
+    Boss(String PathToSprite, String Name, int new_health, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
@@ -63,7 +56,7 @@ public class Boss extends GameObject {
      * Returns the value (score) of this game-object.
      * @return The Value of this object.
      */
-    public int getValue(){
+    private int getValue(){
         return value ;
     }
     /**
@@ -109,7 +102,7 @@ public class Boss extends GameObject {
      * Move randomly to the left, right or stay at the current position.
      * Similar to movement in "Enemy" - class.
      */
-    public void move() {
+    private void move() {
         if(this.getPosition().y < 2) {
             this.setPosition(new Point2D.Float(this.getPosition().x, (float) (this.getPosition().y + speed *Time.deltaTime)));
         }
@@ -148,7 +141,6 @@ public class Boss extends GameObject {
      */
     private void shootSingle(){
         double maxWidth = this.getWidth();
-        double maxHeight = this.getHeight();
 
         Point2D.Float xL = SceneManager.getInstance().getMainCamera().WorldCoordToScreenCoord(this.getPosition());
 
@@ -171,7 +163,7 @@ public class Boss extends GameObject {
      * Deduct the given damage from the boss's health.
      * @param damage The damage to deduct.
      */
-    public void addDamage(int damage){
+    void addDamage(int damage){
         health -= damage ;
     }
 
@@ -195,8 +187,8 @@ public class Boss extends GameObject {
     	new Thread(() -> {
     		float x = this.getPosition().x ; 
             float y = this.getPosition().y ; 
-            float random_x_offset = 0 ; 
-            float random_y_offset = 0 ; 
+            float random_x_offset;
+            float random_y_offset;
     		 ExplosionPlane e ;
     		 for (int i = 0 ; i < 20 ; i++){
     			 e = (ExplosionPlane)manager.ExplosionsPlane.getExplosion() ; 
@@ -227,7 +219,7 @@ public class Boss extends GameObject {
      * Retuns the current health of the boss.
      * @return The health of the boss.
      */
-    public int getHealth() {
+    int getHealth() {
         return health;
     }
 

@@ -1,8 +1,6 @@
 package shooter.main;
-import framework.main.*;
-
+import framework.main.SceneManager;
 import shooter.scenes.MenuScene;
-import shooter.scenes.ShooterMainScene; 
 /**
  * Main Class for the shooter
  * @author Fin

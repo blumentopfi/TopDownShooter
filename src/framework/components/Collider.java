@@ -1,15 +1,8 @@
 package framework.components;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
 import framework.main.GameObject;
-import framework.main.SceneManager;
-import framework.rendering.Camera;
+
+import java.awt.*;
 /**
  * Abstract mother class for our Colliders
  * @author Fin
@@ -17,7 +10,7 @@ import framework.rendering.Camera;
  * Switched to Abstract Class to implement more Collider Types
  */
 public abstract class Collider extends Component {
-	GameObject myObject ; //Object the Collider is assgined to
+	private GameObject myObject ; //Object the Collider is assigned to
 	Shape collidingShape ; //Shape of the Collider
 	boolean HasOverridenSize = false ; //See if user set size manually
 	/**
@@ -42,8 +35,8 @@ public abstract class Collider extends Component {
 	public abstract float getY() ; 
 	/**
 	 * see if this Collider interesects with another
-	 * @param A
-	 * @return
+	 * @param A The Collider that may intersect.
+	 * @return True if intersected.
 	 */
 	public abstract boolean intersects(Collider A) ; 
 	/**
@@ -75,8 +68,8 @@ public abstract class Collider extends Component {
 	}
 	/**
 	 * return the gameObject in form of the colliding Shape 
-	 * @param object
-	 * @return
+	 * @param object The object to convert.
+	 * @return The converted Shape.
 	 */
 	abstract Shape gameObjectToShape(GameObject object) ; 
 }

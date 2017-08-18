@@ -1,70 +1,50 @@
 package shooter.objects;
 
 
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.*;
-
-import shooter.objects.Missle;
-import shooter.scenes.GameOverScene;
-import shooter.scenes.MenuScene;
-
-import java.time.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JLabel;
-import javax.swing.KeyStroke;
-
 import framework.components.Animator;
 import framework.components.Audio;
-import framework.components.Collider;
 import framework.components.OvalCollider;
-import framework.components.RectangleCollider;
 import framework.components.Sprite;
 import framework.input.InputManager;
 import framework.main.GameObject;
 import framework.main.SceneManager;
+import framework.math.MyMath;
 import framework.rendering.Time;
-import framework.math.*; 
+import shooter.scenes.GameOverScene;
+
+import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Player extends GameObject {
 	Point direction ; 
-	float dx ; 
-	float dy ; 
+	private float dx ;
+	private float dy ;
 
 	Audio a ;
 
-	long FireRate = 100;
-	long NextFire = 0  ;
+	private long FireRate = 100;
+	private long NextFire = 0  ;
 
-	int health = 10000 ;
-	int damage = 50 ;  
+	private int health = 10000 ;
+	private int damage = 50 ;
 
-	int UpperBoundsY ;
-	int UpperBoundsX ;
+	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ;
+	private Weapon my_weapon = Weapon.SINGLE ;
 
-	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ; 
-	Weapon my_weapon = Weapon.SINGLE ;
-
-	GameManager manager;
+	private GameManager manager;
 
 	/**
 	 * Constructor for the player.
@@ -74,7 +54,7 @@ public class Player extends GameObject {
 	public Player(String PathToSprite, String Name){
 		super(Name) ;
 		manager = (GameManager)framework.main.SceneManager.getInstance().getGameObjectByName("Manager") ;
-		List<BufferedImage>myAnimation = new ArrayList<BufferedImage>() ; 
+		List<BufferedImage>myAnimation = new ArrayList<>() ;
 		try {
 		myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/1.png")));		
 		myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/PlaneSprites/2.png")));
@@ -91,8 +71,6 @@ public class Player extends GameObject {
 		this.setDimension(new Dimension((int)this.getWidth()/4,(int)this.getHeight()/4));
 		this.ActionMapInputMapInitialize(); 
 		this.addComponent(new Animator(myAnimation,this,50));
-		this.UpperBoundsY = SceneManager.getInstance().getMainCamera().getGameView().getHeight() ;
-		this.UpperBoundsX = SceneManager.getInstance().getMainCamera().getGameView().getWidth() ; 
 		a = new Audio() ;
 		try {
 			a.AddSound("Pew", "/Assets/Sound/laser1.wav");
@@ -100,13 +78,7 @@ public class Player extends GameObject {
 			a.AddSound("Pew2", "/Assets/Sound/laser1.wav");
 			a.AddSound("Pew3", "/Assets/Sound/laser1.wav");
 			
-		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -160,7 +132,7 @@ public class Player extends GameObject {
 	/**
 	 * Increase the type of weapon of the player.
 	 */
-	public void UpgradeWeapon(){
+	void UpgradeWeapon(){
 		
 		switch(this.my_weapon){
 		case DOUBLE:
@@ -181,7 +153,7 @@ public class Player extends GameObject {
 	 * @param collidingObject The object this collides with
 	 */
 	public void OnCollision(GameObject collidingObject) {
-		if (collidingObject.getName() == "Enemy"){
+		if (Objects.equals(collidingObject.getName(), "Enemy")){
 		collidingObject.Destroy(); 
 		}
 	}
@@ -244,14 +216,14 @@ public class Player extends GameObject {
 	 * Deduct damage from the players health.
 	 * @param damage The damage to deduct.
 	 */
-	public void addDamage(int damage){
+	void addDamage(int damage){
 		this.health-=damage ; 
 	}
 
 	/**
 	 * Shoot bullets.
 	 */
-	public void shoot(){
+	private void shoot(){
 		if (NextFire < System.currentTimeMillis() &&!InputManager.isPause()){
 			
 				if (!a.PlaySound("Pew")){
@@ -286,7 +258,7 @@ public class Player extends GameObject {
 	/**
 	 * Initialize the Input-map for controlling the plane.
 	 */
-	public void ActionMapInputMapInitialize(){
+	private void ActionMapInputMapInitialize(){
 		ActionMap actionMap = SceneManager.getInstance().getActionMap() ; 
 		InputMap inputMap = SceneManager.getInstance().getInputMap() ; 
 		Action shooting = new AbstractAction() {

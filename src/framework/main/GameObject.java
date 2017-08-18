@@ -1,23 +1,17 @@
 package framework.main;
 
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.event.KeyEvent;
+import framework.components.Animator;
+import framework.components.Collider;
+import framework.components.Component;
+import framework.components.Sprite;
+import framework.geometry.Transform;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
-
-import framework.components.*;
-import framework.geometry.*;
-import framework.main.SceneManager; 
 /**
  * Class for any objects that is in the game
  * @author Fin
@@ -28,7 +22,7 @@ public abstract class GameObject {
 	private long m_id  ;
 	private Transform m_transform ; 
 	private boolean m_isActive = true ; 
-	private List<Component> m_Components = new ArrayList<Component>() ; // List of Components that are attached
+	private List<Component> m_Components = new ArrayList<>() ; // List of Components that are attached
 	/**
 	 * Add a component
 	 * @param component Component we want to add
@@ -113,32 +107,30 @@ public abstract class GameObject {
 		}
 	}
 	/**
-	 *  Get the Collider of the object
-	 * @return
+	 *  Get the Collider of the object.
+	 * @return The Collider.
 	 */
 	public Collider getCollider(){
-		for (int i = 0 ; i < m_Components.size() ; i++ ){
-			Component c = m_Components.get(i) ;
-			if (c != null){
-			if (c instanceof Collider){
-				return (Collider)c ; 
-			}
+		for (Component c : m_Components) {
+			if (c != null) {
+				if (c instanceof Collider) {
+					return (Collider) c;
+				}
 			}
 		}
 		return null ; 
 	}
 	/**
 	 * Generic function to get a generic Component not used everywhere
-	 * @param type
-	 * @return
+	 * @param type The Type.
+	 * @return Type Component.
 	 */
 	public<T extends Component>  T getComponent (Class<T> type){
 
-		for (int i = 0 ; i <m_Components.size() ; i++){
-			Component c = m_Components.get(i) ; 
-			if (c!=null){
-				if (c.getClass().getTypeName().equals(type.getTypeName()) || c.getClass().getSuperclass().getTypeName().equals(type.getTypeName())){
-					return type.cast(c) ; 
+		for (Component c : m_Components) {
+			if (c != null) {
+				if (c.getClass().getTypeName().equals(type.getTypeName()) || c.getClass().getSuperclass().getTypeName().equals(type.getTypeName())) {
+					return type.cast(c);
 				}
 			}
 		}	
@@ -183,15 +175,13 @@ public abstract class GameObject {
 	 * Super update updates all the components
 	 */
 	public void Update(){
-		List<Thread> threads = new ArrayList<Thread>() ; 
-		for (int i = 0 ; i < m_Components.size() ; i++){
-			Component c = m_Components.get(i) ;
-				c.ComponentUpdate();
+		for (Component c : m_Components) {
+			c.ComponentUpdate();
 		}
 	}
 	/**
 	 * Init the GameObject with a Name ;
-	 * @param Name
+	 * @param Name Name of the Object.
 	 */
 	public GameObject(String Name){
 		Random random = new Random(System.nanoTime()) ;

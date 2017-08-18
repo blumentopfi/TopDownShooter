@@ -7,8 +7,8 @@ import framework.rendering.Camera;
  *
  */
 abstract public class Scene {
-	protected Camera main_Camera ; 
-	public boolean isFinished = false  ; 
+	protected Camera main_Camera ;
+
 	public Scene(){
 	}
 	/** 
@@ -26,6 +26,7 @@ abstract public class Scene {
 		main_Camera = null ; 
 	}
 	public boolean isFinished(){
-		return isFinished ; 
+		boolean isFinished = false;
+		return isFinished;
 	}
 }
