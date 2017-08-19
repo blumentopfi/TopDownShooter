@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class ShooterTest {
-	private TestScene test ;
+	private final TestScene test ;
 	public ShooterTest() {
 		SceneManager.getInstance();
 		SceneManager.init(test = new TestScene());

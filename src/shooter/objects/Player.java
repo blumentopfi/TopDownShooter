@@ -33,18 +33,19 @@ public class Player extends GameObject {
 	private float dx ;
 	private float dy ;
 
-	Audio a ;
+	private final Audio a ;
 
-	private long FireRate = 100;
+	private final long FireRate = 100;
 	private long NextFire = 0  ;
 
 	private int health = 10000 ;
 	private int damage = 50 ;
 
-	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER} ;
+	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER}
+
 	private Weapon my_weapon = Weapon.SINGLE ;
 
-	private GameManager manager;
+	private final GameManager manager;
 
 	/**
 	 * Constructor for the player.

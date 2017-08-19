@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 public class GameOverScene extends Scene {
 	private JButton StartButton ;
 	private JButton QuitButton ;
-	private JLabel BackgroundImageGO ;
 	private JLabel BackgroundImage ;
 
 	@Override
@@ -50,9 +49,9 @@ public class GameOverScene extends Scene {
 		main_Camera.AddGUIElement(QuitButton);
 		showHighScore();
 		ImageIcon imageGO = new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Splashscreens/Game_Over_Screen.jpg")).getImage());
-		BackgroundImageGO = new JLabel("",imageGO,JLabel.CENTER) ;
-		BackgroundImageGO.setBounds(0, 0, main_Camera.getGameWindow().getWidth(), 100);
-		main_Camera.AddGUIElement(BackgroundImageGO);
+		JLabel backgroundImageGO = new JLabel("", imageGO, JLabel.CENTER);
+		backgroundImageGO.setBounds(0, 0, main_Camera.getGameWindow().getWidth(), 100);
+		main_Camera.AddGUIElement(backgroundImageGO);
 	
 		ImageIcon image = new ImageIcon(new ImageIcon(this.getClass().getResource("/Assets/Splashscreens/background_black.png")).getImage().getScaledInstance( main_Camera.getGameWindow().getWidth(), main_Camera.getGameWindow().getHeight()
 				, Image.SCALE_DEFAULT)) ;

@@ -74,9 +74,5 @@ public class OvalCollider extends Collider {
 		rec.height = (float) height / (int)(1000 * factor) ;
 		return rec ; 
 	}
-	@Override
-	public boolean intersects(Collider A) {
-		return false;
-	}
 
 }

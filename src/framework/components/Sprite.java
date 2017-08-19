@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class Sprite extends Component {
 	private BufferedImage my_sprite_image; // image of the sprite ;
-	private GameObject my_object;// GameObject the sprite is assigned to ;
+	private final GameObject my_object;// GameObject the sprite is assigned to ;
 	public int rotation = 0  ; 
 	/**
 	 * Init the Sprite with a path to an image

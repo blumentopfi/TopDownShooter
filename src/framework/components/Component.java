@@ -4,7 +4,7 @@ public abstract class Component {
 	/**
 	 * Mother Class for all Components
 	 */
-	protected Component(){
+    Component(){
 	}
 	/**
 	 * Function if the Component should do something every game Tick

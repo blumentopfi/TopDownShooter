@@ -12,13 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 class AnimationGeneratorWindow extends JFrame {
-	private GraphPanel GraphPanel = new GraphPanel() ;
-	private JButton NewStateButton = new JButton("New State") ;
-	private List<State> m_states = new ArrayList<>() ;
+	private final GraphPanel GraphPanel = new GraphPanel() ;
+	private final JButton NewStateButton = new JButton("New State") ;
+	private final List<State> m_states = new ArrayList<>() ;
 	private State justClickedButton ;
-	AnimationGeneratorWindow(String window_Name){
+	AnimationGeneratorWindow(){
 		
-		super(window_Name) ; 
+		super("Animation Generator") ;
 		this.setVisible(true);
 		this.setBounds(0, 0, 1000, 1000); 
 		this.setLayout(new BorderLayout());

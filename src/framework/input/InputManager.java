@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class InputManager implements ActionListener {
 	private static final int DELAY = 10; // Tick every 10 milliseconds
-	private Camera camera; // our Camera
-	private JFrame window; // our gameWindow
+	private final Camera camera; // our Camera
+	private final JFrame window; // our gameWindow
 	private KeyListener keylistener; // our Listener for the input
 	private static boolean paused = false ;
 	public static void Pause(){
@@ -57,7 +57,7 @@ public class InputManager implements ActionListener {
 	 *
 	 */
 	class MouseInput implements MouseListener {
-		List<GameObject> gameObjectsInScene;
+		final List<GameObject> gameObjectsInScene;
 
 		MouseInput() {
 			super();

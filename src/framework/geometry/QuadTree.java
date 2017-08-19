@@ -11,13 +11,13 @@ import java.util.List;
  */
 public class QuadTree {
 	 
-	  private int MAX_OBJECTS = 5; //Objects we hold in one node
-	  private int MAX_LEVELS = 5; //Max node Depth
+	  private final int MAX_OBJECTS = 5; //Objects we hold in one node
+	  private final int MAX_LEVELS = 5; //Max node Depth
 
-	  private int level; // which level we are on
-	  private List<GameObject> objects; // the object we hold
-	  private Rectangle2D.Float bounds; //Size of the wuad
-	  private QuadTree[] nodes ;  // List that holds our nodes
+	  private final int level; // which level we are on
+	  private final List<GameObject> objects; // the object we hold
+	  private final Rectangle2D.Float bounds; //Size of the wuad
+	  private final QuadTree[] nodes ;  // List that holds our nodes
 	 
 	 /*
 	  * Constructor
@@ -129,12 +129,12 @@ public class QuadTree {
 	      /*
 	       * Return all objects that could collide with the given object
 	       */
-	       public List<GameObject> retrieve(List<GameObject> returnObjects, GameObject pObject) {
+	       public void retrieve(List<GameObject> returnObjects, GameObject pObject) {
 	         int index = getIndex(pObject);
 	         if (index != -1 && nodes[0] != null) {
 	           nodes[index].retrieve(returnObjects, pObject);
 	         }
 	         returnObjects.addAll(objects);
-	         return returnObjects;
+
 	       }
 	}

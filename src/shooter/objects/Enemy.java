@@ -19,18 +19,18 @@ public abstract class Enemy extends GameObject {
     private int health = 100;
     private int value;
 
-    private long FireRate = 500  ;
+    private final long FireRate = 500  ;
     private long NextFire = 0  ;
 
-    private static int MOVE_DISTANCE = 100;
+    private static final int MOVE_DISTANCE = 100;
     private boolean isRotated = false;
     private int moveCounter = 0;
     private int tempMove = 4;
-    static Random random = new Random() ;
+    static final Random random = new Random() ;
     // 0 = left, 1 = right, 2 = straight, 3 = initial.
     public int lastMove = 3;
 
-    private GameManager manager ;
+    private final GameManager manager ;
 
     /**
      * Constructor of the Base-Class "Enemy"
@@ -39,7 +39,7 @@ public abstract class Enemy extends GameObject {
      * @param posX Starting-coordinate X.
      * @param posY Starting-coordinate Y.
      */
-    public Enemy(String PathToSprite, String Name, float posX, float posY) {
+    Enemy(String PathToSprite, String Name, float posX, float posY) {
         super(Name);
         this.setPosition(new Point2D.Float(posX, posY));
         this.addComponent(new Sprite(PathToSprite,this));
@@ -157,7 +157,7 @@ public abstract class Enemy extends GameObject {
      * Abstract function for shooting.
      * Is implemented by SimpleEnemy and AdvancedEnemy.
      */
-    public abstract void shoot();
+    protected abstract void shoot();
 
     /**
      * Deduct damage from the enemies current health.
@@ -185,16 +185,17 @@ public abstract class Enemy extends GameObject {
     	Random random = new Random(System.nanoTime()) ; 
     	int drop = random.nextInt(10) ; 
     	if (drop == 1){
-    	new HealthPowerUp(this.getPosition(),1000) ;
+    	new HealthPowerUp(this.getPosition()) ;
     	}
     	if (drop == 2){
-    		new DamagePowerUp(this.getPosition(),50) ; 
+    		new DamagePowerUp(this.getPosition()) ;
     	}
     	if (drop == 3){
     		new UpgradePowerUp(this.getPosition()) ;  
     	}
     	if (this.getHealth() <= 0 ){
-    	ExplosionPlane e = (ExplosionPlane)manager.ExplosionsPlane.getExplosion() ; 
+            assert manager != null;
+            ExplosionPlane e = (ExplosionPlane)manager.ExplosionsPlane.getExplosion() ;
     	e.setPosition(this.getPosition());
     	e.Boom();
     	}

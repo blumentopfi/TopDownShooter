@@ -12,27 +12,26 @@ import java.util.List;
 import java.util.Random;
 
 public class GameManager extends GameObject {
-	private JLabel ScoreLabel ;
+	private final JLabel ScoreLabel ;
 
-	private JProgressBar m_healthbar = new JProgressBar() ;
-	private JProgressBar m_bossbar = new JProgressBar() ;
-	private JLabel BossLabel ;
+	private final JProgressBar m_healthbar = new JProgressBar() ;
+	private final JProgressBar m_bossbar = new JProgressBar() ;
+	private final JLabel BossLabel ;
 	private Boolean boss = false;
-	private Player main_player  ;
-	private JLabel PauseLabel1 = new JLabel() ;
-	private JLabel PauseLabel2 = new JLabel() ;
-	private JPanel gameView ;
+	private final Player main_player  ;
+	private final JLabel PauseLabel1 = new JLabel() ;
+	private final JLabel PauseLabel2 = new JLabel() ;
 	private int Score = 0 ;
 	private int killedEnemies = 0;
 	int Wave = 1;
 	private int num_threads = 0 ;
 	private boolean waves;
 	private Boss m_boss ;
-	private int i = 6 ;
-	private int j = 6 ;
-	private JPanel[][] panelHolder = new JPanel[i][j] ;
-	ObjectPool ExplosionsSciFi = new ObjectPool() ;
-	ObjectPool ExplosionsPlane = new ObjectPool() ;
+	private final int i = 6 ;
+	private final int j = 6 ;
+	private final JPanel[][] panelHolder = new JPanel[i][j] ;
+	final ObjectPool ExplosionsSciFi = new ObjectPool() ;
+	final ObjectPool ExplosionsPlane = new ObjectPool() ;
 
 	/**
 	 * Returns the player of the game.
@@ -43,7 +42,7 @@ public class GameManager extends GameObject {
 	}
 
 	//Maximum number of enemies that are alive at the same time.
-	private static int MAX_ENEMY_NUMBER = 5;
+	private static final int MAX_ENEMY_NUMBER = 5;
 
 	/**
 	 * Constructor for GameManager
@@ -82,6 +81,7 @@ public class GameManager extends GameObject {
 		m_healthbar.setValue(main_player.getHealth());
 		m_bossbar.setVisible(false);
 		BossLabel.setVisible(false);
+		JPanel gameView ;
 		gameView = SceneManager.getInstance().getMainCamera().getGameView() ;
 		initPause() ; 
 	}
@@ -151,7 +151,7 @@ public class GameManager extends GameObject {
 			if (boss != null){
 			if (!boss) {
 				System.out.println("Boss created");
-				m_boss = new Boss("/Assets/PlaneSprites/Enemy B-17.png", "Boss", (3000 * 2), 5, -3);
+				m_boss = new Boss((3000 * 2), -3);
 				boss = true;
 				m_bossbar.setMaximum(m_boss.getHealth());
 				m_bossbar.setVisible(true);
@@ -210,14 +210,14 @@ public class GameManager extends GameObject {
 				float pos_X = random.nextInt(9 - 1 + 1) + 1;
 				float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
 				new SimpleEnemy("/Assets/PlaneSprites/Biploar_Y.png", "Enemy", pos_X, pos_Y);
-				Meteorit m = new Meteorit("Meteo");
+				Meteorit m = new Meteorit();
 				m.setPosition(new Point2D.Float(pos_X, pos_Y));
 			}
 			if (chance > check) {
 				float pos_X = random.nextInt(9 - 1 + 1) + 1;
 				float pos_Y = random.nextInt(0 - (-5) + 1) + (-5);
-				new AdvancedEnemy("/Assets/PlaneSprites/Advanced/JU87B2.png", "Enemy", pos_X, pos_Y);
-				Meteorit m = new Meteorit("Meteo");
+				new AdvancedEnemy(pos_X, pos_Y);
+				Meteorit m = new Meteorit();
 				m.setPosition(new Point2D.Float(pos_X, pos_Y));
 			}
 

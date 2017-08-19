@@ -22,28 +22,25 @@ public class Boss extends GameObject {
     private float speed = 1.5f;
     private int health = 3000;
 
-    private static int MOVE_DISTANCE = 100;
-    private int value = 20 ;
+    private static final int MOVE_DISTANCE = 100;
+    private final int value = 20 ;
     private int moveCounter = 0;
     private int lastMove = 2;
 
-    private long FireRate = 200  ;
+    private final long FireRate = 200  ;
     private long NextFire = 0  ;
 
-    private GameManager manager ;
+    private final GameManager manager ;
 
     /**
      * Constructor for Boss.
-     * @param PathToSprite The Path to the Sprite.
-     * @param Name The name of the object.
      * @param new_health Initial health of the boss.
-     * @param posX Starting-coordinate X.
      * @param posY Starting-coordinate Y.
      */
-    Boss(String PathToSprite, String Name, int new_health, float posX, float posY) {
-        super(Name);
-        this.setPosition(new Point2D.Float(posX, posY));
-        this.addComponent(new Sprite(PathToSprite,this));
+    Boss(int new_health, float posY) {
+        super("Boss");
+        this.setPosition(new Point2D.Float((float) 5, posY));
+        this.addComponent(new Sprite("/Assets/PlaneSprites/Enemy B-17.png",this));
         this.health = new_health;
 
         this.addComponent(new OvalCollider(this, 1.2));

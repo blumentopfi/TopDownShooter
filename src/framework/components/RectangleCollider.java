@@ -70,10 +70,5 @@ public class RectangleCollider extends Collider {
 		rec.height = (float) height/1000 ; 
 		return rec ; 
 	}
-	@Override
-	public boolean intersects(Collider A) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

@@ -20,12 +20,9 @@ public class TestScene extends Scene {
 	public GameManager getManager(){
 		return gameManager ; 
 	}
-	public void finishScene(){
-		main_Camera = null ; 
-		gameManager = null ; 
-	}
-	
-	public static void EnemyDead(){
+	public void finishScene() {
+		main_Camera = null;
+		gameManager = null;
 	}
 
 }

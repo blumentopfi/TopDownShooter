@@ -18,13 +18,11 @@ public class AdvancedEnemy extends Enemy {
 
     /**
      * Constructor for AdvancedEnemy
-     * @param PathToSprite Path to the Sprite.
-     * @param Name Name of the Object.
      * @param posX Starting-coordinate X.
      * @param posY Starting-coordinate Y.
      */
-    AdvancedEnemy(String PathToSprite, String Name, float posX, float posY) {
-        super(PathToSprite, Name, posX, posY);
+    AdvancedEnemy(float posX, float posY) {
+        super("/Assets/PlaneSprites/Advanced/JU87B2.png", "Enemy", posX, posY);
         setHealth(200);
         setValue(40);
         List<BufferedImage> myAnimation = new ArrayList<>() ;

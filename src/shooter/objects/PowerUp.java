@@ -6,7 +6,7 @@ import java.util.Objects;
 import framework.main.GameObject;
 
 public abstract class PowerUp extends GameObject {
-	private float fallspeed = 0.01f ;
+	private final float fallspeed = 0.01f ;
 
 	/**
 	 * Constructor for the PowerUp base-class.

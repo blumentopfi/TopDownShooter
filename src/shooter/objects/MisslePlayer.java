@@ -11,7 +11,7 @@ import java.util.Objects;
  * Player version of a missile.
  */
 public class MisslePlayer extends Missle {
-	private GameManager manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
+	private final GameManager manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
 
 	/**
 	 * Constructor for the missile.
@@ -46,12 +46,5 @@ public class MisslePlayer extends Missle {
 		}
 	}
 
-	/**
-	 * Update-function for this game-object.
-	 * Gets called by the Timer and manages all behavior of this object.
-	 */
-	public void Update(){
-		super.Update();
-	}
 	
 }

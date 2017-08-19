@@ -11,7 +11,7 @@ import java.util.Map;
  * @version 1.0
  */
 public class Audio extends Component {
-	private Map<String,Clip> Sounds = new HashMap<>() ; //Sounds we hold
+	private final Map<String,Clip> Sounds = new HashMap<>() ; //Sounds we hold
 	/**
 	 * Just initializes it
 	 */

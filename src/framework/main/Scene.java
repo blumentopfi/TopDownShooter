@@ -8,8 +8,8 @@ import framework.rendering.Camera;
  */
 abstract public class Scene {
 	protected Camera main_Camera ;
-
-	public Scene(){
+	private final boolean isFinished = false;
+	protected Scene(){
 	}
 	/** 
 	 * Initialization of the Szene
@@ -26,7 +26,7 @@ abstract public class Scene {
 		main_Camera = null ; 
 	}
 	public boolean isFinished(){
-		boolean isFinished = false;
+
 		return isFinished;
 	}
 }

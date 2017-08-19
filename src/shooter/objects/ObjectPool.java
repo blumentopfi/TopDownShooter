@@ -8,9 +8,9 @@ import framework.math.Pair;
 /**
  * Object Pool for game-objects to increase performance of the game.
  */
-public class ObjectPool {
-	 private int Size = 60 ; 
-	 private List<Pair<Boolean,Explosion>> m_Explosions = new ArrayList<>() ;
+class ObjectPool {
+	 private final int Size = 60 ;
+	 private final List<Pair<Boolean,Explosion>> m_Explosions = new ArrayList<>() ;
 
 	 Explosion getExplosion(){
 		 for (Pair<Boolean, Explosion> m_Explosion : m_Explosions) {
@@ -35,9 +35,9 @@ public class ObjectPool {
 		for (int i = 0 ; i < Size ; i++){
 			Explosion e ; 
 			if (SciFiExplo){
-			e = new ExplosionSciFi("Explo") ;
+			e = new ExplosionSciFi() ;
 			}else{
-			e = new ExplosionPlane("Explo") ;
+			e = new ExplosionPlane() ;
 			}
 			e.setActive(false);
 			m_Explosions.add(new Pair<>(true,e)) ;

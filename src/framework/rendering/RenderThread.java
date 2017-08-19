@@ -6,7 +6,7 @@ import framework.main.SceneManager;
  *
  */
 public class RenderThread extends Thread {
-	private Camera m_RenderCamera ; //our Camera
+	private final Camera m_RenderCamera ; //our Camera
 		RenderThread(Camera CameraWhichRenders){
 			m_RenderCamera = CameraWhichRenders ; 
 		}

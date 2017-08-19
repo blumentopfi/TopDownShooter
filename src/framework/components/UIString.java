@@ -7,10 +7,10 @@ import java.awt.Color;
  *
  */
 public class UIString {
-	public String string ; 
-	public int x ; 
-	public int y ; 
-	public Color color ; 
+	private final String string ;
+	private final int x ;
+	private final int y ;
+	private final Color color ;
 	public UIString(int x , int y , String string, Color color) {
 		this.string = string ; 
 		this.x = x ; 

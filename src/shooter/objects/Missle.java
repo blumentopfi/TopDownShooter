@@ -12,7 +12,7 @@ import java.awt.geom.Rectangle2D;
  * Base-Class for missiles.
  */
 public class Missle extends GameObject {
-	int damage ; 
+	final int damage ;
 	Point2D.Float movement ;
 
 

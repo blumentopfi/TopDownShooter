@@ -7,17 +7,17 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class HealthPowerUp extends PowerUp {
-	private int healthstrength ;
+class HealthPowerUp extends PowerUp {
+	private final int healthstrength ;
 
 	/**
 	 * Constructor for the PowerUp "Health"
 	 * @param SpawnPoint The position where the PowerUp is created.
-	 * @param healthstrength The increase of health of the player.
+	 *
 	 */
-	HealthPowerUp(Point2D.Float SpawnPoint, int healthstrength){
+	HealthPowerUp(Point2D.Float SpawnPoint){
 		super("HealthPowerUp") ; 
-		this.healthstrength = healthstrength ; 
+		this.healthstrength = 1000;
 		this.setPosition(SpawnPoint);
 		this.addComponent(new Sprite("/Assets/PowerUps/Health.png",this));
         this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));

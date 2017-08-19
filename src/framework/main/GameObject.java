@@ -22,7 +22,7 @@ public abstract class GameObject {
 	private long m_id  ;
 	private Transform m_transform ; 
 	private boolean m_isActive = true ; 
-	private List<Component> m_Components = new ArrayList<>() ; // List of Components that are attached
+	private final List<Component> m_Components = new ArrayList<>() ; // List of Components that are attached
 	/**
 	 * Add a component
 	 * @param component Component we want to add
@@ -184,7 +184,7 @@ public abstract class GameObject {
 	 * Init the GameObject with a Name ;
 	 * @param Name Name of the Object.
 	 */
-	public GameObject(String Name){
+    protected GameObject(String Name){
 		Random random = new Random(System.nanoTime()) ;
 		m_id = random.nextLong() ;  
 		if(m_id < 0){

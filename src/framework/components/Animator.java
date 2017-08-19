@@ -13,8 +13,8 @@ import java.util.List;
  * 
  */
 public class Animator extends Component {
-	private GameObject m_myObject; // Object the Animator is assigned to
-	private List<Sprite> m_SpriteSheet = new ArrayList<>(); //Sprite Sheet des Animators
+	private final GameObject m_myObject; // Object the Animator is assigned to
+	private final List<Sprite> m_SpriteSheet = new ArrayList<>(); //Sprite Sheet des Animators
 	private int FrameCount = 0; // Variable to hold where we are in the SpriteSheet ;
 	private long NextFrame = 0; // Variable to hold FrameLoopSpeed
 	private int SwitchRate = 10;

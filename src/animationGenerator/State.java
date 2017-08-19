@@ -16,7 +16,7 @@ class State extends JButton {
 	
 		private int draggedAtX ;
 		private int draggedAtY ;
-		Map<String,State> nextStates = new HashMap<>() ;
+		final Map<String,State> nextStates = new HashMap<>() ;
 		State(){
 			super() ; 
 			addMouseListener(new MouseAdapter(){

@@ -12,16 +12,16 @@ import java.awt.geom.Rectangle2D;
  *
  */
 class DamagePowerUp extends PowerUp {
-	private int damageUp ;
+	private final int damageUp ;
 
 	/**
 	 * Constructor of the PowerUp "Damage"
-	 * @param SpawnPoint The Position where the PowerUp is created.
-	 * @param damageUp The increase of damage the player puts out.
-	 */
-	DamagePowerUp(Point2D.Float SpawnPoint, int damageUp){
+     * @param SpawnPoint The Position where the PowerUp is created.
+     *
+     */
+	DamagePowerUp(Point2D.Float SpawnPoint){
 		super("DamagePowerUp") ; 
-		this.damageUp = damageUp ; 
+		this.damageUp = 50;
 		this.setPosition(SpawnPoint);
 		this.addComponent(new Sprite("/Assets/PowerUps/Damage.png",this));
         this.addComponent(new RectangleCollider(new Rectangle2D.Float(0,0,1,1),this));

@@ -16,10 +16,10 @@ import java.util.List;
 
 public class Camera  {
 
-	private Rectangle2D.Float ViewRect ; //World Space
-	private JFrame  m_GameWindow ;  //Game Window
-	private GameView m_GameView ;  //Panel where the game renders
-	FPSCounter m_fpscounter ; //Counter for the FPS
+	private final Rectangle2D.Float ViewRect ; //World Space
+	private final JFrame  m_GameWindow ;  //Game Window
+	private final GameView m_GameView ;  //Panel where the game renders
+	final FPSCounter m_fpscounter ; //Counter for the FPS
 	/**
 	 * Constructor for the camera class
 	 * @param height height of the game window
@@ -80,7 +80,7 @@ public class Camera  {
 	 * @author ftoet
 	 *
 	 */
-	public class GameView extends JPanel {
+	 class GameView extends JPanel {
 		  @Override
 		    public void paintComponent(Graphics g) {
 		        super.paintComponent(g);
@@ -103,14 +103,14 @@ public class Camera  {
 	 * Rendering function
 	 * @param g
 	 */
-	public void doDrawing(Graphics g) {
+	private void doDrawing(Graphics g) {
 		boolean Debug = false ;  
 		List<GameObject> gameObjectsinScene = SceneManager.getInstance().GetAllGameObjectsInScene() ; //get all object
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
 			GameObject Object = gameObjectsinScene.get(i) ;
 				if (Object != null && Object.isActive()){ //if object is active
 					Point2D.Float test = this.WorldCoordToScreenCoord(Object.getPosition()) ; // get the position in screen space
-					if (true || this.getGameWindow().getBounds().intersects(new Rectangle2D.Float(test.x,test.y,(float)Object.getWidth(),(float)Object.getHeight()))){
+
 					if (Object.getSprite() != null){//if it has a renderable component
 						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; // get the position in screen space
 						g.drawImage(Object.getSprite().getImage(), (int)(PointToRender.x - (Object.getSprite().getWidth()/2)), ((int)PointToRender.y - (Object.getSprite().getHeight()/2)), null) ; // draw it in the middle of the sprite
@@ -134,7 +134,7 @@ public class Camera  {
 							}
 						}
 					}
-					}
+
 				}
 		}
 
@@ -142,8 +142,8 @@ public class Camera  {
 	}
 	/**
 	 * Convert World to Screen coordinate
-	 * @param WorldPoint
-	 * @return ScreenPoint
+	 * @param WorldPoint Given point in world coordinates
+	 * @return ScreenPoint returned point in screen coordinates
 	 */
 	public Point2D.Float WorldCoordToScreenCoord (Point2D.Float WorldPoint){
 		Point2D.Float ScreenPoint = new Point2D.Float(0,0) ; 
@@ -156,8 +156,8 @@ public class Camera  {
 
 	/**
 	 * Convert ScreenPoint to WorldPoint
-	 * @param ScreenPoint
-	 * @return WorldPoint
+	 * @param ScreenPoint Given point in world coordinates
+	 * @return WorldPoint returned point in screen coordinates
 	 */
 	public Point2D.Float ScreenCoordToWorldCoord (Point2D.Float ScreenPoint){
 		Point2D.Float WorldPoint = new Point2D.Float(0,0) ;

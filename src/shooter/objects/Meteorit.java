@@ -11,15 +11,14 @@ import framework.main.GameObject;
 import framework.rendering.Time;
 
 public class Meteorit extends GameObject {
-	private int damage = 200;
-	private float speed = 3f;
+	private final int damage = 200;
+	private final float speed = 3f;
 
 	/**
 	 * Constructor for meteorits.
-	 * @param Name The name of this game-object.
 	 */
-	Meteorit(String Name) {
-		super(Name);
+	Meteorit() {
+		super("Meteo");
 		Random r = new Random(System.nanoTime());
 		int OurInt = r.nextInt(4) + 1;
 		this.addComponent(new Sprite("/Assets/ProjectileSprite/a" + String.valueOf(OurInt) + ".png", this));

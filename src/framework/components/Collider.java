@@ -10,14 +10,14 @@ import java.awt.*;
  * Switched to Abstract Class to implement more Collider Types
  */
 public abstract class Collider extends Component {
-	private GameObject myObject ; //Object the Collider is assigned to
+	private final GameObject myObject ; //Object the Collider is assigned to
 	Shape collidingShape ; //Shape of the Collider
 	boolean HasOverridenSize = false ; //See if user set size manually
 	/**
 	 * Mother Class for the Collider
 	 * @param initObject mother object
 	 */
-	public Collider(GameObject initObject){
+    Collider(GameObject initObject){
 		this.myObject = initObject ; 
 	}
 	/**
@@ -32,13 +32,7 @@ public abstract class Collider extends Component {
 	abstract void setX(float newX) ; 
 	abstract void setY(float newY) ; 
 	public abstract float getX() ; 
-	public abstract float getY() ; 
-	/**
-	 * see if this Collider interesects with another
-	 * @param A The Collider that may intersect.
-	 * @return True if intersected.
-	 */
-	public abstract boolean intersects(Collider A) ; 
+	public abstract float getY() ;
 	/**
 	 * 
 	 * @return Width
