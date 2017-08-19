@@ -43,7 +43,7 @@ public class Player extends GameObject {
 
 	enum Weapon{DOUBLE,SINGLE,TRIPLE,LASER}
 
-	private Weapon my_weapon = Weapon.SINGLE ;
+    private Weapon my_weapon = Weapon.SINGLE ;
 
 	private final GameManager manager;
 

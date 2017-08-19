@@ -194,8 +194,7 @@ public abstract class Enemy extends GameObject {
     		new UpgradePowerUp(this.getPosition()) ;  
     	}
     	if (this.getHealth() <= 0 ){
-            assert manager != null;
-            ExplosionPlane e = (ExplosionPlane)manager.ExplosionsPlane.getExplosion() ;
+    	ExplosionPlane e = (ExplosionPlane)manager.ExplosionsPlane.getExplosion() ; 
     	e.setPosition(this.getPosition());
     	e.Boom();
     	}

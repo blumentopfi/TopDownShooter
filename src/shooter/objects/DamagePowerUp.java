@@ -16,9 +16,9 @@ class DamagePowerUp extends PowerUp {
 
 	/**
 	 * Constructor of the PowerUp "Damage"
-     * @param SpawnPoint The Position where the PowerUp is created.
-     *
-     */
+	 * @param SpawnPoint The Position where the PowerUp is created.
+	 *
+	 */
 	DamagePowerUp(Point2D.Float SpawnPoint){
 		super("DamagePowerUp") ; 
 		this.damageUp = 50;

@@ -54,7 +54,9 @@ public class Camera  {
 	 * @param toAdd Element we want to add
 	 */
 	public void AddGUIElement(JComponent toAdd){
-		m_GameView.add(toAdd) ; 
+		m_GameView.add(toAdd) ;
+
+		//System.out.println(toAdd.getClass());
 		m_GameView.revalidate();
 		m_GameView.repaint(); 
 	}
@@ -80,7 +82,7 @@ public class Camera  {
 	 * @author ftoet
 	 *
 	 */
-	 class GameView extends JPanel {
+	 public class GameView extends JPanel {
 		  @Override
 		    public void paintComponent(Graphics g) {
 		        super.paintComponent(g);

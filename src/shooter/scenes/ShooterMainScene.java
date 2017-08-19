@@ -14,8 +14,8 @@ public class ShooterMainScene extends Scene {
 	public void init() {
 		main_Camera = new Camera(1000,1000,new Rectangle2D.Float(0,0,10,10),SceneManager.getInstance().getGameWindow()) ;
 		SceneManager.getInstance().setMainCamera(main_Camera);
-		new Background() ; 
-		new Background(true) ; 
+		new Background() ;
+		new Background(true) ;
 		long time = System.nanoTime() ; 
 		System.out.println(System.nanoTime() - time) ;
 		gameManager = new GameManager("Manager") ;

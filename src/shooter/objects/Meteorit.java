@@ -16,7 +16,7 @@ public class Meteorit extends GameObject {
 
 	/**
 	 * Constructor for meteorits.
-	 */
+     */
 	Meteorit() {
 		super("Meteo");
 		Random r = new Random(System.nanoTime());

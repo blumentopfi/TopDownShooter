@@ -17,15 +17,15 @@ import java.util.List;
  * @author Fin
  *
  */
-class ExplosionPlane extends Explosion {
+public  class ExplosionPlane extends Explosion {
 	private final Animator myAnimator ;
 	private final Audio a ;
 
 	/**
 	 * Constructor for explosions for planes.
-     */
+	 */
 	ExplosionPlane(){
-		super() ;
+		super("Explo") ;
 		this.setActive(false);
 		this.addComponent(new Sprite("/Assets/ProjectileSprite/Explosion/expl_06_0.png",this));
 		List<BufferedImage>myAnimation = new ArrayList<>() ;
@@ -33,7 +33,7 @@ class ExplosionPlane extends Explosion {
 			for (int i = 0 ; i < 32 ; i++) 
 				myAnimation.add(ImageIO.read(this.getClass().getResource("/Assets/ProjectileSprite/Explosion/expl_06_" + i + ".png")));
 			 try {
-					Thread.sleep(80);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -52,6 +52,19 @@ class ExplosionPlane extends Explosion {
 		}
 	}
 
+	/**
+	 * Update-function for this game-object.
+	 * Gets called by the Timer and manages all behavior of this object.
+	 */
+	public void Update(){
+		super.Update() ; 
+		if (myAnimator != null){
+		if (myAnimator.hasFinished()){ //if animation is finished return this to pool
+			manager.ExplosionsPlane.returnExplosionToPool(this);
+			
+		}
+		}	
+	}
 
 	/**
 	 * Play the sound of the explosion

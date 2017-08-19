@@ -155,13 +155,15 @@ private static boolean testIntersection(Shape shapeA, Shape shapeB) {
 			}
 		}
 		List<GameObject> returnedObjects = new ArrayList<>();
-		for (GameObject objectA : gameObjectsInScene) { //iterate through objects
+		for (int i = 0  ;  i < gameObjectsInScene.size() ; i++) { //iterate through objects
+			GameObject objectA = gameObjectsInScene.get(i) ;
 			Collider colliderToCheckA = objectA.getCollider();
 			if (colliderToCheckA != null) {
 				returnedObjects.clear();
 				Shape ShapeA = colliderToCheckA.getCollidingShape();
 				quad.retrieve(returnedObjects, objectA); //get Objects in the same node in tree
-				for (GameObject objectB : returnedObjects) {
+				for (int j = 0 ; j < returnedObjects.size() ; j++) {
+					GameObject objectB = returnedObjects.get(j) ;
 					if (objectB != objectA) {
 						Collider colliderToCheckB;
 						colliderToCheckB = objectB.getCollider();
