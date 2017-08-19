@@ -1,47 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa0a5298-cac0-42ee-9972-8e9f5fd4270d" name="Default" comment="Fix for exception">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/shooter/objects/TestObject.java" afterPath="" />
+    <list default="true" id="fa0a5298-cac0-42ee-9972-8e9f5fd4270d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/animationGenerator/AnimationGenerator.java" afterPath="$PROJECT_DIR$/src/animationGenerator/AnimationGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/animationGenerator/AnimationGeneratorWindow.java" afterPath="$PROJECT_DIR$/src/animationGenerator/AnimationGeneratorWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/animationGenerator/State.java" afterPath="$PROJECT_DIR$/src/animationGenerator/State.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/Animator.java" afterPath="$PROJECT_DIR$/src/framework/components/Animator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/Audio.java" afterPath="$PROJECT_DIR$/src/framework/components/Audio.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/Collider.java" afterPath="$PROJECT_DIR$/src/framework/components/Collider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/Component.java" afterPath="$PROJECT_DIR$/src/framework/components/Component.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/OvalCollider.java" afterPath="$PROJECT_DIR$/src/framework/components/OvalCollider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/RectangleCollider.java" afterPath="$PROJECT_DIR$/src/framework/components/RectangleCollider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/Sprite.java" afterPath="$PROJECT_DIR$/src/framework/components/Sprite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/components/UIString.java" afterPath="$PROJECT_DIR$/src/framework/components/UIString.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/geometry/QuadTree.java" afterPath="$PROJECT_DIR$/src/framework/geometry/QuadTree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/input/InputManager.java" afterPath="$PROJECT_DIR$/src/framework/input/InputManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/main/GameObject.java" afterPath="$PROJECT_DIR$/src/framework/main/GameObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/main/Scene.java" afterPath="$PROJECT_DIR$/src/framework/main/Scene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/rendering/Camera.java" afterPath="$PROJECT_DIR$/src/framework/rendering/Camera.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/rendering/FPSCounter.java" afterPath="$PROJECT_DIR$/src/framework/rendering/FPSCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/framework/rendering/RenderThread.java" afterPath="$PROJECT_DIR$/src/framework/rendering/RenderThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/UI/HealthBar.java" afterPath="$PROJECT_DIR$/src/shooter/UI/HealthBar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/AdvancedEnemy.java" afterPath="$PROJECT_DIR$/src/shooter/objects/AdvancedEnemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/Boss.java" afterPath="$PROJECT_DIR$/src/shooter/objects/Boss.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/DamagePowerUp.java" afterPath="$PROJECT_DIR$/src/shooter/objects/DamagePowerUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/Enemy.java" afterPath="$PROJECT_DIR$/src/shooter/objects/Enemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/Explosion.java" afterPath="$PROJECT_DIR$/src/shooter/objects/Explosion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/ExplosionPlane.java" afterPath="$PROJECT_DIR$/src/shooter/objects/ExplosionPlane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/ExplosionSciFi.java" afterPath="$PROJECT_DIR$/src/shooter/objects/ExplosionSciFi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/GameManager.java" afterPath="$PROJECT_DIR$/src/shooter/objects/GameManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/HealthPowerUp.java" afterPath="$PROJECT_DIR$/src/shooter/objects/HealthPowerUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/Meteorit.java" afterPath="$PROJECT_DIR$/src/shooter/objects/Meteorit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/Missle.java" afterPath="$PROJECT_DIR$/src/shooter/objects/Missle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/MissleEnemy.java" afterPath="$PROJECT_DIR$/src/shooter/objects/MissleEnemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/MisslePlayer.java" afterPath="$PROJECT_DIR$/src/shooter/objects/MisslePlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/ObjectPool.java" afterPath="$PROJECT_DIR$/src/shooter/objects/ObjectPool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/Player.java" afterPath="$PROJECT_DIR$/src/shooter/objects/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/objects/PowerUp.java" afterPath="$PROJECT_DIR$/src/shooter/objects/PowerUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/scenes/GameOverScene.java" afterPath="$PROJECT_DIR$/src/shooter/scenes/GameOverScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/scenes/TestScene.java" afterPath="$PROJECT_DIR$/src/shooter/scenes/TestScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shooter/testing/ShooterTest.java" afterPath="$PROJECT_DIR$/src/shooter/testing/ShooterTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -767,7 +728,7 @@
       <workItem from="1498981903496" duration="231000" />
       <workItem from="1503073460461" duration="410000" />
       <workItem from="1503073929492" duration="255000" />
-      <workItem from="1503128621286" duration="1940000" />
+      <workItem from="1503128621286" duration="1967000" />
     </task>
     <task id="LOCAL-00001" summary="Fix for exception">
       <created>1503073690513</created>
@@ -776,7 +737,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503073690513</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fix for exception">
+      <created>1503130588745</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1503130588745</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -785,7 +753,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2836000" />
+    <option name="totallyTimeSpent" value="2863000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
