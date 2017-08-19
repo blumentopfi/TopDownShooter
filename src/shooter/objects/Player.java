@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Player extends GameObject {
-	Point direction ; 
 	private float dx ;
 	private float dy ;
 

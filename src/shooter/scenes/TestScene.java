@@ -24,8 +24,5 @@ public class TestScene extends Scene {
 		main_Camera = null ; 
 		gameManager = null ; 
 	}
-	
-	public static void EnemyDead(){
-	}
 
 }

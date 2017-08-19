@@ -46,12 +46,5 @@ public class MisslePlayer extends Missle {
 		}
 	}
 
-	/**
-	 * Update-function for this game-object.
-	 * Gets called by the Timer and manages all behavior of this object.
-	 */
-	public void Update(){
-		super.Update();
-	}
 	
 }

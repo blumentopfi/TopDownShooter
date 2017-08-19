@@ -22,7 +22,6 @@ public class InputManager implements ActionListener {
 	private static final int DELAY = 10; // Tick every 10 milliseconds
 	private final Camera camera; // our Camera
 	private final JFrame window; // our gameWindow
-	private KeyListener keylistener; // our Listener for the input
 	private static boolean paused = false ;
 	public static void Pause(){
 		paused = true ; 
@@ -45,12 +44,6 @@ public class InputManager implements ActionListener {
 
 	}
 
-	public void RefreshKeyManager() {
-		window.removeKeyListener(keylistener);
-		window.addKeyListener(keylistener);
-		window.setFocusable(true);
-		window.setFocusTraversalKeysEnabled(true);
-	}
 	/**
 	 * Class to that broadcasts MouseInput to all GameObjects
 	 * @author Fin
@@ -96,10 +89,6 @@ public class InputManager implements ActionListener {
 		 */
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
-			for (GameObject Object : gameObjectsInScene) {
-				Object.MouseReleased(arg0);
-			}
-
 		}
 
 	}

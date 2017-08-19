@@ -13,14 +13,14 @@ import java.util.List;
  * @author Fin
  *
  */
-public  class ExplosionSciFi extends Explosion {
+class ExplosionSciFi extends Explosion {
 	private final Animator myAnimator ;
 
 	/**
 	 * Explosion for the Sci-Fi-Bullets of the player.
 	 */
 	ExplosionSciFi(){
-		super("Explo") ;
+		super() ;
 		this.setActive(false);
 		this.addComponent(new Sprite("/Assets/ProjectileSprite/Explosion/1_0.png",this));
 		List<BufferedImage>myAnimation = new ArrayList<>() ;
@@ -42,16 +42,5 @@ public  class ExplosionSciFi extends Explosion {
 		this.addComponent(myAnimator);
 	}
 
-	/**
-	 * Update-function for this game-object.
-	 * Gets called by the Timer and manages all behavior of this object.
-	 */
-	public void Update(){
-		super.Update() ; 
-		if (myAnimator != null){
-		if (myAnimator.hasFinished()){ //if we have finished return ourselfs to the pool
-			manager.ExplosionsSciFi.returnExplosionToPool(this);
-		}
-		}	
-	}
+
 }

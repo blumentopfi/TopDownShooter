@@ -57,7 +57,6 @@ public class SceneManager {
 		}
 		m_Scene = toSet ;  //Set the new Scene
 		m_Scene.init(); //start the new scene
-		if (input_manager!= null)  input_manager.RefreshKeyManager(); //TODO
 		
 	}
 	

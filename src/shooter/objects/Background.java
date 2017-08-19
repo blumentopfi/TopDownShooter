@@ -22,16 +22,7 @@ public class Background extends GameObject {
         this.addComponent(new Sprite("/Assets/Splashscreens/map_2_fixed.png",this));
         this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
     }
-	/**
-	 * If it is the second init at other default point
-	 * @param test Set if test.
-	 */
-	public Background(boolean test) {
-        super("Background");
-        this.setPosition(new Point2D.Float(5,-19.9f));
-        this.addComponent(new Sprite("/Assets/Splashscreens/map_2_fixed.png",this));
-        this.setDimension(new Dimension(SceneManager.getInstance().getMainCamera().getGameWindow().getWidth(),SceneManager.getInstance().getMainCamera().getGameWindow().getHeight()*2));
-    }
+
 	/**
 	 * Init at user Point
 	 * @param x The Point to set the background to.

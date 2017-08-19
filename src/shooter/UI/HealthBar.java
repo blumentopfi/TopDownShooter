@@ -82,9 +82,4 @@ public class HealthBar extends BasicProgressBarUI {
         g2d.dispose();
     }
 
-    @Override
-    protected void paintIndeterminate(Graphics g, JComponent c) {
-        super.paintIndeterminate(g, c); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

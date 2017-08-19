@@ -10,15 +10,14 @@ import framework.main.SceneManager;
  */
 public  class
 Explosion extends GameObject {
-	Animator myAnimator ; 
-	final GameManager manager ;
+	private Animator myAnimator ;
+	private final GameManager manager ;
 
 	/**
 	 * Constructor for explosion.
-	 * @param Name Name of the game-object.
 	 */
-	Explosion(String Name){
-		super(Name) ; 
+	Explosion(){
+		super("Explo") ;
 	    //get the manager
 		this.manager = (GameManager)SceneManager.getInstance().getGameObjectByName("Manager") ;
 		
@@ -29,6 +28,11 @@ Explosion extends GameObject {
 	 * Gets called by the Timer and manages all behavior of this object.
 	 */
 	public void Update(){
-		super.Update();
+		super.Update() ;
+		if (myAnimator != null){
+			if (myAnimator.hasFinished()){ //if we have finished return ourselfs to the pool
+				manager.ExplosionsSciFi.returnExplosionToPool(this);
+			}
+		}
 	}
 }

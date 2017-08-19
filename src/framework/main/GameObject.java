@@ -211,9 +211,6 @@ public abstract class GameObject {
 		
 	}
 	public void MousePressed(MouseEvent e) {
-	} 
-	public void MouseReleased(MouseEvent e){
-		
 	}
 
 	public Point2D.Float getPosition(){

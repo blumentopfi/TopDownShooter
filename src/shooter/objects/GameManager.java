@@ -21,7 +21,7 @@ public class GameManager extends GameObject {
 	private final Player main_player  ;
 	private final JLabel PauseLabel1 = new JLabel() ;
 	private final JLabel PauseLabel2 = new JLabel() ;
-	private final JPanel gameView ;
+
 	private int Score = 0 ;
 	private int killedEnemies = 0;
 	int Wave = 1;
@@ -82,7 +82,6 @@ public class GameManager extends GameObject {
 		m_healthbar.setValue(main_player.getHealth());
 		m_bossbar.setVisible(false);
 		BossLabel.setVisible(false);
-		gameView = SceneManager.getInstance().getMainCamera().getGameView() ;
 		initPause() ;
 
 	}

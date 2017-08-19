@@ -8,25 +8,17 @@ import framework.rendering.Camera;
  */
 abstract public class Scene {
 	protected Camera main_Camera ;
-	private final boolean isFinished = false;
 	protected Scene(){
 	}
 	/** 
 	 * Initialization of the Szene
 	 */
-	public abstract void init () ; 
-	public Camera getMainCamera(){
-		return main_Camera ; 
-	}
+	public abstract void init () ;
 	/**
 	 * Kind of destructor for the scene
 	 */
 	public void finishScene(){
 		main_Camera.getRenderer().interrupt();
 		main_Camera = null ; 
-	}
-	public boolean isFinished(){
-
-		return isFinished;
 	}
 }

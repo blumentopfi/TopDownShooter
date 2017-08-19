@@ -111,7 +111,7 @@ public class Camera  {
 		for (int i = 0 ; i < gameObjectsinScene.size() ; i++){
 			GameObject Object = gameObjectsinScene.get(i) ;
 				if (Object != null && Object.isActive()){ //if object is active
-					Point2D.Float test = this.WorldCoordToScreenCoord(Object.getPosition()) ; // get the position in screen space
+
 
 					if (Object.getSprite() != null){//if it has a renderable component
 						Point2D.Float PointToRender = WorldCoordToScreenCoord(Object.getPosition()) ; // get the position in screen space
